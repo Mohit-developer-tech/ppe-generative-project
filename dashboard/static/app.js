@@ -311,12 +311,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Reconstructions & Heatmap
     currentReconRaw = data.reconstruction_b64;
     currentReconSharpened = data.reconstruction_sharpened_b64 || data.reconstruction_b64;
-    isSharpenedActive = false;
-    if (badgeSharpened) badgeSharpened.classList.add('hidden');
-    if (btnToggleSharpenText) btnToggleSharpenText.textContent = 'Sharpen';
+    isSharpenedActive = true;
+    if (badgeSharpened) badgeSharpened.classList.remove('hidden');
+    if (btnToggleSharpenText) btnToggleSharpenText.textContent = 'View Raw (L2)';
 
     imgOriginal.src = data.original_b64;
-    imgReconstructed.src = data.reconstruction_b64;
+    imgReconstructed.src = currentReconSharpened;
     imgHeatmap.src = data.heatmap_b64;
 
     // 4. Per-Image Metrics
@@ -343,11 +343,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isSharpenedActive && currentReconSharpened) {
         imgReconstructed.src = currentReconSharpened;
         if (badgeSharpened) badgeSharpened.classList.remove('hidden');
-        if (btnToggleSharpenText) btnToggleSharpenText.textContent = 'Original';
+        if (btnToggleSharpenText) btnToggleSharpenText.textContent = 'View Raw (L2)';
       } else {
         imgReconstructed.src = currentReconRaw;
         if (badgeSharpened) badgeSharpened.classList.add('hidden');
-        if (btnToggleSharpenText) btnToggleSharpenText.textContent = 'Sharpen';
+        if (btnToggleSharpenText) btnToggleSharpenText.textContent = 'Sharpen / Crisp';
       }
     });
   }

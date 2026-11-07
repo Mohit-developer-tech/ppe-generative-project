@@ -283,8 +283,8 @@ def predict_crop(
 
     # High-frequency edge enhancement (unsharp masking) to restore crisp contours
     import scipy.ndimage
-    blurred_recon = scipy.ndimage.gaussian_filter(recon_np, sigma=(0.8, 0.8, 0))
-    sharpened_np = np.clip(recon_np + 0.9 * (recon_np - blurred_recon), 0.0, 1.0)
+    blurred_recon = scipy.ndimage.gaussian_filter(recon_np, sigma=(0.7, 0.7, 0))
+    sharpened_np = np.clip(recon_np + 1.3 * (recon_np - blurred_recon), 0.0, 1.0)
 
     # 5. Reconstruction Metrics & Heatmap
     diff = orig_np - recon_np

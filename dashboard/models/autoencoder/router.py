@@ -231,8 +231,8 @@ def predict_crop(
 
     # High-frequency edge enhancement (unsharp masking)
     import scipy.ndimage
-    blurred_recon = scipy.ndimage.gaussian_filter(recon_np, sigma=(0.8, 0.8, 0))
-    sharpened_np = np.clip(recon_np + 0.9 * (recon_np - blurred_recon), 0.0, 1.0)
+    blurred_recon = scipy.ndimage.gaussian_filter(recon_np, sigma=(0.7, 0.7, 0))
+    sharpened_np = np.clip(recon_np + 1.3 * (recon_np - blurred_recon), 0.0, 1.0)
     sharpened_tensor = torch.from_numpy(sharpened_np).permute(2, 0, 1).float()
 
     diff_sq = (orig_np - recon_np) ** 2
