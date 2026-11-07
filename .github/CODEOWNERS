@@ -1,0 +1,13 @@
+# PPE Generative AI Project - Code Owners Specification
+# Rules:
+# - Pull requests that touch only a person's own folders can be merged after one review.
+# - Pull requests that touch common/ or dashboard/ require @Mohit-developer-tech approval.
+
+/common/              @Mohit-developer-tech
+/dashboard/           @Mohit-developer-tech
+/models/vae/          @KhOmkar
+/models/policy/       @KhOmkar
+/models/gan/          @SachinB18
+/models/diffusion/    @SachinB18
+/models/autoencoder/  @Mohit-developer-tech
+

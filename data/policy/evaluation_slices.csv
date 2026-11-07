@@ -1,0 +1,287 @@
+text,true_label,slice,split,source
+"Employees working in areas where there is a possible danger of head injury from impact, or from falling or flying objects, or from electrical shock and burns, shall be protected by protective helmets.",helmet_required,conditional,train,OSHA 29 CFR 1926.100(a)
+"Employees working in areas where there is a possible danger of head injury from impact, or from falling or flying objects, or from electrical shock and burns, shall be protected by protective helmets.",helmet_required,multi_ppe,train,OSHA 29 CFR 1926.100(a)
+The employer must provide each employee with head protection that meets the specifications contained in ANSI Z89.1-2009.,helmet_required,conditional,train,OSHA 29 CFR 1926.100(b)(1)
+Head protection that meets the specifications of ANSI Z89.1-2003 or ANSI Z89.1-1997 is also deemed compliant for construction operations.,helmet_required,conditional,train,OSHA 29 CFR 1926.100(b)(1)
+The employer must ensure that head protection provided for each employee exposed to high-voltage electric shock and burns meets the electrical insulation criteria of Section 9.7.,helmet_required,multi_ppe,train,OSHA 29 CFR 1926.100(b)(2)
+Protective helmets for the protection of employees against impact and penetration of falling and flying objects shall meet the requirements of ANSI standards.,helmet_required,multi_ppe,train,OSHA 29 CFR 1926.100(b)
+Hard hats and protective headgear must be worn at all times by personnel working beneath scaffold erections or active hoisting lines.,helmet_required,multi_ppe,train,OSHA 29 CFR 1926 Subpart E Guidelines
+Each worker exposed to potential head trauma from crane swing radii or material handling must be equipped with an industrial safety helmet.,helmet_required,multi_ppe,train,OSHA 29 CFR 1926 Subpart E Guidelines
+"Helmets shall be inspected daily for cracks, dents, and degradation from ultraviolet radiation or chemical exposure.",helmet_required,multi_ppe,train,OSHA 29 CFR 1926.100 Inspection Advisory
+Suspension bands within industrial hard hats must be maintained in proper adjustment to ensure clearance between the shell and head.,helmet_required,multi_ppe,train,OSHA 29 CFR 1926.100 Advisory
+Alteration of the shell or suspension system of an approved safety helmet voids compliance and is strictly prohibited.,helmet_required,multi_ppe,train,OSHA 29 CFR 1926.100 Advisory
+Winter liners and chin straps used in conjunction with safety helmets must not compromise the dielectric or impact rating of the shell.,helmet_required,multi_ppe,train,OSHA 29 CFR 1926.100 Advisory
+Metallic or conductive hard hats are strictly forbidden when working near energized conductors or overhead power lines.,helmet_required,conditional,train,OSHA 29 CFR 1926.100(b)(2)
+"Employees shall be provided with eye and face protection equipment when machines or operations present potential eye or face injury from physical, chemical, or radiation agents.",other_ppe,conditional,train,OSHA 29 CFR 1926.102(a)(1)
+"Employees shall be provided with eye and face protection equipment when machines or operations present potential eye or face injury from physical, chemical, or radiation agents.",other_ppe,multi_ppe,train,OSHA 29 CFR 1926.102(a)(1)
+Eye and face protection equipment required by this Part shall meet the requirements specified in ANSI Z87.1-2010.,other_ppe,conditional,train,OSHA 29 CFR 1926.102(a)(2)
+Eye and face protection equipment required by this Part shall meet the requirements specified in ANSI Z87.1-2010.,other_ppe,multi_ppe,train,OSHA 29 CFR 1926.102(a)(2)
+"Safety spectacles with side protection must be worn during grinding, chipping, and masonry cutting activities.",other_ppe,conditional,train,OSHA 29 CFR 1926.102(b)
+"Safety spectacles with side protection must be worn during grinding, chipping, and masonry cutting activities.",other_ppe,multi_ppe,train,OSHA 29 CFR 1926.102(b)
+Full face shields shall be worn in combination with safety goggles when handling hazardous liquid chemicals or corrosive acids.,other_ppe,conditional,train,OSHA 29 CFR 1926.102(c)
+Full face shields shall be worn in combination with safety goggles when handling hazardous liquid chemicals or corrosive acids.,other_ppe,multi_ppe,train,OSHA 29 CFR 1926.102(c)
+Filter lenses for protection against radiant energy during gas welding or oxygen cutting must have an appropriate shade number.,other_ppe,conditional,train,OSHA 29 CFR 1926.102(b)(1)
+Safety-toe footwear for employees shall meet the requirements and specifications in ASTM F-2412-2005 and ASTM F-2413-2005.,other_ppe,conditional,train,OSHA 29 CFR 1926.96
+Safety-toe footwear for employees shall meet the requirements and specifications in ASTM F-2412-2005 and ASTM F-2413-2005.,other_ppe,multi_ppe,train,OSHA 29 CFR 1926.96
+Employees working in areas where there is danger of foot injuries from falling or rolling objects shall wear protective safety boots.,other_ppe,conditional,train,OSHA 29 CFR 1926.96 Advisory
+"Wherever it is not feasible to reduce noise levels below the permissible decibel limits, ear protective devices shall be provided and used.",other_ppe,conditional,train,OSHA 29 CFR 1926.101(a)
+"Wherever it is not feasible to reduce noise levels below the permissible decibel limits, ear protective devices shall be provided and used.",other_ppe,multi_ppe,train,OSHA 29 CFR 1926.101(a)
+Earmuffs or acoustic foam plugs must be donned when operating heavy pneumatic jackhammers or pile driving rigs.,other_ppe,conditional,train,OSHA 29 CFR 1926.101 Advisory
+"Lifelines, safety belts, and lanyards shall be used only for employee safeguarding against accidental falls.",other_ppe,conditional,train,OSHA 29 CFR 1926.104(a)
+"Lifelines, safety belts, and lanyards shall be used only for employee safeguarding against accidental falls.",other_ppe,multi_ppe,train,OSHA 29 CFR 1926.104(a)
+Full-body fall arrest harnesses with shock-absorbing lanyards are mandatory for all elevated work six feet or more above lower levels.,other_ppe,multi_ppe,train,OSHA 29 CFR 1926.104(b)
+"Cut-resistant gloves must be worn when handling sheet metal, structural steel, or sharp recycled materials.",other_ppe,conditional,train,OSHA 29 CFR 1926.95 Advisory
+"Cut-resistant gloves must be worn when handling sheet metal, structural steel, or sharp recycled materials.",other_ppe,multi_ppe,train,OSHA 29 CFR 1926.95 Advisory
+Rubber insulating gloves and sleeves shall be worn when working directly upon exposed energized conductors.,other_ppe,conditional,train,OSHA 29 CFR 1926.95 Advisory
+Rubber insulating gloves and sleeves shall be worn when working directly upon exposed energized conductors.,other_ppe,multi_ppe,train,OSHA 29 CFR 1926.95 Advisory
+Chemical-resistant nitrile gloves shall be donned during solvent degreasing and polyurethane spraying operations.,other_ppe,conditional,train,OSHA 29 CFR 1926.95 Advisory
+Chemical-resistant nitrile gloves shall be donned during solvent degreasing and polyurethane spraying operations.,other_ppe,multi_ppe,train,OSHA 29 CFR 1926.95 Advisory
+Approved particulate respirators must be utilized when silica dust concentrations exceed permissible exposure thresholds.,other_ppe,conditional,train,OSHA 29 CFR 1926.103
+"Application. Protective equipment, including personal protective equipment for eyes, face, head, and extremities, shall be provided.",none,multi_ppe,train,OSHA 29 CFR 1926.95(a)
+Equipment shall be maintained in a sanitary and reliable condition wherever it is necessary by reason of hazards of processes or environment.,none,conditional,train,OSHA 29 CFR 1926.95(a)
+Equipment shall be maintained in a sanitary and reliable condition wherever it is necessary by reason of hazards of processes or environment.,none,multi_ppe,train,OSHA 29 CFR 1926.95(a)
+"Where employees provide their own protective equipment, the employer shall be responsible to assure its adequacy, including proper maintenance.",none,conditional,train,OSHA 29 CFR 1926.95(b)
+All personal protective equipment shall be of safe design and construction for the work to be performed.,none,multi_ppe,train,OSHA 29 CFR 1926.95(c)
+"The employer shall assess the workplace to determine if hazards are present, or are likely to be present, which necessitate the use of PPE.",none,conditional,train,OSHA 29 CFR 1910.132(d)(1)
+The employer shall verify that the required workplace hazard assessment has been performed through a written certification.,none,conditional,train,OSHA 29 CFR 1910.132(d)(2)
+"The certification shall identify the workplace evaluated, the person certifying that the evaluation has been performed, and the dates of the hazard assessment.",none,conditional,train,OSHA 29 CFR 1910.132(d)(2)
+"The certification shall identify the workplace evaluated, the person certifying that the evaluation has been performed, and the dates of the hazard assessment.",none,multi_ppe,train,OSHA 29 CFR 1910.132(d)(2)
+Each such employee shall be trained to know at least when PPE is necessary and what PPE is necessary.,none,conditional,train,OSHA 29 CFR 1910.132(f)(1)(i)
+Each such employee shall be trained to know at least when PPE is necessary and what PPE is necessary.,none,multi_ppe,train,OSHA 29 CFR 1910.132(f)(1)(i)
+"Training shall demonstrate how to properly don, doff, adjust, and wear personal protective equipment.",none,multi_ppe,train,OSHA 29 CFR 1910.132(f)(1)(iii)
+"Employees must understand the limitations of the protective equipment and its proper care, maintenance, useful life, and disposal.",none,conditional,train,OSHA 29 CFR 1910.132(f)(1)(iv)
+"Employees must understand the limitations of the protective equipment and its proper care, maintenance, useful life, and disposal.",none,multi_ppe,train,OSHA 29 CFR 1910.132(f)(1)(iv)
+Each affected employee shall demonstrate an understanding of the training specified in paragraph (f) before being allowed to perform work.,none,conditional,train,OSHA 29 CFR 1910.132(f)(2)
+Each affected employee shall demonstrate an understanding of the training specified in paragraph (f) before being allowed to perform work.,none,multi_ppe,train,OSHA 29 CFR 1910.132(f)(2)
+Retraining is required when changes in the workplace render previous training obsolete or when inadequacies in an employee's knowledge occur.,none,conditional,train,OSHA 29 CFR 1910.132(f)(3)
+The employer shall verify that each affected employee has received and understood the required training through a written record.,none,conditional,train,OSHA 29 CFR 1910.132(f)(4)
+The employer shall verify that each affected employee has received and understood the required training through a written record.,none,multi_ppe,train,OSHA 29 CFR 1910.132(f)(4)
+Failure to follow site safety procedures may result in disciplinary action up to and including immediate termination of employment.,none,multi_ppe,train,General Contractor Safety Manual
+Subcontractors are required to attend the mandatory pre-shift safety briefing each morning prior to commencing field tasks.,none,conditional,train,General Contractor Safety Manual
+Subcontractors are required to attend the mandatory pre-shift safety briefing each morning prior to commencing field tasks.,none,multi_ppe,train,General Contractor Safety Manual
+Visitors must report directly to the field project office and obtain a visitor badge before proceeding onto the site.,none,multi_ppe,train,General Contractor Safety Manual
+"All incidents, near misses, and occupational injuries must be reported to the site safety superintendent within one hour.",none,multi_ppe,train,General Contractor Safety Manual
+All workers and supervisory personnel entering the active laydown yard must wear an ANSI approved hard hat and a high-visibility safety vest.,both_required,multi_ppe,train,Heavy Industrial SOP Section 4.1
+A protective safety helmet and a Class 2 reflective garment are mandatory conditions of entry for all construction zone personnel.,both_required,multi_ppe,train,Heavy Industrial SOP Section 4.1
+Every person present on the project site outside administrative offices shall wear an approved hard hat together with a high-visibility fluorescent vest.,both_required,multi_ppe,train,Heavy Industrial SOP Section 4.2
+"Prior to crossing the construction perimeter fence, employees must don both head protection and reflective safety apparel.",both_required,multi_ppe,train,Heavy Industrial SOP Section 4.2
+Personnel working within twenty feet of mobile cranes or excavators shall wear both hard hats and high-visibility traffic vests.,both_required,multi_ppe,train,Heavy Industrial SOP Section 4.3
+Contractors and delivery drivers exiting their vehicles must immediately put on their protective helmet and high-visibility vest.,both_required,multi_ppe,train,Heavy Industrial SOP Section 4.3
+Concrete pouring crews must wear hard hats along with high-visibility reflective vests while operating in roadway transit areas.,both_required,multi_ppe,train,Heavy Industrial SOP Section 4.4
+Riggers and signalmen assisting crane hoisting activities shall wear protective helmets and fluorescent high-visibility apparel at all times.,both_required,multi_ppe,train,Heavy Industrial SOP Section 4.4
+Site inspection personnel must wear an approved hardhat and high-visibility vest whenever touring active construction decks.,both_required,conditional,train,Heavy Industrial SOP Section 4.5
+Site inspection personnel must wear an approved hardhat and high-visibility vest whenever touring active construction decks.,both_required,multi_ppe,train,Heavy Industrial SOP Section 4.5
+Minimum mandatory PPE for all field personnel consists of an ANSI Z89 compliant hard hat and an ANSI 107 high-visibility vest.,both_required,multi_ppe,train,Heavy Industrial SOP Section 4.5
+Protective helmets and high-visibility vests must be worn simultaneously throughout all phases of earthmoving operations.,both_required,multi_ppe,train,Heavy Industrial SOP Section 4.6
+Employees engaged in highway bridge maintenance are required to wear both protective hard hats and retroreflective safety vests.,both_required,multi_ppe,train,Heavy Industrial SOP Section 4.6
+All personnel operating on or adjacent to municipal roads must wear high-visibility reflective vests meeting ANSI Class 2 specifications.,vest_required,conditional,train,Utility Work Safety Code Sec 3
+Fluorescent high-visibility clothing must be worn during daylight and nighttime operations in active vehicular rights-of-way.,vest_required,conditional,train,Utility Work Safety Code Sec 3
+Fluorescent high-visibility clothing must be worn during daylight and nighttime operations in active vehicular rights-of-way.,vest_required,multi_ppe,train,Utility Work Safety Code Sec 3
+High-visibility vests with retroreflective tape stripes are mandatory for survey crews working on highway shoulders.,vest_required,multi_ppe,train,Utility Work Safety Code Sec 4
+"Reflective vests must be kept clean, zipped or fastened, and free of grease to ensure maximum visibility to equipment operators.",vest_required,multi_ppe,train,Utility Work Safety Code Sec 5
+Hard hats are not required inside enclosed operator cabs equipped with rollover protective structures.,none,negation_exception,train,Heavy Equipment SOP Section 2
+Protective helmets are exempt for personnel remaining entirely inside air-conditioned office trailers.,none,negation_exception,train,Heavy Equipment SOP Section 2
+"High-visibility vests are not required when workers are inside designated, fully barricaded pedestrian walkways.",none,negation_exception,train,Heavy Equipment SOP Section 3
+"High-visibility vests are not required when workers are inside designated, fully barricaded pedestrian walkways.",none,conditional,train,Heavy Equipment SOP Section 3
+Safety glasses are not required while working in clean office conference rooms.,none,negation_exception,train,Heavy Equipment SOP Section 3
+Hard hats and vests are not mandatory for drivers remaining inside commercial highway delivery trucks.,none,negation_exception,train,Heavy Equipment SOP Section 3
+Hard hats and vests are not mandatory for drivers remaining inside commercial highway delivery trucks.,none,multi_ppe,train,Heavy Equipment SOP Section 3
+High-visibility safety apparel shall be labeled as meeting ANSI/ISEA 107 Class 2 or Class 3 standards for risk exposure.,vest_required,multi_ppe,val,MUTCD Section 6D.03.04
+"When uniformed law enforcement personnel are used to direct traffic, high-visibility safety apparel meeting ANSI standards shall be worn.",vest_required,conditional,val,MUTCD Section 6D.03.06
+"When uniformed law enforcement personnel are used to direct traffic, high-visibility safety apparel meeting ANSI standards shall be worn.",vest_required,multi_ppe,val,MUTCD Section 6D.03.06
+Highway flaggers and maintenance personnel must be attired in high-visibility fluorescent yellow-green or orange-red garments.,vest_required,multi_ppe,val,MUTCD Section 6D.03 Guidance
+Nighttime road maintenance personnel must wear high-visibility apparel incorporating Class 3 retroreflective bands.,vest_required,multi_ppe,val,MUTCD Section 6D.03 Guidance
+High-visibility garments must be worn as the outer-most layer and not covered by coats or jackets.,vest_required,multi_ppe,val,MUTCD Section 6D.03 Guidance
+"Employees working over or near water, where the danger of drowning exists, shall be provided with U.S. Coast Guard-approved life jackets.",other_ppe,conditional,val,OSHA 29 CFR 1926.106(a)
+"Prior to and after each use, the buoyant work vests or life preservers shall be inspected for defects which would alter their strength or buoyancy.",other_ppe,conditional,val,OSHA 29 CFR 1926.106(b)
+"Prior to and after each use, the buoyant work vests or life preservers shall be inspected for defects which would alter their strength or buoyancy.",other_ppe,multi_ppe,val,OSHA 29 CFR 1926.106(b)
+Ring buoys with at least 90 feet of line shall be provided and readily available for emergency rescue operations.,other_ppe,multi_ppe,val,OSHA 29 CFR 1926.106(c)
+At least one lifesaving skiff shall be immediately available at locations where employees work over or adjacent to water.,none,conditional,val,OSHA 29 CFR 1926.106(d)
+Safety nets shall be provided when workplaces are more than 25 feet above the ground or water surface.,other_ppe,conditional,val,OSHA 29 CFR 1926.105(a)
+Safety net installations must extend eight feet beyond the edge of the work surface where employees are exposed.,other_ppe,conditional,val,OSHA 29 CFR 1926.105(c)
+"Personal fall arrest systems must limit maximum arresting force on an employee to 1,800 pounds when used with a body harness.",other_ppe,conditional,val,OSHA 29 CFR 1926.502(d)(16)
+The primary objective of temporary traffic control is to provide for the safe and efficient movement of road users through work zones.,none,multi_ppe,val,MUTCD Section 6A.01
+Temporary traffic control plans must be documented and signed by a licensed professional engineer.,none,multi_ppe,val,MUTCD Section 6C.01
+Advance warning signs shall be placed along the highway approach to notify travelers of upcoming lane closures.,none,conditional,val,MUTCD Section 6F.02
+"Traffic control devices shall be defined as all signs, signals, markings, and other devices used to regulate or guide traffic.",none,multi_ppe,val,MUTCD Section 1A.13
+"Proper maintenance of traffic control devices shall include cleaning, adjusting, and promptly replacing damaged hardware.",none,multi_ppe,val,MUTCD Section 6F.04
+All field workers within the state highway right-of-way must wear both an approved safety helmet and an ANSI Class 2 high-vis vest.,both_required,multi_ppe,val,State DOT Safety Manual Sec 1.4
+A protective hardhat and retroreflective safety vest must be donned by every technician entering the active lane transition area.,both_required,multi_ppe,val,State DOT Safety Manual Sec 1.4
+Personnel assisting with barrier placement or asphalt paving must wear high-visibility apparel and industrial hard hats.,both_required,multi_ppe,val,State DOT Safety Manual Sec 1.5
+Highway reconstruction sites require all workers to wear ANSI compliant hard hats accompanied by fluorescent safety vests.,both_required,multi_ppe,val,State DOT Safety Manual Sec 1.5
+Both hard hats and high-visibility garments must be worn during nighttime road resurfacing operations.,both_required,conditional,val,State DOT Safety Manual Sec 1.6
+Both hard hats and high-visibility garments must be worn during nighttime road resurfacing operations.,both_required,multi_ppe,val,State DOT Safety Manual Sec 1.6
+Emergency road clearance crews shall be equipped with protective helmets and high-visibility traffic vests.,both_required,multi_ppe,val,State DOT Safety Manual Sec 1.6
+Hard hats meeting ANSI Z89.1 specifications are required during all overhead scaffolding erections on highway overpasses.,helmet_required,conditional,val,State DOT Bridge Manual Sec 4
+Protective headgear is mandatory when working near overhead conveyor structures.,helmet_required,conditional,val,State DOT Material Handling Sec 3
+Protective headgear is mandatory when working near overhead conveyor structures.,helmet_required,multi_ppe,val,State DOT Material Handling Sec 3
+Firefighters engaged in active structural fire attack are exempt from high-visibility safety apparel and must wear turnout gear.,other_ppe,negation_exception,val,MUTCD Section 6D.03.08
+Firefighters engaged in active structural fire attack are exempt from high-visibility safety apparel and must wear turnout gear.,other_ppe,multi_ppe,val,MUTCD Section 6D.03.08
+Workers are not required to wear high-visibility vests when remaining inside enclosed supervisory mobile offices.,none,negation_exception,val,State DOT Safety Manual Sec 1.8
+Workers are not required to wear high-visibility vests when remaining inside enclosed supervisory mobile offices.,none,conditional,val,State DOT Safety Manual Sec 1.8
+Hard hats are not required for motorists passing through temporary traffic control corridors.,none,negation_exception,val,MUTCD Section 6D.01
+High-visibility garments are not mandated in designated off-road parking areas with physical concrete barriers.,none,multi_ppe,val,State DOT Safety Manual Sec 1.9
+"Signaling by flaggers and the use of flaggers, including warning garments worn by flaggers, shall conform to Part 6 of the MUTCD.",vest_required,multi_ppe,test,OSHA 29 CFR 1926.201(a)
+"For nighttime flagging duties, outer garments shall be retroreflective and visible at a minimum distance of 1,000 feet.",vest_required,multi_ppe,test,OSHA 29 CFR 1926.201 Advisory
+Crossing guards and traffic monitors must wear retroreflective vests during early morning school zone operations.,vest_required,conditional,test,Municipal Work Zone Policy
+Crossing guards and traffic monitors must wear retroreflective vests during early morning school zone operations.,vest_required,multi_ppe,test,Municipal Work Zone Policy
+Warehouse loading dock workers exposed to forklift traffic shall wear high-visibility safety apparel.,vest_required,conditional,test,Logistics Safety Standard Sec 7
+Airport ramp service personnel shall wear fluorescent high-visibility vests with reflective shoulder bands.,vest_required,multi_ppe,test,Aviation Ground Safety Standard
+Industrial hard hats are mandatory on all construction decks where overhead framing is taking place.,helmet_required,conditional,test,UK HSE Construction Regulations
+Industrial hard hats are mandatory on all construction decks where overhead framing is taking place.,helmet_required,multi_ppe,test,UK HSE Construction Regulations
+Protective helmets must be worn when working underneath concrete formwork during stripping operations.,helmet_required,conditional,test,Commercial Site Safety Rule 12
+Safety helmets are required when rigging prefabricated wall sections for crane hoisting.,helmet_required,conditional,test,Commercial Site Safety Rule 13
+Protective helmets must be worn when working near overhead electrical service entries.,helmet_required,conditional,test,Commercial Site Safety Rule 14
+Contractors shall ensure all employees wear safety helmets in areas where mobile cranes are operational.,helmet_required,conditional,test,Commercial Site Safety Rule 15
+All personnel entering the active railway corridor must wear both an approved hard hat and a high-visibility orange vest.,both_required,multi_ppe,test,Railway Track Safety Standard Sec 2
+Contractors working within twenty feet of active rail lines must wear protective helmets and Class 2 reflective vests.,both_required,multi_ppe,test,Railway Track Safety Standard Sec 2
+Both hard hats and high-visibility vests are mandatory for all persons inside the port container terminal.,both_required,multi_ppe,test,Maritime Terminal Safety Protocol
+Dockworkers and logistics personnel must wear industrial helmets and high-visibility reflective apparel.,both_required,multi_ppe,test,Maritime Terminal Safety Protocol
+Mining haul road construction mandates both an approved safety helmet and a Class 3 high-visibility vest.,both_required,multi_ppe,test,Mining Surface Safety Standard
+Site rules dictate that hard hats and fluorescent reflective vests must be worn simultaneously at all heavy civil sites.,both_required,multi_ppe,test,Civil Engineering Safety Standard
+Every contractor on this airfield project must wear an ANSI approved hard hat and a high-visibility fluorescent vest.,both_required,multi_ppe,test,Airport Expansion Project SOP
+Field engineers inspecting roadway bridge piers must don both protective headgear and retroreflective vests.,both_required,multi_ppe,test,Bridge Engineering Safety Manual
+Wind turbine foundation crews are required to wear both hard hats and high-visibility safety apparel.,both_required,multi_ppe,test,Renewable Energy Site Manual
+Substation construction guidelines mandate protective helmets alongside fluorescent safety vests.,both_required,multi_ppe,test,Substation Safety Rulebook
+Hearing protection with an NRR of at least 25 dB must be worn when operating air compressors.,other_ppe,conditional,test,UK HSE Acoustic Directive
+Chemical splash goggles and neoprene gloves are required during battery acid transfer procedures.,other_ppe,conditional,test,Substation Safety Rulebook
+Chemical splash goggles and neoprene gloves are required during battery acid transfer procedures.,other_ppe,multi_ppe,test,Substation Safety Rulebook
+Steel toe safety shoes with metatarsal guards are mandatory in the pipe fabrication yard.,other_ppe,multi_ppe,test,Fabrication Facility SOP
+Full-body fall arrest harnesses must be attached to engineered anchorages when working on suspended scaffolding.,other_ppe,conditional,test,UK HSE Fall Protection Guide
+Kevlar cut-resistant gloves must be worn when handling plate glass or mirrors.,other_ppe,conditional,test,Glazing Contractor Safety Manual
+Kevlar cut-resistant gloves must be worn when handling plate glass or mirrors.,other_ppe,multi_ppe,test,Glazing Contractor Safety Manual
+Regulations for crane and hoist signaling will be found in applicable American National Standards Institute standards.,none,multi_ppe,test,OSHA 29 CFR 1926.201(b)
+The provisions of this standard apply to all commercial construction projects within the designated municipal limits.,none,multi_ppe,test,Municipal Building Code Sec 1
+This document outlines general guidance and does not supersede local statutory safety requirements.,none,multi_ppe,test,UK HSE Introduction
+All safety signs and danger placards shall be visible and maintained in legible condition.,none,multi_ppe,test,OSHA 29 CFR 1926.200
+Hard hats are not required when working in designated administration trailers and lunch rooms.,none,negation_exception,test,Test Negation Slice
+Hard hats are not required when working in designated administration trailers and lunch rooms.,none,conditional,test,Test Negation Slice
+Hard hats are not required when working in designated administration trailers and lunch rooms.,none,multi_ppe,test,Test Negation Slice
+High-visibility vests are not required for employees working entirely inside enclosed building interiors with permanent lighting.,none,negation_exception,test,Test Negation Slice
+Safety helmets are exempt when operators are seated within fully enclosed ROPS certified excavator cabs.,none,negation_exception,test,Test Negation Slice
+Safety helmets are exempt when operators are seated within fully enclosed ROPS certified excavator cabs.,none,conditional,test,Test Negation Slice
+Protective headgear is not required unless there is a risk of contact with overhead structural steel or machinery.,none,negation_exception,test,Test Conditional Negation Slice
+High-visibility garments are not mandatory if workers are physically separated from traffic by positive concrete barriers.,none,negation_exception,test,Test Conditional Negation Slice
+High-visibility garments are not mandatory if workers are physically separated from traffic by positive concrete barriers.,none,conditional,test,Test Conditional Negation Slice
+High-visibility garments are not mandatory if workers are physically separated from traffic by positive concrete barriers.,none,multi_ppe,test,Test Conditional Negation Slice
+"Except when passing through active material delivery lanes, visitors need not wear high-visibility vests.",none,negation_exception,test,Test Exception Slice
+"Except when passing through active material delivery lanes, visitors need not wear high-visibility vests.",none,conditional,test,Test Exception Slice
+Gloves are not required when performing delicate instrument calibration inside clean rooms.,none,negation_exception,test,Test Negation Slice
+Gloves are not required when performing delicate instrument calibration inside clean rooms.,none,conditional,test,Test Negation Slice
+Type II safety helmets providing top and lateral impact protection are required in close-quarters framing.,helmet_required,multi_ppe,train,OSHA 1926 Subpart E Supplement
+Hard hats shall be worn during all pile driving and sheet pile driving operations.,helmet_required,conditional,train,OSHA 1926 Subpart E Supplement
+Hard hats shall be worn during all pile driving and sheet pile driving operations.,helmet_required,multi_ppe,train,OSHA 1926 Subpart E Supplement
+Helmets with dielectric insulation ratings are mandatory for line clearance tree trimming near power lines.,helmet_required,multi_ppe,train,OSHA 1926 Subpart E Supplement
+Safety helmets must remain securely fastened on the head during windy elevated structural tasks.,helmet_required,conditional,train,OSHA 1926 Subpart E Supplement
+Protective helmets must be provided and used whenever workers are exposed to head collision hazards.,helmet_required,conditional,train,OSHA 1926 Subpart E Supplement
+Protective helmets must be provided and used whenever workers are exposed to head collision hazards.,helmet_required,multi_ppe,train,OSHA 1926 Subpart E Supplement
+Industrial safety helmets are required on all construction sites managed under this standard.,helmet_required,multi_ppe,train,OSHA 1926 Subpart E Supplement
+A high-visibility fluorescent vest is required when directing low-boy equipment haulers onto site.,vest_required,conditional,train,Logistics Safety Standard
+High-visibility safety apparel is mandatory for personnel working near automated asphalt pavers.,vest_required,multi_ppe,train,Paving Operations Code
+Both protective helmets and high-visibility safety vests must be worn by all personnel on the construction pad.,both_required,multi_ppe,train,General Civil Site Standard
+Every trade worker on this site shall be equipped with an approved hard hat and a Class 2 high-visibility vest.,both_required,multi_ppe,train,General Civil Site Standard
+Hard hats and fluorescent reflective vests are mandatory personal protective equipment for all yard operations.,both_required,multi_ppe,train,General Civil Site Standard
+Personnel working within sixty feet of pile driving rigs shall wear protective hard hats and safety vests.,both_required,multi_ppe,train,Deep Foundations SOP
+All concrete pump truck operators must wear both safety helmets and high-visibility reflective apparel.,both_required,multi_ppe,train,Concrete Pumping SOP
+Delivery personnel entering active crane swing zones must put on a hard hat and high-visibility vest.,both_required,multi_ppe,train,Material Receiving SOP
+Workers assisting with heavy precast beam placement shall wear approved hard hats and high-visibility vests.,both_required,multi_ppe,train,Precast Installation Code
+Both head protection and high-visibility clothing are required throughout all exterior construction areas.,both_required,multi_ppe,train,Commercial Site Standard
+Riggers and ground crew assisting overhead crane operations must wear safety helmets and reflective vests.,both_required,multi_ppe,train,Rigging Operations SOP
+Site engineers conducting field progress walks shall wear an approved safety helmet and high-visibility vest.,both_required,multi_ppe,train,Field Engineering Guidelines
+Contractors must ensure that both hard hats and high-visibility vests are donned prior to leaving site trailers.,both_required,multi_ppe,train,Commercial Site Standard
+Protective helmets and high-visibility reflective vests must be worn during bridge foundation excavation.,both_required,conditional,train,Bridge Foundation Manual
+Protective helmets and high-visibility reflective vests must be worn during bridge foundation excavation.,both_required,multi_ppe,train,Bridge Foundation Manual
+Welding helmets with adequate filter plates must be worn during shielded metal arc welding operations.,other_ppe,conditional,train,OSHA 1926.102(b)
+Impact-resistant safety goggles must be worn during power saw cutting of concrete blocks.,other_ppe,conditional,train,OSHA 1926.102(a)
+Heavy leather work gloves must be used when handling wire rope slings or barbed security fencing.,other_ppe,conditional,train,OSHA 1926.95
+Heavy leather work gloves must be used when handling wire rope slings or barbed security fencing.,other_ppe,multi_ppe,train,OSHA 1926.95
+Puncture resistant boots with steel shanks shall be worn during roofing tear-off operations.,other_ppe,conditional,train,OSHA 1926.96
+Respirators equipped with HEPA filters must be donned when abating lead-based coatings.,other_ppe,conditional,train,OSHA 1926.103
+Chemical splash goggles and rubber aprons must be worn when cleaning mortar mixers with acid.,other_ppe,conditional,train,OSHA 1926.102
+Chemical splash goggles and rubber aprons must be worn when cleaning mortar mixers with acid.,other_ppe,multi_ppe,train,OSHA 1926.102
+Metatarsal guards shall be strapped over safety shoes during heavy tamper and rammer compaction.,other_ppe,conditional,train,OSHA 1926.96
+Metatarsal guards shall be strapped over safety shoes during heavy tamper and rammer compaction.,other_ppe,multi_ppe,train,OSHA 1926.96
+Thermal insulating gloves must be worn when applying hot rubberized asphalt waterproofing membranes.,other_ppe,conditional,train,OSHA 1926.95
+The purpose of this standard operating procedure is to define occupational health compliance duties.,none,multi_ppe,train,SOP Intro Section 1
+Weekly toolbox safety meetings must be conducted by foremen and attendance documented in project logs.,none,multi_ppe,train,Safety Program Management
+Fire extinguishers of appropriate rating shall be inspected monthly and tagged with inspection dates.,none,multi_ppe,train,Fire Protection Standard
+Sanitary drinking water facilities shall be provided and clearly marked on all construction projects.,none,multi_ppe,train,Sanitation Standard 1926.51
+"Good housekeeping shall be maintained in all stairwells, passageways, and common muster zones.",none,multi_ppe,train,Housekeeping Standard 1926.25
+The contractor shall designate a competent person capable of identifying existing and predictable hazards.,none,conditional,train,Competent Person Rule 1926.32
+The contractor shall designate a competent person capable of identifying existing and predictable hazards.,none,multi_ppe,train,Competent Person Rule 1926.32
+Overhead electrical power lines shall be considered energized unless verified de-energized by the utility.,none,negation_exception,train,Electrical Safety 1926.416
+Overhead electrical power lines shall be considered energized unless verified de-energized by the utility.,none,conditional,train,Electrical Safety 1926.416
+Hard hats are not required for engineers reviewing blueprints inside the climate-controlled office trailer.,none,negation_exception,train,Site Exemptions Policy
+High-visibility vests are not required while workers are dining inside the cafeteria enclosure.,none,negation_exception,train,Site Exemptions Policy
+Protective helmets are exempt for visitors seated in passenger shuttle vans within designated safe zones.,none,negation_exception,train,Site Exemptions Policy
+Tag line handlers guiding suspended crane loads must wear protective hard hats and safety vests.,both_required,multi_ppe,train,OSHA 1926 Subpart CC 1926.1400
+All ground crew within the crane working radius must wear high-visibility vests and safety helmets.,both_required,multi_ppe,train,OSHA 1926 Subpart CC 1926.1400
+Crane assembly directors and oilers must wear high-visibility safety apparel on the construction deck.,vest_required,multi_ppe,train,OSHA 1926 Subpart CC 1926.1404
+Employees exposed to electrical arc hazards shall wear arc-rated flame-resistant face shields and clothing.,other_ppe,multi_ppe,train,OSHA 1910.269(l)(8)
+Heavy duty chemical resistant boots must be worn during concrete foundation pours.,other_ppe,conditional,train,OSHA 1926 Subpart Q 1926.701
+Scaffold components manufactured by different entities shall not be intermixed unless verified compatible.,none,negation_exception,train,OSHA 1926 Subpart L 1926.451(b)
+Scaffold components manufactured by different entities shall not be intermixed unless verified compatible.,none,conditional,train,OSHA 1926 Subpart L 1926.451(b)
+Hard hats are not required inside the enclosed superintendent trailer.,none,negation_exception,train,Site Trailer Exemption Sec 1
+High-visibility garments are not required when workers are off shift inside the site mess hall.,none,negation_exception,train,Site Trailer Exemption Sec 1
+High-visibility garments are not required when workers are off shift inside the site mess hall.,none,conditional,train,Site Trailer Exemption Sec 1
+Class 2 high-visibility safety apparel is recommended for traffic speeds between 25 and 50 mph.,vest_required,multi_ppe,val,MUTCD Section 6D.03 Supplement
+Class 3 garments providing enhanced visibility of body motion are mandatory for roadway speeds over 50 mph.,vest_required,multi_ppe,val,MUTCD Section 6D.03 Supplement
+All field personnel on DOT highway bridge repair contracts must wear hard hats and high-visibility vests.,both_required,multi_ppe,val,DOT Bridge Policy Sec 2
+Highway resurfacing workers must wear approved industrial safety helmets and high-visibility vests.,both_required,multi_ppe,val,DOT Highway Maintenance Sec 3
+Protective headwear and high-visibility safety vests must be worn simultaneously by all roadside crews.,both_required,multi_ppe,val,DOT Highway Maintenance Sec 3
+Bridge abutment workers shall wear safety helmets along with high-visibility fluorescent vests.,both_required,multi_ppe,val,DOT Bridge Policy Sec 2
+Hard hats and retroreflective safety vests are mandatory for all personnel on state highway contracts.,both_required,multi_ppe,val,DOT General Policy Sec 1
+Buoyant work vests shall be donned prior to boarding floating barges or work skiffs.,other_ppe,conditional,val,OSHA 1926.106 Supplement
+Life preservers must be equipped with retroreflective tape and whistle attachments.,other_ppe,conditional,val,OSHA 1926.106 Supplement
+Life preservers must be equipped with retroreflective tape and whistle attachments.,other_ppe,multi_ppe,val,OSHA 1926.106 Supplement
+Safety nets must be drop-tested after initial installation with a 400-pound sandbag.,other_ppe,multi_ppe,val,OSHA 1926.105 Supplement
+Personal fall arrest lanyards must be inspected before each shift for fraying or abrasion.,other_ppe,conditional,val,OSHA 1926.502 Supplement
+Traffic signs shall be placed at standard lateral offsets from the traveled way.,none,multi_ppe,val,MUTCD Sec 6F.03
+High-visibility vests are not required for technicians working inside fully closed subsurface utility vaults.,none,negation_exception,val,DOT Exemption Advisory
+Hard hats are not required inside enclosed operator cabins equipped with certified falling object protection.,none,negation_exception,val,DOT Exemption Advisory
+Hard hats are not required inside enclosed operator cabins equipped with certified falling object protection.,none,conditional,val,DOT Exemption Advisory
+Flaggers shall wear high-visibility fluorescent safety vests that stand out against the background.,vest_required,multi_ppe,val,MUTCD Section 6E.02
+Hard hats and retroreflective safety vests are mandatory for all USACE civil works operations.,both_required,multi_ppe,val,USACE EM 385-1-1 Sec 5.A
+Personnel entering the dam spillway construction site must wear protective helmets and Class 2 vests.,both_required,multi_ppe,val,USACE EM 385-1-1 Sec 5.A
+Survey crews working on active river levee roads shall wear both hard hats and high-visibility apparel.,both_required,multi_ppe,val,USACE EM 385-1-1 Sec 5.B
+Head protection is mandatory for workers beneath rock-drilling equipment on levee embankments.,helmet_required,multi_ppe,val,USACE EM 385-1-1 Sec 5.D
+Type III personal flotation devices must be worn when working from open skiffs or workboats.,other_ppe,conditional,val,USACE EM 385-1-1 Sec 5.E
+Personal fall arrest equipment must be inspected prior to each shift.,other_ppe,conditional,val,USACE EM 385-1-1 Sec 21.I
+The safety and occupational health plan shall be reviewed and updated annually.,none,multi_ppe,val,USACE EM 385-1-1 Sec 1.A
+Traffic control devices shall be kept clean and legible at all times.,none,multi_ppe,val,MUTCD Section 6F.04
+High-visibility vests are not required when operators remain inside fully enclosed equipment cabs.,none,negation_exception,val,USACE EM 385-1-1 Sec 5.Exemption
+High-visibility vests are not required when operators remain inside fully enclosed equipment cabs.,none,conditional,val,USACE EM 385-1-1 Sec 5.Exemption
+Hard hats are not required within administrative office quarters.,none,negation_exception,val,USACE EM 385-1-1 Sec 5.Exemption
+Warning garments worn by highway flaggers must remain visible in both sunny and overcast lighting.,vest_required,multi_ppe,test,ANSI/ISEA 107 Clause 4.2
+Flaggers on two-lane rural highways must wear high-visibility safety apparel during daytime shifts.,vest_required,conditional,test,Rural Highway Traffic Code
+Industrial safety helmets meeting EN 397 must be worn across all zones where overhead cranes operate.,helmet_required,conditional,test,UK HSE Head Protection Advisory
+Protective helmets are mandatory for steel riggers working on structural framework.,helmet_required,multi_ppe,test,UK HSE Head Protection Advisory
+Safety helmets are required when performing foundation drilling or auger operations.,helmet_required,conditional,test,Drilling Operations Manual
+Both an approved protective hardhat and a high-visibility safety vest are required on all railway rights-of-way.,both_required,multi_ppe,test,Railway Infrastructure Standard Sec 4
+Track maintenance personnel must wear an approved protective helmet and high-visibility orange vest.,both_required,multi_ppe,test,Railway Infrastructure Standard Sec 4
+All contractor staff on this marine terminal project shall wear safety helmets and reflective vests.,both_required,multi_ppe,test,Maritime Terminal Standard Sec 9
+Mining haul road personnel must wear both hard hats and fluorescent reflective vests.,both_required,multi_ppe,test,Surface Mining Regulation Sec 12
+Safety helmets and high-visibility vests must be worn simultaneously by all tunnel portals ground crews.,both_required,multi_ppe,test,Tunnel Engineering SOP Sec 6
+Hearing protection must be worn in compressor enclosures where noise exceeds 85 dBA.,other_ppe,conditional,test,Industrial Hygiene Code Sec 4
+Safety spectacles with permanent side shields are mandatory for all metal grinding trades.,other_ppe,multi_ppe,test,Machining Safety Manual
+Vibration-dampening gloves must be worn when operating high-frequency pneumatic chipping hammers.,other_ppe,conditional,test,Tool Safety Guide HSG17
+This code does not mandate the use of personal protective equipment for normal commercial retail shoppers.,none,multi_ppe,test,Municipal Building Code Exemption
+Contractors are not required to wear high-visibility vests inside partitioned temporary field restrooms.,none,negation_exception,test,Site Exemptions Rule 7
+Hard hats are not required when workers are entirely within fully protected modular dining units.,none,negation_exception,test,Site Exemptions Rule 7
+Hard hats are not required when workers are entirely within fully protected modular dining units.,none,conditional,test,Site Exemptions Rule 7
+"Protective helmets are exempt for equipment operators once seated inside enclosed, locked cabs with FOPS certification.",none,negation_exception,test,Test Negation Slice
+"Protective helmets are exempt for equipment operators once seated inside enclosed, locked cabs with FOPS certification.",none,conditional,test,Test Negation Slice
+High-visibility vests are not required unless workers exit their transport vehicles within active traffic zones.,none,negation_exception,test,Test Conditional Slice
+High-visibility safety vests with retroreflective tape must be worn during all roadside emergency work.,vest_required,conditional,test,CSA Z96-15 Section 4.2
+Certified safety helmets meeting CSA Z94.1 must be worn in all designated head-hazard areas.,helmet_required,conditional,test,CSA Z94.1-15 Clause 5
+Industrial hard hats are mandatory on mining extraction platforms where rock falls may occur.,helmet_required,conditional,test,AS/NZS 1801:1997 Clause 3
+Industrial hard hats are mandatory on mining extraction platforms where rock falls may occur.,helmet_required,multi_ppe,test,AS/NZS 1801:1997 Clause 3
+Head protection with Type 2 lateral impact rating must be worn during demolition tasks.,helmet_required,conditional,test,CSA Z94.1-15 Clause 6
+Both an approved safety helmet and a Class 2 high-visibility vest must be worn in the intermodal railyard.,both_required,multi_ppe,test,Canadian Rail Operating Rules Rule 12
+Workers in active open-cut pit operations must wear hard hats and retroreflective safety vests.,both_required,multi_ppe,test,Western Australia Mining Safety Code
+Protective headwear and high-visibility apparel are required for all contractors on the wharf.,both_required,multi_ppe,test,Port Operations Safety Rulebook
+Impact-resistant eye protection meeting AS/NZS 1337 is required during cutting operations.,other_ppe,conditional,test,AS/NZS 1337.1 Clause 5
+This code of practice provides practical guidance and does not impose civil liability.,none,multi_ppe,test,Safe Work Australia Model Code
+Hard hats are not required for personnel seated inside enclosed light passenger vehicles.,none,negation_exception,test,Mining Site Exemption Protocol
+High-visibility vests are not required when workers are inside designated permanent lunchrooms.,none,negation_exception,test,Mining Site Exemption Protocol
+High-visibility vests are not required when workers are inside designated permanent lunchrooms.,none,conditional,test,Mining Site Exemption Protocol
