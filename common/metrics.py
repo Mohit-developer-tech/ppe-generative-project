@@ -22,7 +22,10 @@ import torch.nn.functional as F
 import torchvision.models as tv_models
 from torchvision import transforms
 from skimage.metrics import structural_similarity as sk_ssim, peak_signal_noise_ratio as sk_psnr
-import lpips
+try:
+    import lpips
+except ImportError:
+    lpips = None
 
 
 # ==============================================================================
@@ -99,6 +102,8 @@ def compute_ssim(
 class LPIPSMetric:
     """Learned Perceptual Image Patch Similarity (LPIPS) using pretrained AlexNet."""
     def __init__(self, device: Optional[torch.device] = None):
+        if lpips is None:
+            raise ImportError("lpips package is required for perceptual loss/metric. Install via 'pip install lpips'.")
         self.device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.loss_fn = lpips.LPIPS(net="alex", verbose=False).to(self.device)
         self.loss_fn.eval()
@@ -221,6 +226,8 @@ class InceptionFeatureExtractor:
     Standardized across all generative models (cVAE, cGAN, Diffusion).
     """
     def __init__(self, device: Optional[torch.device] = None):
+        if lpips is None:
+            raise ImportError("lpips package is required for perceptual loss/metric. Install via 'pip install lpips'.")
         self.device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model = tv_models.inception_v3(weights="DEFAULT")
         model.fc = nn.Identity()  # Remove final 1000-class linear projection

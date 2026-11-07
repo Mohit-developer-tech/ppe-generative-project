@@ -1,8 +1,12 @@
 """
 dashboard/app.py - FastAPI Backend for PPE Autoencoder & Downstream Classification Dashboard
 """
-import io
 import os
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+import torch
+from torchvision import transforms
+
+import io
 import glob
 import json
 import base64
@@ -13,9 +17,6 @@ from PIL import Image
 import numpy as np
 import pandas as pd
 import joblib
-
-import torch
-from torchvision import transforms
 from skimage.metrics import structural_similarity as ssim
 from skimage.metrics import peak_signal_noise_ratio as psnr
 import tempfile
