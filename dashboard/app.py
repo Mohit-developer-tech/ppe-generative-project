@@ -281,6 +281,11 @@ def predict_crop(
     recon_np = np.clip(recon[0].cpu().permute(1, 2, 0).numpy(), 0.0, 1.0)
     z_np = z.cpu().numpy()  # (1, 256)
 
+    # High-frequency edge enhancement (unsharp masking) to restore crisp contours
+    import scipy.ndimage
+    blurred_recon = scipy.ndimage.gaussian_filter(recon_np, sigma=(0.8, 0.8, 0))
+    sharpened_np = np.clip(recon_np + 0.9 * (recon_np - blurred_recon), 0.0, 1.0)
+
     # 5. Reconstruction Metrics & Heatmap
     diff = orig_np - recon_np
     mse_val = float(np.mean(diff ** 2))
@@ -333,6 +338,7 @@ def predict_crop(
         "original_crop_b64": pil_to_base64_png(img_64),
         "original_b64": pil_to_base64_png(img_64),
         "reconstruction_b64": numpy_to_base64_png(recon_np),
+        "reconstruction_sharpened_b64": numpy_to_base64_png(sharpened_np),
         "error_heatmap_b64": numpy_to_base64_png(heatmap_colored),
         "heatmap_b64": numpy_to_base64_png(heatmap_colored),
         "latent_vector": [round(float(v), 4) for v in z_np[0]],

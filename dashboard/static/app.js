@@ -45,6 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const imgOriginal = document.getElementById('img-original');
   const imgReconstructed = document.getElementById('img-reconstructed');
   const imgHeatmap = document.getElementById('img-heatmap');
+  const btnToggleSharpen = document.getElementById('btn-toggle-sharpen');
+  const btnToggleSharpenText = document.getElementById('btn-toggle-sharpen-text');
+  const badgeSharpened = document.getElementById('badge-sharpened');
+  let currentReconRaw = '';
+  let currentReconSharpened = '';
+  let isSharpenedActive = false;
 
   const metricMse = document.getElementById('metric-mse');
   const metricMae = document.getElementById('metric-mae');
@@ -303,6 +309,12 @@ document.addEventListener('DOMContentLoaded', () => {
     barVest.style.width = `${vestPct}%`;
 
     // 3. Reconstructions & Heatmap
+    currentReconRaw = data.reconstruction_b64;
+    currentReconSharpened = data.reconstruction_sharpened_b64 || data.reconstruction_b64;
+    isSharpenedActive = false;
+    if (badgeSharpened) badgeSharpened.classList.add('hidden');
+    if (btnToggleSharpenText) btnToggleSharpenText.textContent = 'Sharpen';
+
     imgOriginal.src = data.original_b64;
     imgReconstructed.src = data.reconstruction_b64;
     imgHeatmap.src = data.heatmap_b64;
@@ -321,6 +333,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.innerWidth < 1024) {
       resultsContainer.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  // Toggle Sharpen / Crisp Reconstruction
+  if (btnToggleSharpen) {
+    btnToggleSharpen.addEventListener('click', () => {
+      if (!currentReconRaw) return;
+      isSharpenedActive = !isSharpenedActive;
+      if (isSharpenedActive && currentReconSharpened) {
+        imgReconstructed.src = currentReconSharpened;
+        if (badgeSharpened) badgeSharpened.classList.remove('hidden');
+        if (btnToggleSharpenText) btnToggleSharpenText.textContent = 'Original';
+      } else {
+        imgReconstructed.src = currentReconRaw;
+        if (badgeSharpened) badgeSharpened.classList.add('hidden');
+        if (btnToggleSharpenText) btnToggleSharpenText.textContent = 'Sharpen';
+      }
+    });
   }
 
   // ================= 5. CHARTS (LATENT PROFILE & 2D PCA) =================

@@ -229,6 +229,12 @@ def predict_crop(
     orig_np = orig_64.permute(1, 2, 0).numpy()
     recon_np = recon_64.permute(1, 2, 0).numpy()
 
+    # High-frequency edge enhancement (unsharp masking)
+    import scipy.ndimage
+    blurred_recon = scipy.ndimage.gaussian_filter(recon_np, sigma=(0.8, 0.8, 0))
+    sharpened_np = np.clip(recon_np + 0.9 * (recon_np - blurred_recon), 0.0, 1.0)
+    sharpened_tensor = torch.from_numpy(sharpened_np).permute(2, 0, 1).float()
+
     diff_sq = (orig_np - recon_np) ** 2
     per_img_mse = float(np.mean(diff_sq))
     per_img_mae = float(np.mean(np.abs(orig_np - recon_np)))
@@ -272,6 +278,7 @@ def predict_crop(
         "images": {
             "original_base64": tensor_to_base64_png(orig_64),
             "reconstruction_base64": tensor_to_base64_png(recon_64),
+            "reconstruction_sharpened_base64": tensor_to_base64_png(sharpened_tensor),
             "error_heatmap_base64": generate_heatmap_base64(orig_64, recon_64)
         },
         "latent": {
