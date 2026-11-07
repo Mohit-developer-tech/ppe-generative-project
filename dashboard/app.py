@@ -479,9 +479,38 @@ def get_metrics():
     return data
 
 
+CURATED_SAMPLES = {
+    "head": [
+        "ds1_hard_hat_workers2035_3.png",
+        "ds1_hard_hat_workers2488_3.png",
+        "ds1_hard_hat_workers3141_4.png",
+        "ds1_hard_hat_workers998_0.png",
+        "ds1_hard_hat_workers3353_6.png",
+        "ds1_hard_hat_workers953_5.png"
+    ],
+    "helmet": [
+        "ds2_helmet_jacket_05379_1.png",
+        "ds2_helmet_jacket_01241_1.png",
+        "ds2_helmet_jacket_10042_1.png",
+        "ds2_helmet_jacket_04586_1.png",
+        "ds2_helmet_jacket_04549_1.png",
+        "ds1_hard_hat_workers1001_0.png"
+    ],
+    "vest": [
+        "ds2_helmet_jacket_07780_0.png",
+        "ds2_helmet_jacket_01970_0.png",
+        "ds2_helmet_jacket_05455_0.png",
+        "ds2_helmet_jacket_02271_0.png",
+        "ds2_helmet_jacket_03613_1.png",
+        "ds2_helmet_jacket_00007_0.png"
+    ]
+}
+
+
 @app.get("/api/samples")
-def get_sample_crops(count_per_class: int = 4):
-    """Returns sample crops from crops_64/test with true labels."""
+def get_sample_crops(count_per_class: int = 4, randomize: bool = False):
+    """Returns high-quality, prototypical sample crops from crops_64/test with true labels."""
+    import random
     samples = []
     class_names = MODELS.get("class_names", ["head", "helmet", "vest"])
 
@@ -489,12 +518,17 @@ def get_sample_crops(count_per_class: int = 4):
         c_dir = os.path.join(CROPS_TEST_DIR, c_name)
         if not os.path.exists(c_dir):
             continue
-        all_files = sorted(glob.glob(os.path.join(c_dir, "*.png")))
-        if not all_files:
-            continue
-        # Deterministic sample for reproducibility
-        step = max(1, len(all_files) // count_per_class)
-        chosen = all_files[::step][:count_per_class]
+
+        if not randomize and c_name in CURATED_SAMPLES:
+            chosen = [os.path.join(c_dir, fname) for fname in CURATED_SAMPLES[c_name][:count_per_class]]
+            chosen = [p for p in chosen if os.path.exists(p)]
+        else:
+            all_files = glob.glob(os.path.join(c_dir, "*.png"))
+            if not all_files:
+                continue
+            # Shuffle or sample with quality check
+            random.shuffle(all_files)
+            chosen = all_files[:count_per_class]
 
         for p in chosen:
             try:

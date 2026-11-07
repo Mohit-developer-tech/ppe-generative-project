@@ -43,7 +43,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- Custom styles -->
-  <link rel="stylesheet" href="/static/styles.css?v=2.2">
+  <link rel="stylesheet" href="/static/styles.css?v=2.3">
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
 
@@ -217,8 +217,14 @@
         <!-- Card: Test Split Samples Gallery -->
         <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
           <div class="flex items-center justify-between mb-3">
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Or try a test-set sample</h3>
-            <span class="text-xs text-slate-500">1-click inference</span>
+            <div>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Or try a test-set sample</h3>
+              <span class="text-xs text-slate-500">1-click inference</span>
+            </div>
+            <button id="btn-shuffle-samples" type="button" class="text-xs font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 hover:underline flex items-center gap-1 cursor-pointer">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              <span>Shuffle Samples</span>
+            </button>
           </div>
 
           <div id="sample-gallery" class="grid grid-cols-4 sm:grid-cols-6 gap-2">
@@ -723,7 +729,7 @@
     </div>
   </div>
 
-  <script src="/static/app.js?v=2.2"></script>
+  <script src="/static/app.js?v=2.3"></script>
 </body>
 </html>
 

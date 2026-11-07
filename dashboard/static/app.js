@@ -176,9 +176,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ================= 3. SAMPLE GALLERY LOADER =================
-  async function loadSamples() {
+  const btnShuffleSamples = document.getElementById('btn-shuffle-samples');
+  if (btnShuffleSamples) {
+    btnShuffleSamples.addEventListener('click', () => {
+      loadSamples(true);
+    });
+  }
+
+  async function loadSamples(randomize = false) {
     try {
-      const res = await fetch('/api/samples?limit=12');
+      sampleGallery.innerHTML = '<div class="col-span-full py-4 text-center text-xs text-slate-400">Loading crisp test crops...</div>';
+      const url = randomize ? '/api/samples?count_per_class=4&randomize=true' : '/api/samples?count_per_class=4';
+      const res = await fetch(url);
       if (!res.ok) throw new Error('Failed to load samples');
       const samples = await res.json();
 
