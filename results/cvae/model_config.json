@@ -1,0 +1,11 @@
+{
+  "model_type": "ConditionalVAE",
+  "latent_dim": 128,
+  "target_beta": 1.0,
+  "likelihood_type": "sigma_vae",
+  "in_channels": 3,
+  "num_classes": 3,
+  "enc_class_emb_dim": 16,
+  "dec_class_emb_dim": 32,
+  "image_size": 64
+}

@@ -1,0 +1,19 @@
+{
+  "model_name": "ConvAE",
+  "in_channels": 3,
+  "img_size": 64,
+  "latent_dim": 256,
+  "classes": [
+    "head",
+    "helmet",
+    "vest"
+  ],
+  "num_classes": 3,
+  "best_val_loss": 0.006138,
+  "epochs": 100,
+  "svm_c": 10.0,
+  "svm_gamma": 0.0039008790072758157,
+  "kernel": "rbf",
+  "class_weight": "balanced",
+  "seed": 42
+}

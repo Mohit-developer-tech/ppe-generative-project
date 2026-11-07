@@ -1,0 +1,30 @@
+{
+  "test_fid": 418.6398893679394,
+  "test_kid_mean": 0.513019859790802,
+  "test_kid_std": 0.016358407214283943,
+  "precision": 0.0,
+  "recall": 0.0,
+  "judge_conditional_accuracy": 0.3611111111111111,
+  "judge_per_class_accuracy": {
+    "head": 0.0,
+    "helmet": 0.6333333333333333,
+    "vest": 0.45
+  },
+  "intra_class_diversity": {
+    "head": 0.012201680121943354,
+    "helmet": 0.0125147017929703,
+    "vest": 0.011707097389735282
+  },
+  "memorization_check": {
+    "min_distance": 0.39000627398490906,
+    "mean_distance": 0.39168588936328885,
+    "p5_distance": 0.39048860371112826,
+    "memorized_count": 0,
+    "is_memorizing": false
+  },
+  "sample_sizes": {
+    "real_test_features": 200,
+    "fake_test_features": 198,
+    "diversity_samples_per_class": 25
+  }
+}

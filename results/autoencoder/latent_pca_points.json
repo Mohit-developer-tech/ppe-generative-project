@@ -1,0 +1,9013 @@
+{
+  "points": [
+    {
+      "x": -35.1701,
+      "y": 44.3798,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -116.1691,
+      "y": 19.9044,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -4.3554,
+      "y": 10.3421,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -72.5233,
+      "y": 73.0413,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 45.3446,
+      "y": -61.1949,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -50.9774,
+      "y": 27.3632,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 32.4679,
+      "y": 21.3652,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -37.1531,
+      "y": -17.1677,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -55.3365,
+      "y": 22.2297,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -53.7817,
+      "y": -41.5913,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -3.9,
+      "y": 53.5232,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -17.3246,
+      "y": 46.4214,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 119.7528,
+      "y": -15.1515,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -5.9104,
+      "y": -8.2797,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -72.3699,
+      "y": 9.0979,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -68.3709,
+      "y": -8.1199,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -11.9022,
+      "y": -16.6312,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 18.531,
+      "y": -34.1582,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -22.1082,
+      "y": -14.2281,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -61.7296,
+      "y": -17.8648,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -13.0358,
+      "y": -5.7355,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -91.9792,
+      "y": -12.4024,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 44.8037,
+      "y": 0.7592,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -102.4621,
+      "y": -16.8941,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 29.3402,
+      "y": 37.3107,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 2.164,
+      "y": 3.1756,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -36.0825,
+      "y": 29.1748,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 32.0842,
+      "y": -26.4853,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -11.4779,
+      "y": 15.1839,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 19.4016,
+      "y": 19.076,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 26.6085,
+      "y": -69.0028,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 48.1342,
+      "y": -3.998,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 33.944,
+      "y": -0.7089,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -31.329,
+      "y": 50.9494,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 9.6048,
+      "y": -38.6205,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -9.8112,
+      "y": 33.9817,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 31.7439,
+      "y": -28.2706,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 12.7128,
+      "y": 7.9131,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 0.8674,
+      "y": 27.163,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 92.7554,
+      "y": -29.4411,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 30.6473,
+      "y": 21.3211,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 13.1118,
+      "y": -14.2351,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -7.3978,
+      "y": 1.5182,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 67.7693,
+      "y": -21.3056,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 31.3295,
+      "y": 7.4958,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 37.3093,
+      "y": 2.2256,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -11.1787,
+      "y": 8.9663,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -5.8951,
+      "y": 39.3123,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -81.8001,
+      "y": 40.9096,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 24.9951,
+      "y": 23.2952,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 71.9464,
+      "y": -96.9398,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 21.835,
+      "y": -11.3671,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 124.5242,
+      "y": 6.7731,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -31.8522,
+      "y": -51.8196,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -7.6298,
+      "y": 53.0666,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -15.3039,
+      "y": 12.369,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -140.4408,
+      "y": -46.7528,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 64.9519,
+      "y": -40.7586,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 15.8852,
+      "y": -46.8295,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 90.7734,
+      "y": 4.737,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 26.2596,
+      "y": 16.5125,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 54.0647,
+      "y": 45.9056,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 77.261,
+      "y": -20.0645,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -75.006,
+      "y": -60.0203,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -5.5384,
+      "y": -97.0246,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -1.5126,
+      "y": -24.783,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -65.9463,
+      "y": -13.4767,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -51.5892,
+      "y": -43.2642,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 48.648,
+      "y": -17.6312,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -12.8647,
+      "y": -4.5492,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 29.4776,
+      "y": -49.3437,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -15.6723,
+      "y": -8.7917,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 57.4378,
+      "y": -39.2963,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -88.6012,
+      "y": 6.1144,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.724,
+      "y": -48.4003,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -58.9513,
+      "y": 36.2269,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 80.0207,
+      "y": -12.8168,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -116.0634,
+      "y": -12.8876,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -24.9109,
+      "y": -17.1967,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -39.8945,
+      "y": 25.4004,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -31.7558,
+      "y": -39.2018,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -5.0909,
+      "y": 48.2911,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -1.0269,
+      "y": 32.1895,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 107.1664,
+      "y": -69.7978,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -36.4169,
+      "y": 5.6535,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 48.7402,
+      "y": -7.3212,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 22.0328,
+      "y": -4.958,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -11.7091,
+      "y": 34.3149,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 19.9046,
+      "y": 17.8481,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -66.1678,
+      "y": -25.6871,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -47.4616,
+      "y": -2.3896,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 15.1443,
+      "y": -12.0412,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -73.201,
+      "y": -29.254,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -50.9852,
+      "y": 27.2268,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 69.024,
+      "y": 0.4102,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -10.8717,
+      "y": 14.2029,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -9.2231,
+      "y": 3.4837,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 37.2555,
+      "y": -0.9906,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 39.639,
+      "y": 37.1472,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 1.2555,
+      "y": 28.1093,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -60.5181,
+      "y": 0.0264,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -82.6901,
+      "y": -37.3173,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 8.0783,
+      "y": -33.2277,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -16.7089,
+      "y": 30.7537,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 0.3993,
+      "y": 32.6199,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -44.322,
+      "y": -5.4917,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 111.5779,
+      "y": -7.5228,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 3.3241,
+      "y": 24.6829,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -25.4175,
+      "y": 0.6934,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -28.3823,
+      "y": -8.586,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -6.432,
+      "y": -16.5918,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -6.2715,
+      "y": -1.9342,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 88.3475,
+      "y": 29.2468,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -36.5646,
+      "y": -37.5613,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 6.6254,
+      "y": 25.2846,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -64.8435,
+      "y": -43.1653,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -22.3742,
+      "y": 6.8034,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 107.3281,
+      "y": -0.8977,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 41.714,
+      "y": 71.8264,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -52.3781,
+      "y": 5.5712,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -10.5316,
+      "y": -0.9972,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 46.9895,
+      "y": 33.1783,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -5.5155,
+      "y": 10.8449,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -36.3878,
+      "y": -67.1802,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 43.848,
+      "y": 88.2984,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -11.848,
+      "y": -19.8055,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 10.5647,
+      "y": 6.7908,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 47.5787,
+      "y": -4.2498,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -7.9298,
+      "y": 23.2612,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -2.7534,
+      "y": -38.9225,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 37.4979,
+      "y": -18.034,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -86.4138,
+      "y": 13.4593,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 21.7569,
+      "y": -17.8385,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 18.0768,
+      "y": 1.7974,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -23.5829,
+      "y": 12.8861,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 158.0881,
+      "y": -3.9678,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 96.2999,
+      "y": -12.008,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -24.2688,
+      "y": -10.6008,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -31.3967,
+      "y": 28.1911,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 19.0472,
+      "y": -19.7224,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 59.6317,
+      "y": 16.5153,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -29.3329,
+      "y": -50.4326,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -26.0543,
+      "y": -4.681,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 48.6356,
+      "y": -53.1219,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 137.9749,
+      "y": -26.7881,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 6.9067,
+      "y": 31.3217,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 31.5841,
+      "y": -6.4049,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 15.6567,
+      "y": -1.8898,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 70.7034,
+      "y": -15.5243,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -9.937,
+      "y": -27.5037,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -20.2581,
+      "y": 5.1538,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -0.6164,
+      "y": -11.9112,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -115.0654,
+      "y": 18.8407,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 4.9499,
+      "y": -21.9049,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -32.5003,
+      "y": -65.055,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -1.3017,
+      "y": 10.369,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 11.6219,
+      "y": -6.0412,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -43.6809,
+      "y": 10.3586,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -46.4226,
+      "y": -18.6421,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 49.7524,
+      "y": -15.9667,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -94.2659,
+      "y": 57.0958,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 17.4412,
+      "y": 49.3949,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -7.7487,
+      "y": 68.9593,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -50.3752,
+      "y": 58.8362,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -40.9609,
+      "y": 33.5691,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -90.1149,
+      "y": -0.9639,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 11.129,
+      "y": -21.8782,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -21.1408,
+      "y": -5.1194,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 129.3719,
+      "y": 15.443,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 16.3102,
+      "y": 6.4864,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 37.7548,
+      "y": 43.1322,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 3.3345,
+      "y": -12.0206,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 47.7269,
+      "y": -18.9642,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -36.0607,
+      "y": 2.1072,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -6.6698,
+      "y": -17.8345,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -46.9454,
+      "y": -2.462,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 36.8968,
+      "y": 32.0627,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 63.2713,
+      "y": 24.6938,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 20.0039,
+      "y": 46.1119,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.5638,
+      "y": 21.3083,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 46.9212,
+      "y": 26.7939,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 30.9449,
+      "y": -11.851,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -2.3426,
+      "y": 47.1166,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -27.6201,
+      "y": -29.9967,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -43.196,
+      "y": 3.3839,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.5847,
+      "y": 22.0462,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 9.3693,
+      "y": -0.7682,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 33.0747,
+      "y": 12.7326,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -47.3086,
+      "y": -18.2378,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -41.9781,
+      "y": 5.2618,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 44.36,
+      "y": 16.9624,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 7.3709,
+      "y": -16.1165,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 80.9592,
+      "y": -22.3289,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -82.6796,
+      "y": -36.6851,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -1.5942,
+      "y": 47.9328,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 6.8261,
+      "y": 34.7998,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 9.9238,
+      "y": 88.7114,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -19.6747,
+      "y": 65.9745,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 2.4151,
+      "y": -21.2389,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -72.926,
+      "y": 14.5143,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 55.4066,
+      "y": -2.1171,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -40.7699,
+      "y": 23.0872,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 46.3317,
+      "y": -48.3249,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 132.5937,
+      "y": -17.1534,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 7.4321,
+      "y": 9.3359,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -1.6374,
+      "y": 31.7769,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -14.3656,
+      "y": 26.4349,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -20.9715,
+      "y": 36.4336,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 27.8776,
+      "y": 22.6757,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 32.706,
+      "y": -33.9236,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -15.4797,
+      "y": -46.7651,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -70.0231,
+      "y": 48.7523,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -102.5174,
+      "y": -43.8786,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 46.8143,
+      "y": 0.7536,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 87.9179,
+      "y": 18.1137,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -36.4064,
+      "y": -13.6142,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -66.5107,
+      "y": 37.158,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -13.6103,
+      "y": 68.4132,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -37.3067,
+      "y": -17.2186,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -35.2011,
+      "y": 15.9962,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 65.5603,
+      "y": -9.4664,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 73.0851,
+      "y": -4.098,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 41.3689,
+      "y": -10.9856,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 32.5325,
+      "y": 61.1487,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -57.6086,
+      "y": 51.5389,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 15.0457,
+      "y": 80.4258,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -12.4782,
+      "y": -16.4666,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 25.8464,
+      "y": 1.5098,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -3.8177,
+      "y": 3.1182,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 4.5638,
+      "y": 56.0708,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -70.3623,
+      "y": -55.7224,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 54.9088,
+      "y": -35.8888,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 75.6184,
+      "y": -25.0497,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -78.0616,
+      "y": -5.8834,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -82.0724,
+      "y": -37.0561,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 2.7417,
+      "y": -15.0429,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 13.6219,
+      "y": -20.0681,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 8.9716,
+      "y": 12.3502,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -0.2875,
+      "y": 21.3304,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -28.6508,
+      "y": -20.0471,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -5.8058,
+      "y": -0.4672,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -1.0661,
+      "y": 35.6942,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -11.8481,
+      "y": -8.5674,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -108.3441,
+      "y": -54.2964,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -41.8418,
+      "y": -17.6184,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -10.6445,
+      "y": -5.0229,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 15.7195,
+      "y": 15.2131,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 25.4585,
+      "y": -50.3262,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 27.2957,
+      "y": 42.8279,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -116.653,
+      "y": 38.5648,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -20.0721,
+      "y": -25.9229,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -52.875,
+      "y": 43.2465,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -35.4718,
+      "y": -49.3191,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -25.9437,
+      "y": -22.8824,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -35.3556,
+      "y": -18.766,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 80.6142,
+      "y": 27.2075,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -59.5894,
+      "y": -9.4796,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 104.7315,
+      "y": 5.1198,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 46.1983,
+      "y": 31.4082,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 8.7526,
+      "y": 61.9778,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 111.7492,
+      "y": -40.4269,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -34.6794,
+      "y": 35.8855,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 59.105,
+      "y": -8.4292,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 26.3165,
+      "y": -25.8129,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 23.9904,
+      "y": 14.6545,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -64.2849,
+      "y": 5.5138,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -35.3241,
+      "y": -14.1648,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -36.7932,
+      "y": -4.0346,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 11.5926,
+      "y": -18.9719,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -52.5445,
+      "y": -6.268,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 27.5663,
+      "y": -37.4808,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -147.063,
+      "y": 43.7386,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -60.4797,
+      "y": 18.4812,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 13.2465,
+      "y": -74.5802,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 4.4511,
+      "y": 47.7264,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -28.5214,
+      "y": -10.2232,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -15.9242,
+      "y": 80.2333,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 0.6273,
+      "y": 46.0366,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -42.9304,
+      "y": -10.016,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 11.6325,
+      "y": -33.7587,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -25.0377,
+      "y": 5.6673,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 64.3857,
+      "y": -10.73,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -122.921,
+      "y": 7.0576,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.0578,
+      "y": -33.9996,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -62.6412,
+      "y": 55.2972,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 59.0402,
+      "y": 54.0368,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 0.6796,
+      "y": -68.9921,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -48.5371,
+      "y": 20.461,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 72.1061,
+      "y": 17.5396,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -16.524,
+      "y": 55.1421,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 102.8942,
+      "y": 13.4139,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -12.403,
+      "y": 60.2544,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -4.7601,
+      "y": 23.3046,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -39.5291,
+      "y": 14.5557,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -123.4984,
+      "y": 7.0531,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -64.9303,
+      "y": -35.4731,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 27.1524,
+      "y": 18.2161,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 5.1185,
+      "y": -5.3427,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -128.3841,
+      "y": 48.4556,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 59.736,
+      "y": -6.9997,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -109.3751,
+      "y": 62.7922,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 134.8344,
+      "y": 14.251,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 56.5627,
+      "y": -39.5121,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -17.182,
+      "y": 25.3883,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -37.9197,
+      "y": -34.6389,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 81.615,
+      "y": -123.1749,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 34.4691,
+      "y": -32.1825,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 109.6972,
+      "y": 0.0855,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -101.8551,
+      "y": -31.8331,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 37.7652,
+      "y": 48.8963,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 4.5275,
+      "y": 3.4053,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -28.3085,
+      "y": -4.1701,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 47.7036,
+      "y": 11.0724,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 34.7727,
+      "y": 37.511,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 56.9747,
+      "y": -20.3913,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 42.1381,
+      "y": -23.8589,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -13.1353,
+      "y": 21.4182,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -21.5157,
+      "y": 99.9312,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 18.2374,
+      "y": 0.2247,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -55.2438,
+      "y": 15.6126,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -68.61,
+      "y": -6.5042,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -11.8787,
+      "y": 75.5055,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -4.5327,
+      "y": 5.8022,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -51.1004,
+      "y": 67.5182,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 97.3737,
+      "y": -46.0156,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -69.7321,
+      "y": -5.3711,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 134.5465,
+      "y": -25.7363,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 77.3427,
+      "y": 24.0655,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -62.1361,
+      "y": 5.4967,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -39.7731,
+      "y": -39.0848,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 2.091,
+      "y": 53.3278,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 18.8012,
+      "y": -14.3983,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -34.0231,
+      "y": -38.5516,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -9.7236,
+      "y": 11.3951,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 44.4064,
+      "y": 67.2795,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 39.2787,
+      "y": -6.7662,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -72.8876,
+      "y": 29.8223,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 3.3818,
+      "y": 4.8397,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -0.3524,
+      "y": -29.4789,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -19.3635,
+      "y": -42.6676,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -6.8156,
+      "y": -44.2808,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -36.24,
+      "y": -34.9178,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -97.7042,
+      "y": -53.755,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -19.3039,
+      "y": -6.6782,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -54.8183,
+      "y": -43.6782,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -49.9757,
+      "y": -6.1595,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -57.0572,
+      "y": -22.526,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 37.2179,
+      "y": -27.6179,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.8721,
+      "y": 4.8026,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 16.9708,
+      "y": -0.5204,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.3829,
+      "y": -18.1031,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -18.3317,
+      "y": 51.9216,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 36.0981,
+      "y": -11.3138,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -14.5908,
+      "y": 0.5206,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -9.6677,
+      "y": -23.6068,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -21.9053,
+      "y": -42.0534,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 0.3689,
+      "y": -0.5102,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -64.5441,
+      "y": -39.7307,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 31.7678,
+      "y": 1.3006,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -3.173,
+      "y": -18.5909,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 99.4658,
+      "y": -2.7059,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -8.296,
+      "y": 69.0801,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -2.1557,
+      "y": -43.8103,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -20.9173,
+      "y": 6.1545,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 66.2974,
+      "y": -18.1504,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 48.3793,
+      "y": 48.9765,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 112.0737,
+      "y": -24.9257,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 16.1907,
+      "y": 92.4416,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 17.6492,
+      "y": 14.0462,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 18.6573,
+      "y": 18.2298,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -74.3467,
+      "y": -25.5412,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 68.2308,
+      "y": -26.6059,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -113.7496,
+      "y": -37.3657,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -63.7447,
+      "y": 37.7145,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 26.6822,
+      "y": 15.2261,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -63.2275,
+      "y": -48.6719,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -99.3295,
+      "y": -79.2522,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -70.1998,
+      "y": -12.7857,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -19.6231,
+      "y": 18.2675,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 54.8842,
+      "y": -44.4744,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 44.5434,
+      "y": -38.2285,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 63.2215,
+      "y": -25.7448,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -31.1931,
+      "y": 8.3232,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 98.46,
+      "y": 29.1961,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -74.7815,
+      "y": -12.3101,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -44.3493,
+      "y": -20.5294,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -8.0019,
+      "y": -27.2895,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -42.152,
+      "y": 68.3756,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 30.9748,
+      "y": 30.6171,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -30.146,
+      "y": 44.2956,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 8.1232,
+      "y": -20.9503,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 59.2791,
+      "y": -19.1945,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 20.1148,
+      "y": 13.9222,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 7.7322,
+      "y": 56.314,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -35.8168,
+      "y": -2.8776,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -36.6667,
+      "y": -32.4549,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -40.0542,
+      "y": -6.4916,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 23.8751,
+      "y": -4.5843,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -63.8927,
+      "y": 7.349,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -93.4312,
+      "y": -4.6611,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 44.8401,
+      "y": -9.0791,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 26.5023,
+      "y": 30.3205,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 3.3721,
+      "y": -63.8261,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -11.4934,
+      "y": -1.991,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 78.2477,
+      "y": -68.6452,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -130.273,
+      "y": -4.7673,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -22.3284,
+      "y": -1.8533,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 7.7806,
+      "y": 24.9609,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -9.7687,
+      "y": -13.8889,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 2.3361,
+      "y": 8.0881,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -29.7839,
+      "y": -22.3669,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 41.7786,
+      "y": 26.1355,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 78.7723,
+      "y": -57.2794,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 55.5063,
+      "y": 32.4318,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -37.4836,
+      "y": 42.1631,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -48.171,
+      "y": 15.3003,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -12.1258,
+      "y": 6.0911,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -33.4745,
+      "y": -1.779,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -28.8111,
+      "y": 89.3648,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 10.5037,
+      "y": -0.7385,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -2.7535,
+      "y": -64.0051,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 3.6879,
+      "y": 13.444,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -54.0573,
+      "y": -16.3568,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 58.1954,
+      "y": 3.306,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 62.2618,
+      "y": -16.4059,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -90.4222,
+      "y": 86.1823,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 86.588,
+      "y": -30.1685,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.7436,
+      "y": 6.7129,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -39.2753,
+      "y": 19.6798,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 4.2872,
+      "y": -4.227,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.4708,
+      "y": 51.5085,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 66.2667,
+      "y": 9.2329,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -91.7337,
+      "y": 89.0723,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -42.9248,
+      "y": -24.0143,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -74.5741,
+      "y": -2.2178,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -70.8369,
+      "y": -6.0394,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -58.8282,
+      "y": -24.8725,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 46.0138,
+      "y": -19.9339,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -33.1005,
+      "y": 8.7985,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 32.3524,
+      "y": 22.5215,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 23.5853,
+      "y": 2.7511,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -63.9015,
+      "y": 35.9762,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 73.7468,
+      "y": -7.0471,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 8.9686,
+      "y": -70.9675,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -10.5739,
+      "y": -2.7515,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -28.4185,
+      "y": -39.5187,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -46.9574,
+      "y": -17.432,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -81.0516,
+      "y": -51.6578,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 117.7544,
+      "y": -58.9125,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -15.0248,
+      "y": -13.8372,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -82.2467,
+      "y": -63.746,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -26.683,
+      "y": 22.696,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -10.9479,
+      "y": -40.1715,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 110.6122,
+      "y": -14.4212,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 109.0319,
+      "y": -14.462,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 20.3447,
+      "y": 29.1701,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -20.9115,
+      "y": -18.9063,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -28.386,
+      "y": -0.584,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -24.0425,
+      "y": 48.1682,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -7.3124,
+      "y": 0.7637,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -35.2216,
+      "y": -18.0471,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -75.1326,
+      "y": -39.2954,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 17.8779,
+      "y": 99.2063,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -63.124,
+      "y": 46.5021,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 30.7212,
+      "y": -34.8318,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 45.8257,
+      "y": 7.361,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 10.764,
+      "y": 10.6539,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 37.2359,
+      "y": -44.7175,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -75.6959,
+      "y": -11.487,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 17.5926,
+      "y": 7.3328,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -72.7214,
+      "y": 35.4991,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 42.2671,
+      "y": -7.8018,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -7.9495,
+      "y": -58.8505,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 43.3375,
+      "y": 29.8354,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -7.4005,
+      "y": 42.9471,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 0.7494,
+      "y": 44.606,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 20.105,
+      "y": 55.1214,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -62.8348,
+      "y": 7.5199,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -127.2766,
+      "y": 2.6639,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 42.5803,
+      "y": -13.2661,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 46.549,
+      "y": 24.0457,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 76.1747,
+      "y": 31.6543,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 114.436,
+      "y": -46.8482,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 10.7372,
+      "y": 7.5021,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -98.5852,
+      "y": -8.9748,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 82.1679,
+      "y": -68.4043,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -2.8344,
+      "y": -22.9605,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 86.4265,
+      "y": -89.9942,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 18.3885,
+      "y": -19.0342,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -80.0146,
+      "y": 5.8421,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 19.3523,
+      "y": -5.2284,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 80.5895,
+      "y": -11.4932,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 21.0151,
+      "y": -5.1695,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -11.1902,
+      "y": 16.0157,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 136.9609,
+      "y": -1.4591,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -51.4684,
+      "y": -4.9052,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 32.2808,
+      "y": 26.0363,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -110.3392,
+      "y": -43.889,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 13.7194,
+      "y": 16.0996,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -75.4715,
+      "y": 1.0635,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -40.1684,
+      "y": 5.2793,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 24.1412,
+      "y": -14.502,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -52.4093,
+      "y": -71.7273,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -16.7954,
+      "y": -5.4069,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 1.7973,
+      "y": 1.2722,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 11.3232,
+      "y": -51.022,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -151.9692,
+      "y": 41.8346,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -37.0169,
+      "y": -11.8081,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -60.1574,
+      "y": 36.2484,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 96.9483,
+      "y": -21.7611,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 15.2224,
+      "y": 48.5307,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -5.891,
+      "y": -2.8462,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -13.3698,
+      "y": -31.9781,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -10.2193,
+      "y": -34.4117,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 94.0698,
+      "y": -15.438,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 84.5786,
+      "y": 13.5548,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -45.2682,
+      "y": -77.2076,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 5.6264,
+      "y": 71.0605,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -76.3615,
+      "y": -14.5249,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -11.7231,
+      "y": 17.9102,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 66.2382,
+      "y": 4.1288,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -12.4974,
+      "y": 11.8042,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -18.9274,
+      "y": -11.5952,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -75.2634,
+      "y": 23.5156,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 8.8815,
+      "y": -6.5682,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 107.1046,
+      "y": -40.7174,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -14.5304,
+      "y": 36.3049,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -28.7949,
+      "y": 8.6511,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 15.7164,
+      "y": -0.6523,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 100.7119,
+      "y": -29.2973,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -18.4028,
+      "y": 42.5854,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 112.7088,
+      "y": 8.4009,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 30.7326,
+      "y": 25.2945,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 21.8999,
+      "y": -1.9699,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 16.5388,
+      "y": -6.3492,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 17.2737,
+      "y": -3.1145,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -185.0827,
+      "y": -4.9334,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 47.1824,
+      "y": 15.2562,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 49.9694,
+      "y": -8.7129,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -0.3298,
+      "y": -80.3005,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -47.2232,
+      "y": -8.6055,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -81.7038,
+      "y": -17.0367,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 61.4448,
+      "y": -21.7202,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -7.1836,
+      "y": -19.9059,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -13.9159,
+      "y": -29.6591,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 84.7536,
+      "y": -46.6884,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 23.1346,
+      "y": 29.5415,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -23.1074,
+      "y": -60.5859,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -113.9034,
+      "y": -75.6758,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -48.4705,
+      "y": 58.7013,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -98.8555,
+      "y": -18.1434,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -11.9305,
+      "y": -27.226,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 17.2247,
+      "y": 1.5475,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -34.35,
+      "y": -43.6053,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -67.5169,
+      "y": 11.1294,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 10.4129,
+      "y": 2.7587,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -29.7609,
+      "y": -32.2432,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -7.3375,
+      "y": -2.6092,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -27.2116,
+      "y": -40.807,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -62.9819,
+      "y": -39.6201,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -97.7293,
+      "y": -33.6099,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 46.9409,
+      "y": -39.9182,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -16.9185,
+      "y": -68.6055,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -3.9103,
+      "y": -8.261,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -5.2105,
+      "y": -12.6605,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -119.6799,
+      "y": 56.5615,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -86.8515,
+      "y": -28.9678,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 8.0074,
+      "y": 28.8872,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -65.6898,
+      "y": 18.2347,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 38.6046,
+      "y": 2.827,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -73.053,
+      "y": 10.7189,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -6.3652,
+      "y": -16.4041,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -34.696,
+      "y": 44.5139,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 18.1953,
+      "y": -62.114,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 154.2829,
+      "y": 6.3373,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 45.6694,
+      "y": 6.1972,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -124.6059,
+      "y": -51.6319,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 77.6851,
+      "y": -15.0228,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -35.6161,
+      "y": 19.5216,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -60.4593,
+      "y": 86.321,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 7.2792,
+      "y": 1.6645,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 48.6533,
+      "y": 17.0993,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 8.686,
+      "y": -56.2468,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -29.3023,
+      "y": -32.8942,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 69.5242,
+      "y": 8.8258,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 18.7018,
+      "y": 13.4878,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -8.272,
+      "y": 14.1798,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 82.2993,
+      "y": 23.1233,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -91.6871,
+      "y": 15.7096,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -25.0825,
+      "y": 21.385,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -91.9444,
+      "y": 118.1605,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 57.3749,
+      "y": -11.8067,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 16.0394,
+      "y": -21.5482,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -75.9414,
+      "y": -46.3641,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -54.4369,
+      "y": 35.8613,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 2.7442,
+      "y": 58.1781,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -44.5727,
+      "y": 50.8036,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 29.0315,
+      "y": -36.2232,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 21.716,
+      "y": 6.4428,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 7.3573,
+      "y": 19.7402,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 48.367,
+      "y": -40.0154,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 51.866,
+      "y": 53.689,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 111.0639,
+      "y": -39.6566,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 6.0965,
+      "y": 11.1355,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -114.5438,
+      "y": 66.5731,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 19.5047,
+      "y": -15.3493,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -22.949,
+      "y": 50.8538,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 29.5677,
+      "y": 9.2342,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 5.2544,
+      "y": 50.1357,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -5.8203,
+      "y": 39.0658,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -11.9688,
+      "y": 29.2977,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 29.8785,
+      "y": 26.3961,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 32.847,
+      "y": -34.4522,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 1.3201,
+      "y": 11.6201,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 102.5365,
+      "y": -17.5951,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 5.004,
+      "y": 4.5958,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 28.0022,
+      "y": 49.3597,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -17.9048,
+      "y": 23.4076,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -39.0425,
+      "y": 47.4494,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 91.8872,
+      "y": -0.6514,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -132.0539,
+      "y": -37.7576,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -12.2922,
+      "y": -16.7708,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 89.3034,
+      "y": 43.6141,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -2.8404,
+      "y": -36.0352,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 22.7288,
+      "y": 41.2862,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -4.3016,
+      "y": 72.528,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 1.5405,
+      "y": 10.6325,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 9.3802,
+      "y": 5.0356,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 17.444,
+      "y": 62.3125,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -37.6311,
+      "y": -15.6843,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -91.9272,
+      "y": -21.4312,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -23.1875,
+      "y": 8.2966,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -104.6222,
+      "y": -3.8725,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -11.9037,
+      "y": 3.1563,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 96.0304,
+      "y": 34.4506,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 10.9002,
+      "y": 8.9685,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -31.7054,
+      "y": -24.0737,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 113.8933,
+      "y": 23.3944,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 44.2044,
+      "y": -40.2991,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -2.2344,
+      "y": -45.4074,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 23.6715,
+      "y": -11.4189,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -49.8338,
+      "y": -39.4579,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 23.4843,
+      "y": -19.462,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 20.222,
+      "y": 42.9142,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -36.6963,
+      "y": -25.9462,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 8.7471,
+      "y": 14.3512,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 6.717,
+      "y": -4.8235,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 34.1509,
+      "y": 12.1253,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 123.4951,
+      "y": -14.81,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -16.5285,
+      "y": 42.4482,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 21.0351,
+      "y": -1.0411,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -37.5122,
+      "y": -20.2285,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 30.5563,
+      "y": 43.2412,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -9.73,
+      "y": -21.1987,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 11.0924,
+      "y": 10.0643,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -28.1675,
+      "y": -16.7657,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 72.7169,
+      "y": 12.5892,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -4.2713,
+      "y": -45.8715,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 44.3449,
+      "y": -23.8511,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -80.943,
+      "y": -58.4847,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -43.3973,
+      "y": -25.2055,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -80.8411,
+      "y": -62.2181,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -85.6075,
+      "y": -27.6148,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 9.396,
+      "y": 2.7227,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 43.5078,
+      "y": 5.5614,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 102.562,
+      "y": -38.0304,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 133.0186,
+      "y": 7.0995,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 0.5555,
+      "y": 56.4711,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -53.6564,
+      "y": 14.3115,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 5.509,
+      "y": 6.1961,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -36.2441,
+      "y": 4.0077,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -63.2973,
+      "y": -28.6032,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 44.2508,
+      "y": 28.8797,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -80.6506,
+      "y": -44.2455,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -70.7169,
+      "y": -17.6668,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -44.8819,
+      "y": -9.6264,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -28.7425,
+      "y": 24.7837,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -35.2373,
+      "y": 30.688,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -34.2439,
+      "y": 8.4553,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -48.3911,
+      "y": 32.4513,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -36.8192,
+      "y": -15.1796,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -53.6503,
+      "y": 7.8694,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 17.9053,
+      "y": -8.1586,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -12.0138,
+      "y": 15.2272,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 22.4193,
+      "y": -31.8192,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -6.5057,
+      "y": -23.11,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -1.6487,
+      "y": -26.6515,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 74.1091,
+      "y": -17.4054,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -55.9913,
+      "y": -31.2756,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 10.7102,
+      "y": 22.7825,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -90.917,
+      "y": 98.2293,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -34.2394,
+      "y": 75.9627,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 41.0176,
+      "y": 27.2957,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 24.2539,
+      "y": 20.7481,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -34.4372,
+      "y": 9.2231,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 35.0991,
+      "y": -9.6985,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 89.825,
+      "y": -8.2818,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -39.3075,
+      "y": -30.437,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -12.7076,
+      "y": -5.5171,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 1.6367,
+      "y": 10.3609,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -21.8096,
+      "y": 30.7039,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 80.0269,
+      "y": 11.3616,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -26.0122,
+      "y": 3.6612,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 61.5278,
+      "y": 72.7762,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -5.7871,
+      "y": 17.4026,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 43.1728,
+      "y": 82.4187,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -24.7953,
+      "y": -1.4374,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 109.7261,
+      "y": -38.7394,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -15.0705,
+      "y": -14.5275,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 15.5186,
+      "y": 22.6034,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -81.2547,
+      "y": -51.3961,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 48.6617,
+      "y": -9.9143,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -10.1112,
+      "y": -30.8065,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 13.1594,
+      "y": 28.6824,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -14.3123,
+      "y": -3.8737,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 75.022,
+      "y": 46.9142,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -87.4871,
+      "y": -25.1946,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 89.3803,
+      "y": 21.1876,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -23.4823,
+      "y": -10.1489,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 9.0787,
+      "y": -14.7856,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -63.2556,
+      "y": 20.439,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 23.3369,
+      "y": -14.8015,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -72.8856,
+      "y": 10.6032,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 29.7007,
+      "y": -0.9363,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 63.1007,
+      "y": -57.5379,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -21.9434,
+      "y": 25.8991,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 12.463,
+      "y": 19.0775,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -102.5711,
+      "y": 85.854,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -27.8089,
+      "y": 49.8375,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -158.6686,
+      "y": -55.944,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -83.498,
+      "y": -25.8337,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -3.139,
+      "y": -16.0875,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -57.7276,
+      "y": -21.0535,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -63.4283,
+      "y": -16.0491,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -41.4417,
+      "y": -46.4175,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 34.1896,
+      "y": -1.311,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 26.6657,
+      "y": 56.4482,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 41.5438,
+      "y": 52.0757,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -63.0121,
+      "y": -12.8782,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -99.0729,
+      "y": 33.4139,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 23.9396,
+      "y": 15.3529,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -12.3867,
+      "y": -3.5061,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 66.9914,
+      "y": -70.3107,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 47.3484,
+      "y": -37.9355,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 29.2943,
+      "y": -36.5233,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 2.3014,
+      "y": -46.3339,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -33.4825,
+      "y": 8.6406,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -26.7191,
+      "y": -6.8923,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 137.0101,
+      "y": -23.0668,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -67.411,
+      "y": 15.3875,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 9.61,
+      "y": -25.0524,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -12.6489,
+      "y": 2.1553,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -29.3427,
+      "y": 56.9435,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 10.2238,
+      "y": -14.7692,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -37.1464,
+      "y": 15.9107,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 128.5843,
+      "y": -7.7876,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 110.8454,
+      "y": 6.6817,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 58.699,
+      "y": 56.4955,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 45.4889,
+      "y": 45.8516,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 43.8569,
+      "y": 1.06,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -57.1353,
+      "y": 14.6678,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 130.4958,
+      "y": -15.5776,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -94.9346,
+      "y": 10.7522,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -59.9519,
+      "y": 31.5892,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 13.7908,
+      "y": -10.5417,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.7381,
+      "y": -23.9691,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 38.7783,
+      "y": 72.2149,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -37.2173,
+      "y": 10.3925,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -23.5489,
+      "y": -19.7551,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 6.3118,
+      "y": 35.5024,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -0.2222,
+      "y": 21.7842,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -18.5748,
+      "y": -3.9513,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 8.2118,
+      "y": -9.8384,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 45.715,
+      "y": 93.9174,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 46.4288,
+      "y": -5.6424,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -42.1228,
+      "y": 0.2407,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 59.2391,
+      "y": -54.0207,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -57.58,
+      "y": -26.7282,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 123.5553,
+      "y": -25.0822,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 76.457,
+      "y": -12.9996,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 69.3201,
+      "y": -12.2139,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -52.8847,
+      "y": -7.8825,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 35.5932,
+      "y": -102.1135,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -10.9208,
+      "y": 11.8412,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -73.2126,
+      "y": 4.2666,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -44.4593,
+      "y": 4.0146,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -13.3083,
+      "y": -9.7605,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -9.7384,
+      "y": -39.2154,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 62.4927,
+      "y": -11.9704,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 2.5441,
+      "y": -12.4939,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -46.6035,
+      "y": 13.1939,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 7.651,
+      "y": -46.4352,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 69.7429,
+      "y": -38.0569,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -7.2692,
+      "y": 13.2835,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -21.4079,
+      "y": -0.3166,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 27.7401,
+      "y": -53.0194,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 54.2739,
+      "y": 5.6667,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -26.3194,
+      "y": 52.8614,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -46.2607,
+      "y": -11.8048,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 40.7615,
+      "y": -47.2454,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 7.529,
+      "y": -19.7482,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -62.1989,
+      "y": 17.6594,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 53.0552,
+      "y": -7.2689,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 33.0382,
+      "y": 41.1009,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -43.2062,
+      "y": -9.5328,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -53.9903,
+      "y": 62.3766,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 71.6336,
+      "y": 5.8095,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -30.7274,
+      "y": -47.1596,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -33.8283,
+      "y": -30.3518,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -50.5596,
+      "y": -20.8194,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -27.1599,
+      "y": -23.8602,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 49.4878,
+      "y": -10.3,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 2.0878,
+      "y": -14.7525,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -62.2618,
+      "y": -33.2388,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 33.7125,
+      "y": 52.7381,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -128.5244,
+      "y": 0.2532,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -3.9081,
+      "y": 68.4996,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -1.7345,
+      "y": -30.5203,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -55.1322,
+      "y": -14.2545,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 14.9807,
+      "y": -62.8013,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -36.8841,
+      "y": -5.1488,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -33.2702,
+      "y": -12.0579,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 50.99,
+      "y": 57.8574,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -22.8291,
+      "y": -17.3161,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -22.0,
+      "y": 64.4426,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -13.8052,
+      "y": 16.5675,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -31.8936,
+      "y": -18.4377,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 16.5656,
+      "y": 12.2977,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 36.9841,
+      "y": -26.2534,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -41.0585,
+      "y": -24.9024,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -42.2607,
+      "y": 29.9467,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -13.7552,
+      "y": 12.0541,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -65.7909,
+      "y": 12.7212,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -58.1124,
+      "y": 44.077,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -16.8342,
+      "y": 1.0218,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -86.4135,
+      "y": -36.1759,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -77.2779,
+      "y": 63.1494,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.3065,
+      "y": -13.0188,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.6112,
+      "y": 36.2547,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 59.9871,
+      "y": 2.1173,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 4.2796,
+      "y": 12.1703,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 29.2081,
+      "y": 60.3826,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -18.211,
+      "y": -22.6015,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -40.6458,
+      "y": -0.0137,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 4.3579,
+      "y": -33.5066,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 2.8923,
+      "y": 0.5682,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 31.4155,
+      "y": -23.6543,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -6.7866,
+      "y": 0.7857,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -122.5679,
+      "y": -29.3884,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 48.6047,
+      "y": 19.2055,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 22.4651,
+      "y": 13.754,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -23.6666,
+      "y": 39.3018,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 32.9577,
+      "y": 28.2118,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -16.9207,
+      "y": 10.4459,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 76.3259,
+      "y": 44.724,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 56.8814,
+      "y": 56.3943,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -77.8771,
+      "y": -39.0309,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 45.1704,
+      "y": 10.965,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -121.114,
+      "y": 36.3724,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 15.0226,
+      "y": 4.6679,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 85.0066,
+      "y": 41.4854,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -46.1988,
+      "y": -48.3678,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 4.9244,
+      "y": 84.6501,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 22.032,
+      "y": -10.7687,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 18.0061,
+      "y": 15.0998,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -77.9476,
+      "y": -45.6838,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 71.7315,
+      "y": -12.0551,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 26.7502,
+      "y": -1.2861,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 11.4321,
+      "y": 3.0548,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 45.8871,
+      "y": -34.2539,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 57.6902,
+      "y": -20.0824,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 73.7881,
+      "y": -22.4619,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -53.1817,
+      "y": 23.9589,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -85.0219,
+      "y": 100.4886,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 10.7658,
+      "y": 24.7536,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -27.5121,
+      "y": -59.9923,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -76.0434,
+      "y": 37.1051,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -48.0706,
+      "y": -23.1591,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -23.0477,
+      "y": 2.9728,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -86.4557,
+      "y": -8.9395,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -3.9257,
+      "y": -15.9217,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 45.3657,
+      "y": -28.304,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -71.6522,
+      "y": 9.3713,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 52.545,
+      "y": 8.5171,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -33.6753,
+      "y": -14.4059,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 42.0248,
+      "y": 33.2161,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 57.0923,
+      "y": -38.844,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -39.4451,
+      "y": -30.791,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 43.8873,
+      "y": -29.1828,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -54.4069,
+      "y": -42.9533,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -13.3099,
+      "y": -10.3474,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 57.9871,
+      "y": -70.8701,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 60.5295,
+      "y": -1.6717,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.9082,
+      "y": -28.2342,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 22.4455,
+      "y": -22.4322,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 11.5149,
+      "y": -25.345,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 33.2198,
+      "y": 0.6425,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 52.4614,
+      "y": -29.7489,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 33.9014,
+      "y": -0.2482,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 21.8329,
+      "y": -39.2904,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -12.3774,
+      "y": -11.5787,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 37.5736,
+      "y": -24.0466,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 65.9363,
+      "y": 12.2374,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -89.4865,
+      "y": -1.3863,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 65.4509,
+      "y": -32.4413,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 5.6619,
+      "y": 64.2021,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 89.9778,
+      "y": 25.3461,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 35.192,
+      "y": -31.0866,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 28.5706,
+      "y": -38.7489,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -0.1934,
+      "y": -46.9359,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 46.6931,
+      "y": 22.0351,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 77.3138,
+      "y": 10.3461,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -43.4635,
+      "y": 13.9447,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 39.5223,
+      "y": 48.4112,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -42.9418,
+      "y": 13.2346,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 108.4884,
+      "y": -19.3682,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 93.845,
+      "y": -60.9511,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 95.9974,
+      "y": 69.4047,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 10.215,
+      "y": 40.8479,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 107.8712,
+      "y": 61.5144,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 110.1487,
+      "y": 47.0087,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -64.124,
+      "y": -1.7164,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -48.9451,
+      "y": -48.7506,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -84.8523,
+      "y": -31.0582,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -37.3389,
+      "y": -62.3067,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -98.6525,
+      "y": -46.8185,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -46.2504,
+      "y": -20.5185,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 56.9865,
+      "y": 43.2929,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -147.6405,
+      "y": -32.3577,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -47.789,
+      "y": 12.998,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -32.5816,
+      "y": -30.7553,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -7.9807,
+      "y": 58.0765,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 33.5557,
+      "y": -12.7344,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 2.495,
+      "y": 0.5885,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 8.9143,
+      "y": 36.3445,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 32.5788,
+      "y": 24.4271,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -55.5025,
+      "y": 6.9978,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -55.9038,
+      "y": 7.3824,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -112.9051,
+      "y": -15.7463,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -64.8092,
+      "y": 11.2957,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -85.9419,
+      "y": 33.5889,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -27.7642,
+      "y": 54.1452,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -39.4986,
+      "y": 1.7255,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -11.5793,
+      "y": 16.0846,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 54.2902,
+      "y": 37.8725,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -22.0724,
+      "y": 5.4588,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 1.8966,
+      "y": 52.608,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 12.1774,
+      "y": -37.4228,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -80.6277,
+      "y": -12.9439,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -16.9659,
+      "y": 11.4178,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 37.9633,
+      "y": -5.0535,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -136.0503,
+      "y": -39.1629,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 60.1617,
+      "y": 18.4599,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 0.1108,
+      "y": 24.9454,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -58.6908,
+      "y": 54.1789,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -49.3081,
+      "y": -32.0433,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 125.8624,
+      "y": -5.8977,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -5.837,
+      "y": -11.9671,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 36.0958,
+      "y": -3.1519,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 108.92,
+      "y": 47.5678,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -17.8855,
+      "y": -49.915,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -1.932,
+      "y": 14.6646,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 80.4839,
+      "y": 38.5081,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 12.7085,
+      "y": 19.825,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 136.115,
+      "y": 8.6393,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -51.2113,
+      "y": -15.7059,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 34.2917,
+      "y": 32.8242,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -52.2002,
+      "y": 19.2369,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 23.0201,
+      "y": 39.0217,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -40.9063,
+      "y": -1.5003,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 0.5562,
+      "y": -10.2369,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 87.388,
+      "y": -27.3495,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -46.651,
+      "y": -5.175,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -12.026,
+      "y": 2.6977,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -125.207,
+      "y": -57.0827,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -58.6976,
+      "y": -23.5072,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 9.1635,
+      "y": 46.9124,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 101.1599,
+      "y": -5.0887,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -172.6962,
+      "y": -62.3455,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 15.7092,
+      "y": 17.8323,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -20.1525,
+      "y": -18.4858,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 8.5369,
+      "y": 47.8302,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -0.7888,
+      "y": -7.9988,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 116.2532,
+      "y": -12.662,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -71.9733,
+      "y": -20.4514,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 58.6331,
+      "y": -41.0819,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 22.7811,
+      "y": 2.3465,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -19.2215,
+      "y": -73.4363,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -14.456,
+      "y": -43.2325,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -86.8883,
+      "y": -50.9005,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 142.4657,
+      "y": 17.0508,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -72.1791,
+      "y": -24.777,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -15.4889,
+      "y": 37.1849,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -61.5315,
+      "y": -33.7304,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 89.058,
+      "y": -30.3465,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -72.3769,
+      "y": 29.7308,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -46.7127,
+      "y": 17.0525,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 16.591,
+      "y": 17.8459,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 1.1269,
+      "y": 42.3472,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 3.0795,
+      "y": -13.0347,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -89.8804,
+      "y": 72.4759,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 11.556,
+      "y": 7.6577,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -0.1247,
+      "y": -39.0087,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -41.4777,
+      "y": -6.8692,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -101.903,
+      "y": 21.8802,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 29.942,
+      "y": -28.4458,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 58.0431,
+      "y": 7.8396,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 39.0475,
+      "y": -30.706,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 17.6415,
+      "y": -48.6619,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 44.552,
+      "y": 18.3626,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 3.9715,
+      "y": -7.3204,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -62.8296,
+      "y": 5.4799,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 79.2343,
+      "y": 60.3026,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -69.2862,
+      "y": 29.1023,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -174.137,
+      "y": -33.945,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -31.1127,
+      "y": 60.8584,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -27.6986,
+      "y": -19.6241,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -5.3752,
+      "y": -6.2366,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -32.2473,
+      "y": 51.2998,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -31.0923,
+      "y": 4.8169,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -78.6442,
+      "y": -7.0976,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -48.8083,
+      "y": -4.7826,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -0.1569,
+      "y": 41.8836,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 74.7924,
+      "y": -16.4515,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -4.3116,
+      "y": 2.4847,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 8.3085,
+      "y": 40.5195,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -53.3824,
+      "y": -6.1593,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -61.9896,
+      "y": 15.9057,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 7.5678,
+      "y": 37.0355,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -31.3396,
+      "y": 12.7491,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -37.189,
+      "y": 11.4521,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -33.7948,
+      "y": 47.5807,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -36.378,
+      "y": -57.6822,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -13.1818,
+      "y": 15.9638,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 70.3453,
+      "y": -34.7965,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 61.9769,
+      "y": 45.6118,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 7.7748,
+      "y": -9.2489,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 51.509,
+      "y": 10.3575,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 74.6541,
+      "y": -51.4108,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 1.1735,
+      "y": -4.1169,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -68.0124,
+      "y": 14.3524,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 106.0203,
+      "y": -29.2213,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -55.1192,
+      "y": 71.0837,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -17.2848,
+      "y": -7.9654,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 41.939,
+      "y": 55.9629,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 26.8022,
+      "y": 18.5179,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 16.431,
+      "y": -30.9798,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 2.1439,
+      "y": -39.5006,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -22.5369,
+      "y": -14.4281,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -2.2652,
+      "y": -7.8366,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 10.3337,
+      "y": 3.3312,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 129.4496,
+      "y": -18.7195,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -60.8594,
+      "y": 32.444,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -71.8924,
+      "y": 21.9859,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 8.0761,
+      "y": 12.9917,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -43.3896,
+      "y": -22.6703,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 78.0444,
+      "y": 34.4076,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -58.4172,
+      "y": -1.406,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 70.3453,
+      "y": -34.7965,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 19.2068,
+      "y": 68.9895,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -56.2031,
+      "y": -14.078,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -149.5105,
+      "y": 26.6905,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -68.5777,
+      "y": -7.2166,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 46.0548,
+      "y": 36.2939,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 10.0969,
+      "y": -48.2478,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 58.805,
+      "y": -58.544,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -28.0011,
+      "y": -31.0107,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -82.5937,
+      "y": -54.2401,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -63.7279,
+      "y": -41.2513,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 87.4263,
+      "y": -42.5592,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -36.5255,
+      "y": -17.2726,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 33.0746,
+      "y": -83.3729,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 6.4632,
+      "y": -7.7729,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -45.6196,
+      "y": 18.5823,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -5.0943,
+      "y": -24.3386,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 7.9984,
+      "y": 76.858,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 74.6976,
+      "y": 2.9566,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 21.0181,
+      "y": -34.7177,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 123.2467,
+      "y": 12.2904,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -29.97,
+      "y": 30.9424,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 5.9432,
+      "y": -29.884,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 26.5253,
+      "y": -57.9414,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 117.156,
+      "y": -8.4893,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -35.2189,
+      "y": 6.4875,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 92.9703,
+      "y": -15.3347,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 62.332,
+      "y": -60.5887,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -51.7351,
+      "y": 31.4357,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -23.1516,
+      "y": 8.0949,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 68.0453,
+      "y": -38.616,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -40.813,
+      "y": -15.1327,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 76.8135,
+      "y": -37.4344,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -3.6401,
+      "y": -4.0416,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -0.0629,
+      "y": -1.6661,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 34.7068,
+      "y": 34.3652,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -109.5869,
+      "y": -24.3841,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 28.8354,
+      "y": 57.2707,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 26.8552,
+      "y": 33.9806,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 84.1585,
+      "y": -14.126,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -59.6181,
+      "y": 48.2928,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 66.9509,
+      "y": -10.2767,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -18.5264,
+      "y": -67.4646,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 63.8339,
+      "y": -79.5729,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -3.3114,
+      "y": -25.516,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 117.0794,
+      "y": -26.022,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 52.392,
+      "y": 91.1727,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -83.5134,
+      "y": 16.7058,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -0.0787,
+      "y": -2.0788,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -73.6084,
+      "y": 14.1763,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 53.9449,
+      "y": 7.49,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -11.1748,
+      "y": 8.805,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -28.8344,
+      "y": -24.5498,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 100.5177,
+      "y": -21.8812,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -44.7936,
+      "y": 11.9535,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -18.2726,
+      "y": -22.9219,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 42.4048,
+      "y": 55.865,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -29.0302,
+      "y": -34.517,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -28.7901,
+      "y": 39.7609,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -8.9609,
+      "y": 10.18,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -13.4478,
+      "y": -38.7151,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 13.9297,
+      "y": -53.6186,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 46.9819,
+      "y": 10.6132,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -96.6452,
+      "y": -23.4876,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -30.3439,
+      "y": -19.3032,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 35.1598,
+      "y": -3.1673,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -13.3057,
+      "y": -7.5248,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 44.4632,
+      "y": -38.4908,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -32.2174,
+      "y": 11.5731,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 49.426,
+      "y": 55.562,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 75.7943,
+      "y": 25.7244,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -18.1413,
+      "y": -15.2211,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -37.826,
+      "y": 19.9287,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 31.9007,
+      "y": 16.9935,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -117.4713,
+      "y": -28.7446,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -19.1331,
+      "y": 7.4135,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 48.4101,
+      "y": 37.7086,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 23.0045,
+      "y": -22.0842,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -13.8986,
+      "y": -11.8786,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -40.122,
+      "y": -11.1323,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -7.3618,
+      "y": -19.4146,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 56.8385,
+      "y": 1.4856,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 24.0692,
+      "y": -19.5751,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -26.868,
+      "y": -9.0512,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -20.4258,
+      "y": 5.4083,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 93.229,
+      "y": -0.7834,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -17.7996,
+      "y": -36.176,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 25.7812,
+      "y": 7.1255,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 31.0313,
+      "y": -43.3753,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -43.1093,
+      "y": -30.4734,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -44.9157,
+      "y": -37.0135,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -64.0308,
+      "y": 10.9533,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -18.1259,
+      "y": -4.8744,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -38.8722,
+      "y": 4.503,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.1964,
+      "y": -49.0275,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -0.2104,
+      "y": 2.6723,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 101.6746,
+      "y": 2.0993,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -153.7287,
+      "y": 23.5908,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -20.7037,
+      "y": -43.313,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -85.0422,
+      "y": 63.2995,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -50.5265,
+      "y": 50.87,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 33.0415,
+      "y": 77.007,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 70.2825,
+      "y": -48.0758,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -2.2439,
+      "y": -40.374,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 45.1108,
+      "y": 31.4398,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.9213,
+      "y": 31.3842,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 96.696,
+      "y": -55.8938,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 112.9321,
+      "y": -29.1372,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -16.914,
+      "y": -12.3812,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 5.9679,
+      "y": 23.6661,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 7.6998,
+      "y": -8.8388,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 101.0659,
+      "y": -25.69,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.3359,
+      "y": 11.5542,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 21.9142,
+      "y": 37.8334,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 38.0102,
+      "y": -20.714,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -35.6885,
+      "y": 44.2224,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 86.151,
+      "y": 51.5815,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 18.185,
+      "y": 20.5404,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -65.4211,
+      "y": -41.7992,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -96.1918,
+      "y": 9.7363,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -63.408,
+      "y": 0.1508,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -59.7219,
+      "y": -1.5659,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -120.3907,
+      "y": 49.1542,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 16.8989,
+      "y": -21.0381,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -19.3307,
+      "y": -61.4008,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -35.2643,
+      "y": 19.2266,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -5.2619,
+      "y": -0.54,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 48.3694,
+      "y": -8.7714,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -76.5536,
+      "y": 19.2597,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 96.2986,
+      "y": -55.5805,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 2.0988,
+      "y": -12.1423,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -67.6698,
+      "y": 22.4164,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -6.0214,
+      "y": 2.9416,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 61.1567,
+      "y": -86.1874,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 25.0433,
+      "y": 82.2907,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -23.4923,
+      "y": -21.9379,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 10.8163,
+      "y": 22.9233,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -60.8105,
+      "y": 8.8775,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 55.2003,
+      "y": 14.1973,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -42.4097,
+      "y": -13.4251,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 6.0497,
+      "y": 17.7501,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 75.7906,
+      "y": 15.7578,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 2.1234,
+      "y": -8.5121,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 42.1159,
+      "y": 25.4807,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 85.1583,
+      "y": -30.7532,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 30.1513,
+      "y": 29.8072,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 6.9636,
+      "y": 67.9173,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 36.8234,
+      "y": -32.0098,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -32.7659,
+      "y": -13.3654,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 9.596,
+      "y": -30.3777,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 6.2467,
+      "y": 27.2457,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -29.5835,
+      "y": -36.5099,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -79.2201,
+      "y": -19.3117,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -76.1725,
+      "y": -66.6089,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -52.9603,
+      "y": -19.8533,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -36.3829,
+      "y": -4.3173,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -4.7911,
+      "y": -10.2689,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 75.9686,
+      "y": 15.9229,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -131.4692,
+      "y": -7.4368,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -50.4538,
+      "y": -8.7889,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -13.0957,
+      "y": 17.0539,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 63.9196,
+      "y": -11.7218,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -20.2568,
+      "y": -6.8583,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -43.9864,
+      "y": 35.4512,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -3.0956,
+      "y": 8.3823,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -21.3068,
+      "y": -28.0285,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 44.872,
+      "y": 32.608,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -1.1217,
+      "y": 52.5173,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -67.7895,
+      "y": 32.4954,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -39.6657,
+      "y": 17.3092,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -60.2152,
+      "y": -11.9731,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 79.0693,
+      "y": 15.0922,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -39.2772,
+      "y": -9.4271,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -37.4432,
+      "y": 3.7717,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -12.3665,
+      "y": -5.1025,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 1.9909,
+      "y": -1.5666,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 75.6735,
+      "y": -2.0588,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 85.0801,
+      "y": -0.9236,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -72.8277,
+      "y": -1.7555,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 4.4775,
+      "y": 11.287,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 27.3386,
+      "y": 21.8433,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 53.5939,
+      "y": -23.1486,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 27.9323,
+      "y": 41.7751,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -30.2257,
+      "y": 56.7249,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 91.2087,
+      "y": -19.7335,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -60.7547,
+      "y": -82.029,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -42.5799,
+      "y": -3.4259,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 2.529,
+      "y": -12.7325,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 12.4019,
+      "y": 42.4802,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 58.6781,
+      "y": -10.0708,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 74.0667,
+      "y": -23.2809,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 6.2112,
+      "y": -1.9262,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -54.2133,
+      "y": 44.4924,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -96.4251,
+      "y": 7.8388,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -9.9147,
+      "y": -6.9763,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -5.5384,
+      "y": -22.2693,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 84.561,
+      "y": 8.9978,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 27.2919,
+      "y": 70.7635,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 43.2113,
+      "y": -10.7695,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 24.3524,
+      "y": 35.5651,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 26.4451,
+      "y": 7.8786,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -32.6926,
+      "y": -18.9101,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 16.2383,
+      "y": 8.3258,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -103.3485,
+      "y": -26.9567,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 27.4246,
+      "y": 10.7882,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -92.424,
+      "y": 56.1601,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -136.7035,
+      "y": 11.5883,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 31.1274,
+      "y": -26.3769,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 160.4015,
+      "y": -5.8878,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.1148,
+      "y": -0.0751,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -4.3463,
+      "y": -18.3309,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -40.5714,
+      "y": -30.7531,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -76.5566,
+      "y": -32.2973,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 9.8982,
+      "y": 9.5703,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 96.2597,
+      "y": -107.2498,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 105.4785,
+      "y": 22.8385,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -30.3704,
+      "y": -14.2224,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 51.0308,
+      "y": -0.9858,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -32.8744,
+      "y": 51.5875,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -83.7668,
+      "y": 102.2186,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 32.9347,
+      "y": -31.7198,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": -22.1356,
+      "y": -63.8224,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -64.6931,
+      "y": 86.5592,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 110.2476,
+      "y": -23.0379,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -55.8206,
+      "y": 29.455,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 15.8508,
+      "y": -30.6217,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -76.9566,
+      "y": 23.8389,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -63.215,
+      "y": -10.7812,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 74.2852,
+      "y": -31.2905,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -9.329,
+      "y": 30.0253,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 60.8913,
+      "y": 11.2708,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 0.6302,
+      "y": 4.9971,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -9.4627,
+      "y": -6.1599,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -14.0766,
+      "y": 69.2656,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -151.9806,
+      "y": -48.7606,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 5.4373,
+      "y": 26.8049,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 4.7945,
+      "y": -21.134,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 95.1211,
+      "y": 4.4061,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -100.999,
+      "y": -40.3579,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 36.0654,
+      "y": 19.9412,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -3.3929,
+      "y": 2.7554,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 10.5914,
+      "y": 18.8462,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -84.0211,
+      "y": 18.0597,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -57.3242,
+      "y": 26.4432,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 125.7256,
+      "y": -38.8212,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 128.1674,
+      "y": -23.442,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -26.3149,
+      "y": -2.9238,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -15.0717,
+      "y": -13.3446,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 62.7693,
+      "y": -41.8519,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -43.2034,
+      "y": 0.012,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -16.9436,
+      "y": 35.6638,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -6.5218,
+      "y": -2.5413,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -1.2968,
+      "y": 8.2236,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 3.6055,
+      "y": -17.4051,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -95.5766,
+      "y": -33.4789,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 59.5544,
+      "y": 29.8978,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 82.745,
+      "y": -20.3949,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -44.8964,
+      "y": 18.1654,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -42.1274,
+      "y": -25.193,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -41.5078,
+      "y": -7.8298,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 53.6549,
+      "y": -36.0054,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 28.198,
+      "y": -5.9596,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 17.8281,
+      "y": 19.3511,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 114.1711,
+      "y": -41.3071,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -35.0295,
+      "y": 39.7395,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -39.6848,
+      "y": 40.0969,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -15.7564,
+      "y": -47.7259,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 4.671,
+      "y": -7.6104,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 100.3979,
+      "y": -39.8756,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -8.9904,
+      "y": 20.3416,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -52.2181,
+      "y": 38.2772,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -6.7773,
+      "y": -6.5373,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 37.9403,
+      "y": 86.0614,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -87.5164,
+      "y": -19.8908,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -17.2262,
+      "y": -8.4307,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -27.6308,
+      "y": -19.9634,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 7.7136,
+      "y": 99.8559,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 48.6126,
+      "y": -9.5644,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -72.9237,
+      "y": 9.9658,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -26.8993,
+      "y": 6.5549,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 4.3597,
+      "y": -9.4214,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 82.6896,
+      "y": -18.2697,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 68.8959,
+      "y": -17.3493,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 10.357,
+      "y": -14.4436,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 12.2836,
+      "y": -6.2259,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -21.9343,
+      "y": -12.9617,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -44.1497,
+      "y": -9.3647,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 56.703,
+      "y": -21.1447,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -108.921,
+      "y": 19.2634,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 2.8743,
+      "y": 53.5262,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 14.1823,
+      "y": 9.6165,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 8.3935,
+      "y": -25.2545,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 63.9446,
+      "y": 32.6052,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 53.1572,
+      "y": 6.361,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -55.6022,
+      "y": -12.9446,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -35.3843,
+      "y": 29.8566,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -8.1325,
+      "y": 6.42,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 46.3975,
+      "y": 53.2431,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -8.8194,
+      "y": -40.2757,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -3.3434,
+      "y": -29.2408,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 51.2133,
+      "y": -36.9812,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -106.498,
+      "y": 8.8005,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -33.1354,
+      "y": 37.6288,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -22.8311,
+      "y": -9.636,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -48.9171,
+      "y": 7.1572,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 38.8657,
+      "y": 17.0064,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 28.9784,
+      "y": -46.1974,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 39.3145,
+      "y": -55.5169,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -25.1193,
+      "y": 31.0477,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -63.7501,
+      "y": 1.478,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -29.5803,
+      "y": -45.6174,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 100.2722,
+      "y": -37.5117,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 1.3855,
+      "y": -51.7394,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 58.8277,
+      "y": 18.063,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 24.7643,
+      "y": 37.5589,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -55.6544,
+      "y": 15.2273,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 37.2353,
+      "y": -45.8554,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 19.6112,
+      "y": -35.9473,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -63.1579,
+      "y": 2.0445,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 3.9711,
+      "y": 51.2081,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -120.9207,
+      "y": 37.2368,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 1.3497,
+      "y": 37.5092,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 59.4023,
+      "y": 16.4418,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 35.2718,
+      "y": -12.7011,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 100.7452,
+      "y": -13.2462,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 135.1776,
+      "y": 41.9193,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -34.6481,
+      "y": -9.4551,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 5.5133,
+      "y": -15.6477,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 131.8266,
+      "y": -29.9701,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 43.7036,
+      "y": 27.1162,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 74.0779,
+      "y": -36.1412,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 54.1216,
+      "y": -26.6521,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 42.401,
+      "y": 9.2456,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -55.6763,
+      "y": -55.0928,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -26.7844,
+      "y": -59.2521,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -10.8295,
+      "y": -66.6347,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 93.486,
+      "y": -30.5401,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 31.2394,
+      "y": -21.2235,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 73.5678,
+      "y": -24.1046,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -5.3752,
+      "y": -6.2366,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 39.4122,
+      "y": 39.0492,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -27.2473,
+      "y": -3.7605,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 43.9809,
+      "y": -34.1942,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -42.4245,
+      "y": -55.36,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -63.331,
+      "y": 8.2557,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -48.3045,
+      "y": 15.0654,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -33.4193,
+      "y": 1.0864,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -43.2619,
+      "y": -51.6622,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 109.9158,
+      "y": -26.2976,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -27.846,
+      "y": -24.2345,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -37.822,
+      "y": 28.0808,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 34.4838,
+      "y": 7.4882,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -54.5603,
+      "y": 22.7574,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -32.9915,
+      "y": -5.2718,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -51.5011,
+      "y": 61.4858,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -48.7908,
+      "y": 7.5625,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -0.9007,
+      "y": 9.8245,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -40.6133,
+      "y": 1.979,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -76.5923,
+      "y": 45.3567,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -68.9056,
+      "y": 24.2401,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 9.5668,
+      "y": -4.4823,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -101.1831,
+      "y": -44.915,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -21.0893,
+      "y": 36.9697,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 22.0968,
+      "y": 40.2164,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 61.2422,
+      "y": -21.8648,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 117.9685,
+      "y": 59.9717,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 131.8929,
+      "y": -60.742,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 84.5062,
+      "y": -6.5347,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -73.2849,
+      "y": -16.2983,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -101.5633,
+      "y": 28.6058,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 94.6316,
+      "y": 33.8043,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 58.284,
+      "y": 19.5497,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -66.2825,
+      "y": -7.9877,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -4.3779,
+      "y": -3.022,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 29.7289,
+      "y": -0.7536,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 29.0194,
+      "y": 21.6956,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 61.0581,
+      "y": 19.0569,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -93.2895,
+      "y": -5.3254,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 13.2031,
+      "y": 115.0743,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 8.0556,
+      "y": 1.027,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 66.3636,
+      "y": -55.1998,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 83.5018,
+      "y": 13.6145,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -1.3024,
+      "y": 18.2888,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 52.4662,
+      "y": 28.9943,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -13.9538,
+      "y": -26.6161,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -23.3255,
+      "y": 24.0648,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -42.647,
+      "y": -22.1372,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 68.8805,
+      "y": 47.6433,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 9.3477,
+      "y": 39.0941,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 35.4935,
+      "y": 9.7529,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -99.1365,
+      "y": -45.3046,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -5.3908,
+      "y": -40.4559,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 55.8982,
+      "y": -9.6556,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -31.9082,
+      "y": 12.0092,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 4.7185,
+      "y": -15.4005,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -64.1699,
+      "y": -4.9438,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -90.4429,
+      "y": -21.0362,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -20.6467,
+      "y": -24.0203,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 25.5953,
+      "y": -5.634,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 117.3773,
+      "y": -32.9309,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 109.2576,
+      "y": -3.6078,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 124.8048,
+      "y": -28.178,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 29.2435,
+      "y": -0.1425,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -84.1934,
+      "y": -22.9501,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 0.1036,
+      "y": 3.7997,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -44.1046,
+      "y": 50.5565,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -0.4827,
+      "y": -24.378,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 36.7824,
+      "y": 12.2927,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 6.1168,
+      "y": -14.0919,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -63.2535,
+      "y": -9.3063,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 135.3077,
+      "y": -31.1964,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 12.3277,
+      "y": -11.6128,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -100.4658,
+      "y": 16.7138,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 19.5823,
+      "y": -118.5596,
+      "label": 0,
+      "class_name": "head"
+    },
+    {
+      "x": 10.1756,
+      "y": 29.3104,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -36.241,
+      "y": 21.2863,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -7.9386,
+      "y": 5.4917,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 1.8944,
+      "y": -10.8166,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -13.7826,
+      "y": -21.3165,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 25.4361,
+      "y": -5.6259,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 7.6837,
+      "y": -5.0117,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -32.407,
+      "y": 15.9019,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 46.4852,
+      "y": 58.5906,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -7.3599,
+      "y": -6.8529,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": 1.5914,
+      "y": 3.096,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 29.9754,
+      "y": 25.472,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 55.2165,
+      "y": -17.8467,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -71.4719,
+      "y": -6.5295,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 61.4469,
+      "y": 34.1816,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 7.093,
+      "y": 67.1089,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -0.8928,
+      "y": -28.8845,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 41.2721,
+      "y": 0.1211,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -15.0515,
+      "y": -6.0582,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 23.9474,
+      "y": 4.6719,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -53.2871,
+      "y": 23.5529,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -21.9119,
+      "y": -28.8504,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": 76.6925,
+      "y": -8.349,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -19.1947,
+      "y": 23.6045,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -10.5199,
+      "y": -38.8959,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -18.5191,
+      "y": 95.0352,
+      "label": 1,
+      "class_name": "helmet"
+    },
+    {
+      "x": -2.0025,
+      "y": 6.3261,
+      "label": 2,
+      "class_name": "vest"
+    },
+    {
+      "x": -106.616,
+      "y": -32.6701,
+      "label": 2,
+      "class_name": "vest"
+    }
+  ],
+  "classes": [
+    "head",
+    "helmet",
+    "vest"
+  ],
+  "explained_variance_ratio": [
+    0.1512,
+    0.0532
+  ]
+}

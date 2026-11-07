@@ -1,0 +1,39 @@
+{
+  "model_type": "DistilBertForSequenceClassification",
+  "model_name": "distilbert-base-uncased",
+  "num_classes": 5,
+  "classes": [
+    "helmet_required",
+    "vest_required",
+    "both_required",
+    "other_ppe",
+    "none"
+  ],
+  "label2id": {
+    "helmet_required": 0,
+    "vest_required": 1,
+    "both_required": 2,
+    "other_ppe": 3,
+    "none": 4
+  },
+  "id2label": {
+    "0": "helmet_required",
+    "1": "vest_required",
+    "2": "both_required",
+    "3": "other_ppe",
+    "4": "none"
+  },
+  "max_length": 128,
+  "batch_size": 16,
+  "learning_rate": 5e-05,
+  "weight_decay": 0.01,
+  "num_epochs": 4,
+  "best_seed": 45,
+  "temperature": 0.5670241117477417,
+  "total_curated_sentences": 321,
+  "split_counts": {
+    "train": 155,
+    "val": 77,
+    "test": 89
+  }
+}

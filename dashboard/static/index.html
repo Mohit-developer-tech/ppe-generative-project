@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPE Safety Inspection Dashboard — Generative Autoencoder & SVM</title>
+  
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Cropper.js for visual crop box -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+
+  <!-- Chart.js for latent visualization & PCA scatter -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
+
+  <!-- ================= STICKY TOP NAVIGATION ================= -->
+  <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-lg bg-brand-600 text-white flex items-center justify-center font-bold text-lg shadow-sm shadow-brand-500/30">
+          PPE
+        </div>
+        <div>
+          <span class="font-bold text-slate-900 dark:text-white tracking-tight">Autoencoder Inspector</span>
+          <span class="hidden sm:inline-block ml-2 px-2 py-0.5 text-xs font-medium rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">Model 1 of 5</span>
+        </div>
+      </div>
+
+      <nav class="flex items-center space-x-1 sm:space-x-6 text-sm font-medium">
+        <a href="#demo" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-white transition-colors">Live Demo</a>
+        <a href="#model-performance" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-white transition-colors">Benchmark Metrics</a>
+        <a href="#limitations" class="hidden md:inline-block px-3 py-1.5 rounded-md text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-white transition-colors">Limitations</a>
+
+        <!-- Dark mode toggle -->
+        <button id="theme-toggle" type="button" aria-label="Toggle theme" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+          <svg id="theme-icon-sun" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+          </svg>
+          <svg id="theme-icon-moon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= MODEL REGISTRY SELECTOR ================= -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm sticky top-16 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between overflow-x-auto py-2.5 gap-2 scrollbar-none" id="model-tabs-bar">
+        <button type="button" data-model-id="autoencoder" class="model-tab-btn active px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-brand-50 text-brand-700 dark:bg-brand-950/70 dark:text-brand-300 border border-brand-200 dark:border-brand-800 shrink-0">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>1. Autoencoder</span>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-mono">Active</span>
+        </button>
+        <button type="button" data-model-id="cvae" class="model-tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-transparent shrink-0">
+          <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+          <span>2. Conditional VAE</span>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-mono">Active</span>
+        </button>
+        <button type="button" data-model-id="cgan" class="model-tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-transparent shrink-0">
+          <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+          <span>3. Conditional GAN</span>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-mono">Active</span>
+        </button>
+        <button type="button" data-model-id="diffusion" class="model-tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-transparent shrink-0">
+          <span class="w-2 h-2 rounded-full bg-teal-500"></span>
+          <span>4. Diffusion Restoration</span>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 font-mono">Coming Soon</span>
+        </button>
+        <button type="button" data-model-id="policy" class="model-tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-transparent shrink-0">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>5. Policy Checker</span>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700 dark:bg-emerald-950/70 dark:text-emerald-300 font-mono">Active</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ETHICS & PRIVACY BANNER ================= -->
+  <div class="bg-indigo-950 text-indigo-200 text-xs px-4 py-2.5 border-b border-indigo-900 shadow-inner">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+        </svg>
+        <span><strong class="text-white">Ethics & Privacy Safeguard:</strong> Head crops depict real human faces. All uploaded photos are processed exclusively in-memory (never written to disk). Synthetic generated faces must never be published as real people, and nearest-real-neighbor memorization safeguards are enforced.</span>
+      </div>
+      <span class="shrink-0 px-2 py-0.5 rounded bg-indigo-900 border border-indigo-800 text-[11px] font-mono text-indigo-300">Zero-Persistence Enforced</span>
+    </div>
+  </div>
+
+  <!-- ================= MODEL VIEW: AUTOENCODER (MODEL 1) ================= -->
+  <div id="model-view-autoencoder" class="model-view">
+
+  <!-- ================= HERO INTRO ================= -->
+  <section class="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 dark:bg-brand-950/70 dark:text-brand-300 border border-brand-200/60 dark:border-brand-800/60 mb-4">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Empirical Research Benchmark
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          PPE Safety Crop Autoencoder & Downstream Classification
+        </h1>
+        <p class="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          Evaluating representation fidelity and downstream discriminability on safety-critical PPE crops (<span class="font-semibold text-rose-600 dark:text-rose-400">head / violation</span>, <span class="font-semibold text-emerald-600 dark:text-emerald-400">helmet</span>, <span class="font-semibold text-indigo-600 dark:text-indigo-400">vest</span>).
+        </p>
+
+        <!-- Model Specs Chips -->
+        <div class="mt-5 flex flex-wrap items-center gap-2 text-xs font-medium text-slate-600 dark:text-slate-400">
+          <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-md border border-slate-200 dark:border-slate-700 font-mono">Input: 64x64 RGB</span>
+          <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-md border border-slate-200 dark:border-slate-700 font-mono">Latent Bottleneck: 256-d</span>
+          <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-md border border-slate-200 dark:border-slate-700 font-mono">ConvAE: 3.48M Params</span>
+          <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-md border border-slate-200 dark:border-slate-700 font-mono">Classifier: Balanced RBF SVM</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LIVE DEMO SECTION ================= -->
+  <main id="demo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
+    
+    <!-- Top Warning / Requirement Notice -->
+    <div class="mb-8 p-4 rounded-xl border border-amber-200 bg-amber-50/70 dark:border-amber-900/40 dark:bg-amber-950/20 flex items-start gap-3 text-sm text-amber-900 dark:text-amber-200 shadow-sm">
+      <svg class="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <div>
+        <span class="font-semibold">Model Scope Limitation:</span> The model was trained specifically on single, tightly cropped PPE regions (64x64), not full construction panoramas. For best results, upload a crop or use the crop box to isolate a single helmet, unhelmeted head, or vest.
+      </div>
+    </div>
+
+    <!-- Live Demo Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- ================= LEFT COLUMN: UPLOAD & CROP SELECTOR ================= -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- Card: Upload -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span>1. Image Input & Crop</span>
+            </h2>
+            <span class="text-xs text-slate-500 font-medium">PNG, JPG, WEBP &lt; 10MB</span>
+          </div>
+
+          <!-- Dropzone -->
+          <div id="drop-zone" class="relative group border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-brand-500 dark:hover:border-brand-500 rounded-xl p-6 text-center cursor-pointer transition-colors bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="file-input" accept="image/png,image/jpeg,image/webp" class="hidden">
+            <div class="flex flex-col items-center justify-center space-y-2 pointer-events-none">
+              <div class="w-12 h-12 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-brand-600 dark:text-brand-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Click to upload or drag & drop</p>
+              <p class="text-xs text-slate-500">Supports direct crops or full site photos</p>
+            </div>
+          </div>
+
+          <!-- Image Preview & Crop Box Container -->
+          <div id="crop-wrapper" class="hidden mt-4 space-y-3">
+            <div class="relative bg-slate-900 rounded-xl overflow-hidden max-h-[340px] flex items-center justify-center border border-slate-200 dark:border-slate-800">
+              <img id="image-to-crop" class="max-h-[340px] w-auto max-w-full block" alt="Source for cropping">
+            </div>
+            
+            <div class="flex items-center justify-between text-xs text-slate-500 px-1">
+              <span>Adjust box to isolate PPE item</span>
+              <button id="reset-crop-btn" type="button" class="text-brand-600 dark:text-brand-400 hover:underline font-medium">Reset Box</button>
+            </div>
+          </div>
+
+          <!-- Analyse Button -->
+          <button id="analyse-btn" type="button" disabled class="mt-4 w-full py-3 px-4 rounded-xl font-semibold text-white bg-brand-600 hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm transition-all flex items-center justify-center gap-2">
+            <span id="btn-spinner" class="hidden w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+            <span id="btn-text">Select Image to Analyse</span>
+          </button>
+        </div>
+
+        <!-- Card: Test Split Samples Gallery -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Or try a test-set sample</h3>
+            <span class="text-xs text-slate-500">1-click inference</span>
+          </div>
+
+          <div id="sample-gallery" class="grid grid-cols-4 sm:grid-cols-6 gap-2">
+            <!-- Populated via /api/samples -->
+            <div class="animate-pulse bg-slate-100 dark:bg-slate-800 rounded-lg h-14"></div>
+            <div class="animate-pulse bg-slate-100 dark:bg-slate-800 rounded-lg h-14"></div>
+            <div class="animate-pulse bg-slate-100 dark:bg-slate-800 rounded-lg h-14"></div>
+            <div class="animate-pulse bg-slate-100 dark:bg-slate-800 rounded-lg h-14"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= RIGHT COLUMN: MULTI-OBJECTIVE RESULTS ================= -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <!-- Initial Empty State -->
+        <div id="empty-state" class="bg-white dark:bg-slate-900 rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 p-12 text-center text-slate-500">
+          <div class="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 mx-auto flex items-center justify-center mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-base font-semibold text-slate-800 dark:text-slate-200">No Analysis Yet</h3>
+          <p class="text-sm text-slate-500 mt-1 max-w-sm mx-auto">Upload a PPE crop or select any sample image on the left to inspect reconstructions, error heatmaps, and classification scores.</p>
+        </div>
+
+        <!-- Results Container (Hidden until prediction) -->
+        <div id="results-container" class="hidden space-y-6">
+
+          <!-- 1. Classification Banner Card -->
+          <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Downstream Classification</span>
+                <div class="flex items-center gap-3 mt-1">
+                  <div id="class-badge" class="px-4 py-2 rounded-xl text-lg font-extrabold flex items-center gap-2">
+                    <span id="class-badge-icon"></span>
+                    <span id="class-badge-text">Unknown</span>
+                  </div>
+                </div>
+              </div>
+
+              <div id="violation-box" class="hidden p-3 rounded-xl bg-rose-50 border border-rose-200 dark:bg-rose-950/40 dark:border-rose-900/60 text-xs text-rose-800 dark:text-rose-200 font-medium">
+                ⚠️ <span class="font-bold">VIOLATION DETECTED:</span> Worker is not wearing a required safety helmet.
+              </div>
+            </div>
+
+            <!-- Softmax / Relative Scores Bars -->
+            <div class="mt-6 space-y-3">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-semibold text-slate-700 dark:text-slate-300">Relative Class Affinity</span>
+                <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-md border border-slate-200 dark:border-slate-700">relative score, uncalibrated</span>
+              </div>
+
+              <!-- Bar 1: Head (Violation) -->
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="font-medium text-slate-700 dark:text-slate-300">head (no helmet / violation)</span>
+                  <span id="score-head" class="font-mono font-semibold text-rose-600 dark:text-rose-400">0.0%</span>
+                </div>
+                <div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div id="bar-head" class="h-full bg-rose-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- Bar 2: Helmet (Compliant) -->
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="font-medium text-slate-700 dark:text-slate-300">helmet (compliant)</span>
+                  <span id="score-helmet" class="font-mono font-semibold text-emerald-600 dark:text-emerald-400">0.0%</span>
+                </div>
+                <div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div id="bar-helmet" class="h-full bg-emerald-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- Bar 3: Vest (Compliant) -->
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="font-medium text-slate-700 dark:text-slate-300">vest (compliant)</span>
+                  <span id="score-vest" class="font-mono font-semibold text-indigo-600 dark:text-indigo-400">0.0%</span>
+                </div>
+                <div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div id="bar-vest" class="h-full bg-indigo-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+
+            <p class="mt-4 text-[11px] text-slate-500 dark:text-slate-400 leading-normal border-t border-slate-100 dark:border-slate-800/80 pt-3">
+              * The balanced RBF SVM classifies the frozen 256-dimensional bottleneck vector without seeing raw pixels. Scores reflect distance from the decision boundary mapped via softmax.
+            </p>
+          </div>
+
+          <!-- 2. Reconstruction Triad & Per-Image Metrics -->
+          <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white mb-4">Generative Reconstruction & Error Map (64x64)</h3>
+
+            <!-- 3 Images Side-by-side -->
+            <div class="grid grid-cols-3 gap-4 text-center">
+              
+              <!-- Original Crop -->
+              <div class="space-y-2">
+                <div class="aspect-square bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 p-1 flex items-center justify-center">
+                  <img id="img-original" class="w-full h-full object-contain pixelated" alt="Original Crop">
+                </div>
+                <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Original Crop</span>
+              </div>
+
+              <!-- Reconstruction -->
+              <div class="space-y-2">
+                <div class="aspect-square bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 p-1 flex items-center justify-center">
+                  <img id="img-reconstructed" class="w-full h-full object-contain pixelated" alt="Autoencoder Reconstruction">
+                </div>
+                <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Reconstruction</span>
+              </div>
+
+              <!-- Absolute Error Heatmap -->
+              <div class="space-y-2">
+                <div class="aspect-square bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 p-1 flex items-center justify-center">
+                  <img id="img-heatmap" class="w-full h-full object-contain pixelated" alt="Error Heatmap">
+                </div>
+                <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Error Heatmap</span>
+              </div>
+
+            </div>
+
+            <!-- Per-Image Metrics Ribbon -->
+            <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/80 dark:border-slate-700/80 text-center">
+                <span class="text-[11px] font-medium text-slate-500 uppercase">MSE Loss</span>
+                <p id="metric-mse" class="text-base font-bold font-mono text-slate-900 dark:text-white mt-0.5">0.0000</p>
+              </div>
+              <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/80 dark:border-slate-700/80 text-center">
+                <span class="text-[11px] font-medium text-slate-500 uppercase">MAE Error</span>
+                <p id="metric-mae" class="text-base font-bold font-mono text-slate-900 dark:text-white mt-0.5">0.0000</p>
+              </div>
+              <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/80 dark:border-slate-700/80 text-center">
+                <span class="text-[11px] font-medium text-slate-500 uppercase">PSNR</span>
+                <p id="metric-psnr" class="text-base font-bold font-mono text-slate-900 dark:text-white mt-0.5">0.00 dB</p>
+              </div>
+              <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/80 dark:border-slate-700/80 text-center">
+                <span class="text-[11px] font-medium text-slate-500 uppercase">SSIM</span>
+                <p id="metric-ssim" class="text-base font-bold font-mono text-slate-900 dark:text-white mt-0.5">0.0000</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 3. Latent Space & 2D PCA Visualization -->
+          <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-6">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Latent Representation Manifold (256-d)</h3>
+                <span class="text-xs text-slate-500 font-mono">2D PCA Projected</span>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Sample's projection against 1,500 test set latent clusters.</p>
+              
+              <!-- Scatter Chart Container -->
+              <div class="h-64 w-full relative">
+                <canvas id="pcaScatterChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Latent Vector Bar Sparkline -->
+            <div class="border-t border-slate-100 dark:border-slate-800 pt-4">
+              <span class="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-2">Latent Vector Intensity Profile (256 dimensions)</span>
+              <div class="h-24 w-full">
+                <canvas id="latentVectorChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ================= MODEL PERFORMANCE HUB (SEPARATE SECTION) ================= -->
+  <section id="model-performance" class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-16 px-4 sm:px-6 lg:px-8 mt-16">
+    <div class="max-w-7xl mx-auto space-y-12">
+      
+      <!-- Section Header -->
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 dark:bg-indigo-950/70 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 mb-3">
+          Rigorous Empirical Evaluation
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Autoencoder Model Performance
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          All metrics and tables below are loaded dynamically from verified CSV evaluation logs in <code class="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">results/autoencoder/</code>. No fabricated numbers.
+        </p>
+      </div>
+
+      <!-- Tables Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- Table 1: Master Summary -->
+        <div class="bg-slate-50/70 dark:bg-slate-800/40 rounded-2xl border border-slate-200 dark:border-slate-700/80 p-6 shadow-sm">
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center justify-between">
+            <span>Overall Benchmark Summary</span>
+            <span class="text-xs font-normal text-slate-500">Unseen Test Split (N=7,470)</span>
+          </h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 uppercase tracking-wider font-semibold">
+                  <th class="py-2.5 px-3">Evaluation Dimension</th>
+                  <th class="py-2.5 px-3 text-right">Empirical Value</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-final-summary" class="divide-y divide-slate-200 dark:divide-slate-700/60 font-mono">
+                <!-- Dynamically populated -->
+                <tr><td colspan="2" class="py-4 text-center text-slate-400">Loading metrics...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Table 2: Per-Class Reconstruction -->
+        <div class="bg-slate-50/70 dark:bg-slate-800/40 rounded-2xl border border-slate-200 dark:border-slate-700/80 p-6 shadow-sm">
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center justify-between">
+            <span>Per-Class Reconstruction Quality</span>
+            <span class="text-xs font-normal text-slate-500">Test Split Breakdown</span>
+          </h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 uppercase tracking-wider font-semibold">
+                  <th class="py-2.5 px-2">Safety Class</th>
+                  <th class="py-2.5 px-2 text-right">Count</th>
+                  <th class="py-2.5 px-2 text-right">MSE Loss</th>
+                  <th class="py-2.5 px-2 text-right">PSNR (dB)</th>
+                  <th class="py-2.5 px-2 text-right">SSIM</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-per-class-recon" class="divide-y divide-slate-200 dark:divide-slate-700/60 font-mono">
+                <!-- Dynamically populated -->
+                <tr><td colspan="5" class="py-4 text-center text-slate-400">Loading metrics...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Table 3: Downstream SVM Performance -->
+        <div class="bg-slate-50/70 dark:bg-slate-800/40 rounded-2xl border border-slate-200 dark:border-slate-700/80 p-6 shadow-sm">
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center justify-between">
+            <span>Downstream SVM Performance</span>
+            <span class="text-xs font-normal text-slate-500">Validation vs Test</span>
+          </h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 uppercase tracking-wider font-semibold">
+                  <th class="py-2.5 px-2">Split</th>
+                  <th class="py-2.5 px-2 text-right">Accuracy</th>
+                  <th class="py-2.5 px-2 text-right">Bal. Acc</th>
+                  <th class="py-2.5 px-2 text-right">Precision</th>
+                  <th class="py-2.5 px-2 text-right">Recall</th>
+                  <th class="py-2.5 px-2 text-right">Macro F1</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-svm" class="divide-y divide-slate-200 dark:divide-slate-700/60 font-mono">
+                <!-- Dynamically populated -->
+                <tr><td colspan="6" class="py-4 text-center text-slate-400">Loading metrics...</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700">
+            <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">Per-Class Test Classification Report</span>
+            <pre id="pre-class-report" class="font-mono text-[11px] bg-slate-900 text-slate-100 p-3 rounded-lg overflow-x-auto">Loading...</pre>
+          </div>
+        </div>
+
+        <!-- Table 4: Baseline Comparison (AE vs PCA) -->
+        <div class="bg-slate-50/70 dark:bg-slate-800/40 rounded-2xl border border-slate-200 dark:border-slate-700/80 p-6 shadow-sm">
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center justify-between">
+            <span>Baseline Comparison</span>
+            <span class="text-xs font-normal text-slate-500">AE Latents vs. Raw Pixel PCA(256)</span>
+          </h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 uppercase tracking-wider font-semibold">
+                  <th class="py-2.5 px-2">Metric</th>
+                  <th class="py-2.5 px-2 text-right">Winning AE</th>
+                  <th class="py-2.5 px-2 text-right">Raw Pixel PCA</th>
+                  <th class="py-2.5 px-2 text-right">Delta (AE - PCA)</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-baseline" class="divide-y divide-slate-200 dark:divide-slate-700/60 font-mono">
+                <!-- Dynamically populated -->
+                <tr><td colspan="4" class="py-4 text-center text-slate-400">Loading metrics...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Figures Hub -->
+      <div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Saved Research Visualizations (300 DPI)</h3>
+        <div id="figures-gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Populated via /api/metrics figures -->
+          <div class="animate-pulse bg-slate-100 dark:bg-slate-800 rounded-xl h-48"></div>
+          <div class="animate-pulse bg-slate-100 dark:bg-slate-800 rounded-xl h-48"></div>
+          <div class="animate-pulse bg-slate-100 dark:bg-slate-800 rounded-xl h-48"></div>
+          <div class="animate-pulse bg-slate-100 dark:bg-slate-800 rounded-xl h-48"></div>
+        </div>
+      </div>
+
+      <!-- Honest Limitations Card -->
+      <div id="limitations" class="bg-indigo-50/50 dark:bg-slate-800/30 rounded-2xl border border-indigo-100 dark:border-indigo-900/30 p-6 sm:p-8">
+        <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-4">
+          <span>Model Scope & Research Limitations</span>
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+          <div class="space-y-2">
+            <h4 class="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Single Item Crops Only (Not Scene Detection)
+            </h4>
+            <p>The autoencoder operates strictly on pre-isolated crops. It does not perform spatial object detection or bounding box proposal generation on entire job-site images.</p>
+          </div>
+
+          <div class="space-y-2">
+            <h4 class="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Severe Class Imbalance
+            </h4>
+            <p>Safety violations (<code class="font-mono">head</code>, N=867) comprise only ~3% of the training dataset vs. 15,991 helmets. While balanced weighting helps, violation recall remains at 69.63%.</p>
+          </div>
+
+          <div class="space-y-2">
+            <h4 class="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              L2 Reconstruction Smoothing
+            </h4>
+            <p>Pixel-wise MSE loss naturally penalizes sharp deviations, leading to slight blur on high-frequency textures like thin retro-reflective strips on vests.</p>
+          </div>
+
+          <div class="space-y-2">
+            <h4 class="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Relative, Uncalibrated Scores
+            </h4>
+            <p>Decision values from the SVM are converted to percentage bars via softmax over hyperplane distances for interpretability, but should not be treated as Bayesian posterior probabilities.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  </div><!-- /#model-view-autoencoder -->
+
+  <!-- ================= FUTURE MODEL VIEW (cVAE, cGAN, Diffusion, Policy) ================= -->
+  <div id="model-view-future" class="model-view hidden flex-grow flex flex-col">
+    <!-- Future Hero Header -->
+    <section class="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 py-10 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 dark:bg-indigo-950/70 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60 mb-4">
+            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+            <span id="future-badge">Model 2 of 5 — Under Active Development</span>
+          </div>
+          <h1 id="future-title" class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            Conditional VAE (cVAE)
+          </h1>
+          <p id="future-desc" class="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            Class-conditional variational autoencoder modeling p(x|y) for synthetic PPE crop synthesis.
+          </p>
+
+          <!-- Future Specs Chips -->
+          <div id="future-specs" class="mt-5 flex flex-wrap items-center gap-2 text-xs font-medium text-slate-600 dark:text-slate-400">
+            <span id="future-spec-arch" class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-md border border-slate-200 dark:border-slate-700 font-mono">Architecture: cVAE</span>
+            <span id="future-spec-loss" class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded-md border border-slate-200 dark:border-slate-700 font-mono">Loss: Beta-ELBO</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Future Model Playground & Interactive Concept -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full space-y-10">
+      
+      <!-- Interactive Preview Sandbox Card -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-6 border-b border-slate-100 dark:border-slate-800">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">Interactive Concept Sandbox</span>
+            <h2 id="future-demo-title" class="text-xl font-bold text-slate-900 dark:text-white mt-1">Class-Conditional Latent Generator</h2>
+            <p id="future-demo-desc" class="text-xs text-slate-500 mt-1">Explore conditional latent sampling and generation mechanics.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-800 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              Awaiting Training Checkpoint
+            </span>
+          </div>
+        </div>
+
+        <div id="future-sandbox-content" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <!-- Dynamic sandbox injected via app.js -->
+        </div>
+      </div>
+
+      <!-- Feature Checklist & Capabilities -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+          <h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+            <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            Planned Research Capabilities
+          </h3>
+          <ul id="future-features-list" class="space-y-2.5 text-xs text-slate-600 dark:text-slate-300">
+            <!-- Dynamically populated from registry -->
+          </ul>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+          <h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+            <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+            Standardized Evaluation Protocol
+          </h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-3 leading-relaxed">
+            All models share the exact same evaluation harness (<code class="font-mono">common.metrics</code>) for empirical cross-comparison:
+          </p>
+          <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60">
+              <span class="text-slate-400 block text-[10px]">FID & KID</span>
+              <span class="font-bold text-slate-700 dark:text-slate-200">vs Noise Floor</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60">
+              <span class="text-slate-400 block text-[10px]">Precision / Recall</span>
+              <span class="font-bold text-slate-700 dark:text-slate-200">Manifold Coverage</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60">
+              <span class="text-slate-400 block text-[10px]">LPIPS Diversity</span>
+              <span class="font-bold text-slate-700 dark:text-slate-200">Pairwise Diversity</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60">
+              <span class="text-slate-400 block text-[10px]">Independent Judge</span>
+              <span class="font-bold text-slate-700 dark:text-slate-200">5-Seed SmallResNet</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamic Future Model Performance Section -->
+      <div id="future-performance-hub" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Benchmark Data Hub</span>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Model Performance & Metrics</h3>
+          </div>
+          <span id="future-metrics-badge" class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+            Awaiting Results
+          </span>
+        </div>
+        <div id="future-metrics-content" class="text-xs text-slate-500 py-6 text-center">
+          No trained weights or metric CSVs found in <code id="future-results-path" class="font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">results/</code>. Metrics will dynamically populate from results files when training completes.
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-8 px-4 sm:px-6 lg:px-8 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>
+        <p class="font-semibold text-slate-700 dark:text-slate-300">Research Prototype — Not a Certified Safety System</p>
+        <p class="mt-1">Trained on the merged Hugging Face PPE dataset (<code class="font-mono">jhboyo/ppe-dataset</code>) and source construction benchmarks.</p>
+      </div>
+      <div>
+        <p>© 2026 Advanced Generative ML Benchmarking Team. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Figure Modal -->
+  <div id="fig-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="relative bg-white dark:bg-slate-900 rounded-2xl max-w-4xl w-full p-4 border border-slate-200 dark:border-slate-800 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <h4 id="fig-modal-title" class="text-sm font-bold text-slate-900 dark:text-white">Figure Preview</h4>
+        <button id="fig-modal-close" class="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500">✕</button>
+      </div>
+      <div class="overflow-auto max-h-[80vh] flex items-center justify-center">
+        <img id="fig-modal-img" class="max-w-full h-auto rounded-lg" alt="Full Resolution Figure">
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
+

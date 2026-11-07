@@ -1,0 +1,13 @@
+Benchmark Dimension,Empirical Value
+Model Architecture,ConvAE (Convolutional Autoencoder)
+Latent Dimension,256
+Input Resolution,64x64x3
+Test Recon MSE,0.006199 +/- 0.004203
+Test Recon MAE,0.0522 +/- 0.0196
+Test PSNR (dB),23.12 +/- 3.20
+Test SSIM,0.7132 +/- 0.0929
+Test SVM Accuracy,91.93%
+Test SVM Balanced Acc,83.47%
+Test SVM Macro Precision,89.64%
+Test SVM Macro Recall,83.47%
+Test SVM Macro F1,86.11%

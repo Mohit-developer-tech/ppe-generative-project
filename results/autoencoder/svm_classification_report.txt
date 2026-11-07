@@ -1,0 +1,9 @@
+              precision    recall  f1-score   support
+
+        head     0.8537    0.6542    0.7407       214
+      helmet     0.9324    0.9352    0.9338      4395
+        vest     0.9030    0.9147    0.9088      2861
+
+    accuracy                         0.9193      7470
+   macro avg     0.8964    0.8347    0.8611      7470
+weighted avg     0.9189    0.9193    0.9187      7470

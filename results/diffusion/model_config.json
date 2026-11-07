@@ -1,0 +1,17 @@
+{
+  "model_name": "Conditional Diffusion Restoration (DDPM / DDIM)",
+  "architecture": "SR3-Style Conditional U-Net + Sinusoidal Time MLP + Self-Attention + GroupNorm",
+  "conditioning": "Concatenation of degraded image (3ch) with noisy state (3ch) -> 6ch input (NO CLASS LABELS)",
+  "noise_schedule": "Cosine Schedule (T=1000, s=0.008)",
+  "base_channels": 32,
+  "loss_type": "eps_l1",
+  "ema_decay": 0.999,
+  "sampling_algorithm": "DDIM (20, 50, 100 steps)",
+  "supported_degradations": [
+    "gaussian_noise",
+    "gaussian_blur",
+    "downscale",
+    "jpeg"
+  ],
+  "held_out_degradation": "motion_blur"
+}

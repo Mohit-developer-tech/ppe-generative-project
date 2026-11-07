@@ -1,0 +1,201 @@
+{
+  "dataset": {
+    "total_sentences": 321,
+    "splits": {
+      "train": 155,
+      "val": 77,
+      "test": 89
+    },
+    "source_leakage": {
+      "train_test_overlap": 0,
+      "train_val_overlap": 0
+    }
+  },
+  "baselines": {
+    "keyword_regex": {
+      "val": {
+        "accuracy": 0.4025974025974026,
+        "balanced_accuracy": 0.3798681318681319,
+        "macro_precision": 0.7266666666666666,
+        "macro_recall": 0.3798681318681319,
+        "macro_f1": 0.36789592760181,
+        "per_class_f1": {
+          "helmet_required": 0.4,
+          "vest_required": 0.35294117647058826,
+          "both_required": 0.25,
+          "other_ppe": 0.375,
+          "none": 0.46153846153846156
+        },
+        "per_class_recall": {
+          "helmet_required": 0.2857142857142857,
+          "vest_required": 0.24,
+          "both_required": 0.14285714285714285,
+          "other_ppe": 0.23076923076923078,
+          "none": 1.0
+        },
+        "per_class_precision": {
+          "helmet_required": 0.6666666666666666,
+          "vest_required": 0.6666666666666666,
+          "both_required": 1.0,
+          "other_ppe": 1.0,
+          "none": 0.3
+        }
+      },
+      "test": {
+        "accuracy": 0.47191011235955055,
+        "balanced_accuracy": 0.46475279106858053,
+        "macro_precision": 0.7047619047619047,
+        "macro_recall": 0.46475279106858053,
+        "macro_f1": 0.4515801329999616,
+        "per_class_f1": {
+          "helmet_required": 0.2962962962962963,
+          "vest_required": 0.38461538461538464,
+          "both_required": 0.2,
+          "other_ppe": 0.8421052631578947,
+          "none": 0.5348837209302325
+        },
+        "per_class_recall": {
+          "helmet_required": 0.2222222222222222,
+          "vest_required": 0.2631578947368421,
+          "both_required": 0.1111111111111111,
+          "other_ppe": 0.7272727272727273,
+          "none": 1.0
+        },
+        "per_class_precision": {
+          "helmet_required": 0.4444444444444444,
+          "vest_required": 0.7142857142857143,
+          "both_required": 1.0,
+          "other_ppe": 1.0,
+          "none": 0.36507936507936506
+        }
+      }
+    },
+    "tfidf_logistic": {
+      "val": {
+        "accuracy": 0.7272727272727273,
+        "balanced_accuracy": 0.7347838827838827,
+        "macro_precision": 0.7112745098039215,
+        "macro_recall": 0.7347838827838827,
+        "macro_f1": 0.7152682187244399,
+        "per_class_f1": {
+          "helmet_required": 0.75,
+          "vest_required": 0.7755102040816326,
+          "both_required": 0.8387096774193549,
+          "other_ppe": 0.5454545454545454,
+          "none": 0.6666666666666666
+        },
+        "per_class_recall": {
+          "helmet_required": 0.8571428571428571,
+          "vest_required": 0.76,
+          "both_required": 0.9285714285714286,
+          "other_ppe": 0.46153846153846156,
+          "none": 0.6666666666666666
+        },
+        "per_class_precision": {
+          "helmet_required": 0.6666666666666666,
+          "vest_required": 0.7916666666666666,
+          "both_required": 0.7647058823529411,
+          "other_ppe": 0.6666666666666666,
+          "none": 0.6666666666666666
+        }
+      },
+      "test": {
+        "accuracy": 0.7865168539325843,
+        "balanced_accuracy": 0.816552250190694,
+        "macro_precision": 0.7971951447245564,
+        "macro_recall": 0.816552250190694,
+        "macro_f1": 0.793203862369101,
+        "per_class_f1": {
+          "helmet_required": 0.8888888888888888,
+          "vest_required": 0.7222222222222222,
+          "both_required": 0.7906976744186046,
+          "other_ppe": 0.88,
+          "none": 0.6842105263157895
+        },
+        "per_class_recall": {
+          "helmet_required": 0.8888888888888888,
+          "vest_required": 0.6842105263157895,
+          "both_required": 0.9444444444444444,
+          "other_ppe": 1.0,
+          "none": 0.5652173913043478
+        },
+        "per_class_precision": {
+          "helmet_required": 0.8888888888888888,
+          "vest_required": 0.7647058823529411,
+          "both_required": 0.68,
+          "other_ppe": 0.7857142857142857,
+          "none": 0.8666666666666667
+        }
+      }
+    }
+  },
+  "distilbert_5seeds": {
+    "val_macro_f1_mean": 0.7427786604795008,
+    "val_macro_f1_std": 0.04110104169938632,
+    "val_acc_mean": 0.7558441558441558,
+    "val_acc_std": 0.02518275250605886,
+    "val_bacc_mean": 0.7308083028083029,
+    "val_bacc_std": 0.044203796482974414,
+    "test_macro_f1_mean": 0.763316527456979,
+    "test_macro_f1_std": 0.03299349149922137,
+    "test_acc_mean": 0.7640449438202247,
+    "test_acc_std": 0.029299786090798415,
+    "test_bacc_mean": 0.7938108776552713,
+    "test_bacc_std": 0.027434433551087326,
+    "seeds": {
+      "accuracy": 0.7528089887640449,
+      "balanced_accuracy": 0.7768092827589395,
+      "macro_precision": 0.7650699300699302,
+      "macro_recall": 0.7768092827589395,
+      "macro_f1": 0.7506363555144042,
+      "per_class_f1": {
+        "helmet_required": 0.7272727272727273,
+        "vest_required": 0.7804878048780488,
+        "both_required": 0.8095238095238095,
+        "other_ppe": 0.7692307692307693,
+        "none": 0.6666666666666666
+      },
+      "per_class_recall": {
+        "helmet_required": 0.6666666666666666,
+        "vest_required": 0.8421052631578947,
+        "both_required": 0.9444444444444444,
+        "other_ppe": 0.9090909090909091,
+        "none": 0.5217391304347826
+      },
+      "per_class_precision": {
+        "helmet_required": 0.8,
+        "vest_required": 0.7272727272727273,
+        "both_required": 0.7083333333333334,
+        "other_ppe": 0.6666666666666666,
+        "none": 0.9230769230769231
+      }
+    }
+  },
+  "temperature_calibration": {
+    "optimal_temperature": 0.5670241117477417,
+    "val_ece_uncalibrated": 0.2626022870664472,
+    "val_ece_calibrated": 0.07032187805547345,
+    "test_ece_uncalibrated": 0.23661432440361277,
+    "test_ece_calibrated": 0.090525813317031
+  },
+  "evaluation_slices": {
+    "multi_ppe": {
+      "count": 38,
+      "keyword_acc": 0.39473684210526316,
+      "tfidf_acc": 0.7894736842105263,
+      "distilbert_acc": 0.8157894736842105
+    },
+    "conditional": {
+      "count": 29,
+      "keyword_acc": 0.6206896551724138,
+      "tfidf_acc": 0.8275862068965517,
+      "distilbert_acc": 0.7586206896551724
+    },
+    "negation_exception": {
+      "count": 13,
+      "keyword_acc": 1.0,
+      "tfidf_acc": 0.46153846153846156,
+      "distilbert_acc": 0.38461538461538464
+    }
+  }
+}

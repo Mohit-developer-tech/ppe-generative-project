@@ -1,0 +1,33 @@
+# Python & virtual environment
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.ipynb_checkpoints/
+.env
+
+# Datasets and image caches
+data/
+crops_64/
+ppe-dataset/
+data_cache/
+.cache/
+scratch/
+uploads/
+release_assets/
+
+# Large files and model weights
+artifacts/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.joblib
+*.npz
+
+# Logs and OS files
+*.log
+.mplcache/
+.DS_Store
+Thumbs.db

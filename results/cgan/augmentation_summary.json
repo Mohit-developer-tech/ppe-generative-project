@@ -1,0 +1,95 @@
+{
+  "summary_table": [
+    {
+      "condition": "Condition A: Real Only",
+      "macro_f1_mean": 0.15952248546459616,
+      "macro_f1_std": 0.07797630461804544,
+      "accuracy_mean": 0.21151271753681394,
+      "accuracy_std": 0.11611500645292067,
+      "balanced_acc_mean": 0.42097326035983496,
+      "balanced_acc_std": 0.04848095548650926,
+      "head_recall_mean": 0.9495327102803739,
+      "head_recall_std": 0.07398835874279379,
+      "head_precision_mean": 0.03716783056101799,
+      "head_precision_std": 0.005637556215914927,
+      "head_f1_mean": 0.0714310441743098,
+      "head_f1_std": 0.010238023688706759
+    },
+    {
+      "condition": "Condition B: Class Weighted",
+      "macro_f1_mean": 0.030558360202127217,
+      "macro_f1_std": 0.012126800985176696,
+      "accuracy_mean": 0.03919678714859437,
+      "accuracy_std": 0.01088971537480434,
+      "balanced_acc_mean": 0.339423685495192,
+      "balanced_acc_std": 0.006288843685390912,
+      "head_recall_mean": 1.0,
+      "head_recall_std": 0.0,
+      "head_precision_mean": 0.02908728623297715,
+      "head_precision_std": 0.000387058235691419,
+      "head_f1_mean": 0.05653004070103873,
+      "head_f1_std": 0.0007308018098398578
+    },
+    {
+      "condition": "Condition C: Oversampling",
+      "macro_f1_mean": 0.09723155303629825,
+      "macro_f1_std": 0.0630968077110763,
+      "accuracy_mean": 0.11429718875502008,
+      "accuracy_std": 0.07807894099614958,
+      "balanced_acc_mean": 0.38066917597194794,
+      "balanced_acc_std": 0.041618994572519094,
+      "head_recall_mean": 0.9953271028037383,
+      "head_recall_std": 0.010448915782709274,
+      "head_precision_mean": 0.03225592169804081,
+      "head_precision_std": 0.0037593805247314346,
+      "head_f1_mean": 0.06246232217904883,
+      "head_f1_std": 0.007005088401507909
+    },
+    {
+      "condition": "Condition D: GAN Heads (1.0x)",
+      "macro_f1_mean": 0.1148480702653917,
+      "macro_f1_std": 0.09230854903215804,
+      "accuracy_mean": 0.1250334672021419,
+      "accuracy_std": 0.09388599497036942,
+      "balanced_acc_mean": 0.38988766603281766,
+      "balanced_acc_std": 0.05850313780769904,
+      "head_recall_mean": 0.994392523364486,
+      "head_recall_std": 0.008359132626167439,
+      "head_precision_mean": 0.03282112986780255,
+      "head_precision_std": 0.004835873281307085,
+      "head_f1_mean": 0.06350725509315729,
+      "head_f1_std": 0.008998065811570106
+    },
+    {
+      "condition": "Condition E: GAN Heads (2.0x)",
+      "macro_f1_mean": 0.16495523621542138,
+      "macro_f1_std": 0.08113429686260949,
+      "accuracy_mean": 0.20639892904953144,
+      "accuracy_std": 0.1118171388074664,
+      "balanced_acc_mean": 0.4259190350505756,
+      "balanced_acc_std": 0.057109567965017725,
+      "head_recall_mean": 0.9672897196261683,
+      "head_recall_std": 0.037089971650438175,
+      "head_precision_mean": 0.037378732299627015,
+      "head_precision_std": 0.006570514926322956,
+      "head_f1_mean": 0.07188756547182333,
+      "head_f1_std": 0.012090561773616545
+    }
+  ],
+  "stats": {
+    "ttest_d_vs_a_pvalue": 0.3170648982902763,
+    "ttest_d_vs_b_pvalue": 0.08635791186889556,
+    "ttest_d_vs_c_pvalue": 0.3233416357637788,
+    "d_beats_all_baselines": false,
+    "filter_stats": {
+      "num_requested": 100,
+      "num_accepted": 100,
+      "total_generated": 1024,
+      "acceptance_rate": 0.09765625,
+      "rejected_quality_count": 1024,
+      "rejected_privacy_count": 0,
+      "confidence_threshold": 0.65,
+      "memorization_threshold": 0.06
+    }
+  }
+}

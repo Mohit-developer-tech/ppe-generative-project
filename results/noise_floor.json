@@ -1,0 +1,11 @@
+{
+  "noise_floor_fid": 24.7282930848383,
+  "noise_floor_kid_mean": 0.0002583313034847379,
+  "noise_floor_kid_std": 0.0013219815446063876,
+  "noise_floor_precision": 0.3065,
+  "noise_floor_recall": 0.3055,
+  "n_train": 2000,
+  "n_test": 2000,
+  "evaluation_timestamp": "2026-11-07 12:21:25",
+  "duration_seconds": 456.56
+}

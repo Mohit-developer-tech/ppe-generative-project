@@ -1,0 +1,38 @@
+# configs/paths.yaml
+# Standard repository paths and model asset locations
+
+paths:
+  artifacts: "artifacts"
+  results: "results"
+  data: "data"
+  crops: "crops_64"
+  release_assets: "release_assets"
+
+models:
+  autoencoder:
+    weights: "artifacts/autoencoder/ae_best.pt"
+    scaler: "artifacts/autoencoder/scaler.joblib"
+    svm: "artifacts/autoencoder/svm_model.joblib"
+    latent_features: "artifacts/autoencoder/latent_features.npz"
+    latent_pca2d: "artifacts/autoencoder/latent_pca2d.joblib"
+    results: "results/autoencoder"
+  cvae:
+    weights: "artifacts/cvae/cvae_best.pt"
+    results: "results/cvae"
+  cgan:
+    weights: "artifacts/cgan/cgan_best.pt"
+    results: "results/cgan"
+  diffusion:
+    weights: "artifacts/diffusion/diffusion_best.pt"
+    regression: "artifacts/diffusion/regression_best.pt"
+    results: "results/diffusion"
+  judge:
+    dir: "artifacts/judge"
+    results: "results/judge"
+  judge_v1:
+    dir: "artifacts/judge_v1"
+    results: "results/judge_v1"
+  policy:
+    weights: "artifacts/policy/policy_classifier.pt"
+    results: "results/policy"
+
