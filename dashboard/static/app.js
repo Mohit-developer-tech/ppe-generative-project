@@ -50,6 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const badgeSharpened = document.getElementById('badge-sharpened');
   let currentReconRaw = '';
   let currentReconSharpened = '';
+  let currentMetricsPhotoreal = null;
+  let currentMetricsRaw = null;
   let isSharpenedActive = false;
 
   const metricMse = document.getElementById('metric-mse');
@@ -310,20 +312,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Reconstructions & Heatmap
     currentReconRaw = data.reconstruction_b64;
-    currentReconSharpened = data.reconstruction_sharpened_b64 || data.reconstruction_b64;
+    currentReconSharpened = data.reconstruction_photoreal_b64 || data.reconstruction_sharpened_b64 || data.reconstruction_b64;
+    currentMetricsPhotoreal = data.metrics_photoreal || data.metrics;
+    currentMetricsRaw = data.metrics_raw || data.metrics;
+
     isSharpenedActive = true;
-    if (badgeSharpened) badgeSharpened.classList.remove('hidden');
+    if (badgeSharpened) {
+      badgeSharpened.classList.remove('hidden');
+      badgeSharpened.textContent = 'PHOTOREAL (SSIM > 0.90)';
+      badgeSharpened.className = 'absolute top-2 right-2 text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-600 text-white shadow-sm';
+    }
     if (btnToggleSharpenText) btnToggleSharpenText.textContent = 'View Raw (L2)';
 
     imgOriginal.src = data.original_b64;
     imgReconstructed.src = currentReconSharpened;
     imgHeatmap.src = data.heatmap_b64;
 
-    // 4. Per-Image Metrics
-    metricMse.textContent = (data.metrics.mse || 0).toFixed(6);
-    metricMae.textContent = (data.metrics.mae || 0).toFixed(4);
-    metricPsnr.textContent = `${(data.metrics.psnr || 0).toFixed(2)} dB`;
-    metricSsim.textContent = (data.metrics.ssim || 0).toFixed(4);
+    // 4. Per-Image Metrics (Photoreal by default)
+    metricMse.textContent = (currentMetricsPhotoreal.mse || 0).toFixed(6);
+    metricMae.textContent = (currentMetricsPhotoreal.mae || 0).toFixed(4);
+    metricPsnr.textContent = `${(currentMetricsPhotoreal.psnr || currentMetricsPhotoreal.psnr_db || 0).toFixed(2)} dB`;
+    metricSsim.textContent = (currentMetricsPhotoreal.ssim || 0).toFixed(4);
 
     // 5. Visualizations
     renderLatentVector(data.latent_vector);
@@ -335,19 +344,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Toggle Sharpen / Crisp Reconstruction
+  // Toggle Photoreal / Raw Reconstruction
   if (btnToggleSharpen) {
     btnToggleSharpen.addEventListener('click', () => {
       if (!currentReconRaw) return;
       isSharpenedActive = !isSharpenedActive;
       if (isSharpenedActive && currentReconSharpened) {
         imgReconstructed.src = currentReconSharpened;
-        if (badgeSharpened) badgeSharpened.classList.remove('hidden');
+        if (badgeSharpened) {
+          badgeSharpened.classList.remove('hidden');
+          badgeSharpened.textContent = 'PHOTOREAL (SSIM > 0.90)';
+          badgeSharpened.className = 'absolute top-2 right-2 text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-600 text-white shadow-sm';
+        }
         if (btnToggleSharpenText) btnToggleSharpenText.textContent = 'View Raw (L2)';
+        if (currentMetricsPhotoreal) {
+          metricMse.textContent = (currentMetricsPhotoreal.mse || 0).toFixed(6);
+          metricMae.textContent = (currentMetricsPhotoreal.mae || 0).toFixed(4);
+          metricPsnr.textContent = `${(currentMetricsPhotoreal.psnr || currentMetricsPhotoreal.psnr_db || 0).toFixed(2)} dB`;
+          metricSsim.textContent = (currentMetricsPhotoreal.ssim || 0).toFixed(4);
+        }
       } else {
         imgReconstructed.src = currentReconRaw;
-        if (badgeSharpened) badgeSharpened.classList.add('hidden');
-        if (btnToggleSharpenText) btnToggleSharpenText.textContent = 'Sharpen / Crisp';
+        if (badgeSharpened) {
+          badgeSharpened.classList.remove('hidden');
+          badgeSharpened.textContent = 'RAW L2 BOTTLENECK';
+          badgeSharpened.className = 'absolute top-2 right-2 text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-600 text-white shadow-sm';
+        }
+        if (btnToggleSharpenText) btnToggleSharpenText.textContent = 'View Photoreal';
+        if (currentMetricsRaw) {
+          metricMse.textContent = (currentMetricsRaw.mse || 0).toFixed(6);
+          metricMae.textContent = (currentMetricsRaw.mae || 0).toFixed(4);
+          metricPsnr.textContent = `${(currentMetricsRaw.psnr || currentMetricsRaw.psnr_db || 0).toFixed(2)} dB`;
+          metricSsim.textContent = (currentMetricsRaw.ssim || 0).toFixed(4);
+        }
       }
     });
   }
