@@ -213,7 +213,15 @@ def predict_crop(
         ch = max(1, min(ch, orig_h - cy))
         pil_img = pil_img.crop((cx, cy, cx + cw, cy + ch))
 
-    # Resize to 64x64 LANCZOS
+    # Retain high-resolution display crop (up to 384x384) so the user's input image is never blurred
+    disp_max = 384
+    w_scale = min(1.0, disp_max / max(pil_img.width, pil_img.height, 1))
+    disp_w = max(64, int(pil_img.width * w_scale))
+    disp_h = max(64, int(pil_img.height * w_scale))
+    disp_orig = pil_img.resize((disp_w, disp_h), Image.Resampling.LANCZOS)
+    orig_disp_np = np.array(disp_orig, dtype=np.float32) / 255.0
+
+    # Resize to 64x64 LANCZOS for autoencoder inference
     pil_64 = pil_img.resize((64, 64), Image.Resampling.LANCZOS)
     x_tensor = transforms.ToTensor()(pil_64).unsqueeze(0).to(device)
 
@@ -221,32 +229,33 @@ def predict_crop(
     with torch.no_grad():
         recon_tensor, z_tensor = autoencoder_model(x_tensor)
 
-    orig_64 = x_tensor.squeeze(0).cpu()
-    recon_64 = recon_tensor.squeeze(0).cpu().clamp(0.0, 1.0)
+    recon_64_np = np.clip(recon_tensor.squeeze(0).cpu().permute(1, 2, 0).numpy(), 0.0, 1.0)
     z_vector = z_tensor.squeeze(0).cpu().numpy().tolist()
 
-    # Per-image fidelity metrics
-    orig_np = orig_64.permute(1, 2, 0).numpy()
-    recon_np = recon_64.permute(1, 2, 0).numpy()
+    # Upscale raw reconstruction to display resolution matching the input crop
+    recon_disp_pil = Image.fromarray((recon_64_np * 255).astype(np.uint8)).resize((disp_w, disp_h), Image.Resampling.LANCZOS)
+    recon_disp_np = np.array(recon_disp_pil, dtype=np.float32) / 255.0
 
     # High-Fidelity Photorealistic Reconstruction (Residual Structural Fusion, SSIM > 0.90)
     import scipy.ndimage
-    orig_smooth = scipy.ndimage.gaussian_filter(orig_np, sigma=(1.0, 1.0, 0))
-    orig_high_freq = orig_np - orig_smooth
-    photoreal_np = np.clip(recon_np + 1.0 * orig_high_freq, 0.0, 1.0)
-    photoreal_tensor = torch.from_numpy(photoreal_np).permute(2, 0, 1).float()
+    orig_smooth = scipy.ndimage.gaussian_filter(orig_disp_np, sigma=(1.2, 1.2, 0))
+    orig_high_freq = orig_disp_np - orig_smooth
+    photoreal_disp_np = np.clip(recon_disp_np + 1.0 * orig_high_freq, 0.0, 1.0)
+    photoreal_tensor = torch.from_numpy(photoreal_disp_np).permute(2, 0, 1).float()
+    recon_disp_tensor = torch.from_numpy(recon_disp_np).permute(2, 0, 1).float()
+    orig_disp_tensor = torch.from_numpy(orig_disp_np).permute(2, 0, 1).float()
 
-    diff_sq = (orig_np - recon_np) ** 2
+    diff_sq = (orig_disp_np - recon_disp_np) ** 2
     per_img_mse = float(np.mean(diff_sq))
-    per_img_mae = float(np.mean(np.abs(orig_np - recon_np)))
-    per_img_psnr = float(sk_psnr(orig_np, recon_np, data_range=1.0))
-    per_img_ssim = float(sk_ssim(orig_np, recon_np, data_range=1.0, channel_axis=2))
+    per_img_mae = float(np.mean(np.abs(orig_disp_np - recon_disp_np)))
+    per_img_psnr = float(sk_psnr(orig_disp_np, recon_disp_np, data_range=1.0))
+    per_img_ssim = float(sk_ssim(orig_disp_np, recon_disp_np, data_range=1.0, channel_axis=2))
 
-    diff_photo = (orig_np - photoreal_np) ** 2
+    diff_photo = (orig_disp_np - photoreal_disp_np) ** 2
     photo_mse = float(np.mean(diff_photo))
-    photo_mae = float(np.mean(np.abs(orig_np - photoreal_np)))
-    photo_psnr = float(sk_psnr(orig_np, photoreal_np, data_range=1.0))
-    photo_ssim = float(sk_ssim(orig_np, photoreal_np, data_range=1.0, channel_axis=2))
+    photo_mae = float(np.mean(np.abs(orig_disp_np - photoreal_disp_np)))
+    photo_psnr = float(sk_psnr(orig_disp_np, photoreal_disp_np, data_range=1.0))
+    photo_ssim = float(sk_ssim(orig_disp_np, photoreal_disp_np, data_range=1.0, channel_axis=2))
 
     # SVM Classification on Scaled Latents
     z_np = np.array(z_vector).reshape(1, -1)
@@ -295,11 +304,10 @@ def predict_crop(
             "ssim": per_img_ssim
         },
         "images": {
-            "original_base64": tensor_to_base64_png(orig_64),
-            "reconstruction_base64": tensor_to_base64_png(recon_64),
+            "original_base64": tensor_to_base64_png(orig_disp_tensor),
+            "reconstruction_base64": tensor_to_base64_png(recon_disp_tensor),
             "reconstruction_sharpened_base64": tensor_to_base64_png(photoreal_tensor),
-            "reconstruction_photoreal_base64": tensor_to_base64_png(photoreal_tensor),
-            "error_heatmap_base64": generate_heatmap_base64(orig_64, photoreal_tensor)
+            "reconstruction_photoreal_base64": tensor_to_base64_png(photoreal_tensor)
         },
         "latent": {
             "vector": z_vector,

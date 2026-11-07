@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const imgOriginal = document.getElementById('img-original');
   const imgReconstructed = document.getElementById('img-reconstructed');
-  const imgHeatmap = document.getElementById('img-heatmap');
   const btnToggleSharpen = document.getElementById('btn-toggle-sharpen');
   const btnToggleSharpenText = document.getElementById('btn-toggle-sharpen-text');
   const badgeSharpened = document.getElementById('badge-sharpened');
@@ -335,7 +334,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     imgOriginal.src = data.original_b64;
     imgReconstructed.src = currentReconSharpened;
-    imgHeatmap.src = data.heatmap_b64;
 
     // 4. Per-Image Metrics (Photoreal by default)
     metricMse.textContent = (currentMetricsPhotoreal.mse || 0).toFixed(6);

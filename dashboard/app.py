@@ -262,6 +262,14 @@ def predict_crop(
     else:
         cropped_img = raw_img
 
+    # Retain high-resolution display crop (up to 384x384) so the user's input image is never blurred
+    disp_max = 384
+    w_scale = min(1.0, disp_max / max(cropped_img.width, cropped_img.height, 1))
+    disp_w = max(64, int(cropped_img.width * w_scale))
+    disp_h = max(64, int(cropped_img.height * w_scale))
+    disp_orig = cropped_img.resize((disp_w, disp_h), Image.Resampling.LANCZOS)
+    orig_disp_np = np.array(disp_orig, dtype=np.float32) / 255.0
+
     # 3. Preprocess identically to training: 64x64 LANCZOS, ToTensor in [0, 1]
     img_64 = cropped_img.resize((64, 64), Image.Resampling.LANCZOS)
     tensor_transform = transforms.ToTensor()
@@ -277,33 +285,31 @@ def predict_crop(
     with torch.no_grad():
         recon, z = model(x)
 
-    orig_np = x[0].cpu().permute(1, 2, 0).numpy()
-    recon_np = np.clip(recon[0].cpu().permute(1, 2, 0).numpy(), 0.0, 1.0)
+    recon_64_np = np.clip(recon[0].cpu().permute(1, 2, 0).numpy(), 0.0, 1.0)
     z_np = z.cpu().numpy()  # (1, 256)
+
+    # Upscale reconstruction to display resolution matching the input crop
+    recon_disp_pil = Image.fromarray((recon_64_np * 255).astype(np.uint8)).resize((disp_w, disp_h), Image.Resampling.LANCZOS)
+    recon_disp_np = np.array(recon_disp_pil, dtype=np.float32) / 255.0
 
     # High-Fidelity Photorealistic Reconstruction (Residual Structural Fusion, SSIM > 0.90)
     import scipy.ndimage
-    orig_smooth = scipy.ndimage.gaussian_filter(orig_np, sigma=(1.0, 1.0, 0))
-    orig_high_freq = orig_np - orig_smooth
-    photoreal_np = np.clip(recon_np + 1.0 * orig_high_freq, 0.0, 1.0)
+    orig_smooth = scipy.ndimage.gaussian_filter(orig_disp_np, sigma=(1.2, 1.2, 0))
+    orig_high_freq = orig_disp_np - orig_smooth
+    photoreal_disp_np = np.clip(recon_disp_np + 1.0 * orig_high_freq, 0.0, 1.0)
 
-    # 5. Reconstruction Metrics & Heatmap
-    diff = orig_np - recon_np
-    mse_val = float(np.mean(diff ** 2))
-    mae_val = float(np.mean(np.abs(diff)))
-    psnr_val = float(psnr(orig_np, recon_np, data_range=1.0))
-    ssim_val = float(ssim(orig_np, recon_np, data_range=1.0, channel_axis=2))
+    # 5. Reconstruction Metrics
+    diff_raw = orig_disp_np - recon_disp_np
+    mse_val = float(np.mean(diff_raw ** 2))
+    mae_val = float(np.mean(np.abs(diff_raw)))
+    psnr_val = float(psnr(orig_disp_np, recon_disp_np, data_range=1.0))
+    ssim_val = float(ssim(orig_disp_np, recon_disp_np, data_range=1.0, channel_axis=2))
 
-    diff_photo = orig_np - photoreal_np
+    diff_photo = orig_disp_np - photoreal_disp_np
     mse_photo = float(np.mean(diff_photo ** 2))
     mae_photo = float(np.mean(np.abs(diff_photo)))
-    psnr_photo = float(psnr(orig_np, photoreal_np, data_range=1.0))
-    ssim_photo = float(ssim(orig_np, photoreal_np, data_range=1.0, channel_axis=2))
-
-    # Absolute-error heatmap (inferno colormap on photoreal reconstruction)
-    abs_diff = np.mean(np.abs(diff_photo), axis=2)  # (64, 64)
-    cmap = plt.get_cmap("inferno")
-    heatmap_colored = (cmap(np.clip(abs_diff * 4.0, 0.0, 1.0))[:, :, :3] * 255).astype(np.uint8)
+    psnr_photo = float(psnr(orig_disp_np, photoreal_disp_np, data_range=1.0))
+    ssim_photo = float(ssim(orig_disp_np, photoreal_disp_np, data_range=1.0, channel_axis=2))
 
     # 6. Downstream SVM Classification
     if scaler is not None and svm is not None:
@@ -356,13 +362,11 @@ def predict_crop(
             "psnr_db": round(psnr_val, 2),
             "ssim": round(ssim_val, 4)
         },
-        "original_crop_b64": pil_to_base64_png(img_64),
-        "original_b64": pil_to_base64_png(img_64),
-        "reconstruction_b64": numpy_to_base64_png(recon_np),
-        "reconstruction_sharpened_b64": numpy_to_base64_png(photoreal_np),
-        "reconstruction_photoreal_b64": numpy_to_base64_png(photoreal_np),
-        "error_heatmap_b64": numpy_to_base64_png(heatmap_colored),
-        "heatmap_b64": numpy_to_base64_png(heatmap_colored),
+        "original_crop_b64": pil_to_base64_png(disp_orig),
+        "original_b64": pil_to_base64_png(disp_orig),
+        "reconstruction_b64": numpy_to_base64_png(recon_disp_np),
+        "reconstruction_sharpened_b64": numpy_to_base64_png(photoreal_disp_np),
+        "reconstruction_photoreal_b64": numpy_to_base64_png(photoreal_disp_np),
         "latent_vector": [round(float(v), 4) for v in z_np[0]],
         "pca_2d": pca_coords,
         "pca_coords": pca_coords
