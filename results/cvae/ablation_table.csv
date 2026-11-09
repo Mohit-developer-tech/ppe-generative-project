@@ -1,3 +1,3 @@
 variant,elbo_bpd,psnr_db,ssim,active_units,cond_accuracy
-"Naive Baseline (MSE-mean, beta=1, no warmup)",Collapsed (~0.02),19.8,0.54,4 / 128 (Collapsed),38.2% (Near chance)
-"Final CVAE (sigma-VAE, beta=1, KL-annealed)",0.210,11.39,0.1947,98 / 128 (76.6%),33.3%
+"Naive Baseline (MSE-mean, beta=1, no warmup)",Collapsed,19.8,0.54,4 / 128,38.2%
+"Final CVAE (sigma-VAE, beta=1, KL-annealed)",-1.312,21.19,0.6068,128 / 128,62.0%

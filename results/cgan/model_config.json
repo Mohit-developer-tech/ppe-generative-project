@@ -6,5 +6,6 @@
   "loss": "Hinge Loss",
   "diffaug_policy": "color,translation,cutout",
   "optimizer": "Adam (TTUR: D=4e-4, G=1e-4, betas=(0.0, 0.9))",
-  "ema_decay": 0.999
+  "ema_decay": 0.999,
+  "total_steps": 20000
 }

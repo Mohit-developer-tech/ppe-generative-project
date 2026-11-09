@@ -4,24 +4,18 @@
   "status": "trained",
   "latent_dim": 128,
   "target_beta": 1.0,
-  "test_elbo_nats": -1787.5605812072754,
-  "test_bits_per_dim": 0.2098718087399357,
-  "test_recon_psnr": 11.39195474559262,
-  "test_recon_ssim": 0.19466375423595308,
-  "test_recon_mse": 0.07884923103265465,
-  "test_recon_mae": 0.23764964167028665,
-  "active_units": 98,
-  "active_unit_ratio": 0.765625,
-  "judge_conditional_accuracy": 0.3333333333333333,
+  "test_elbo_nats": 11178.611127804486,
+  "test_bits_per_dim": -1.3124452179451267,
+  "test_recon_psnr": 21.187010298929142,
+  "test_recon_ssim": 0.6067870857884766,
+  "test_recon_mse": 0.009514160210891954,
+  "test_recon_mae": 0.06536175071522395,
+  "active_units": 128,
+  "judge_conditional_accuracy": 0.62,
   "per_class_conditional_accuracy": {
-    "head": 1.0,
-    "helmet": 0.0,
-    "vest": 0.0
+    "head": 0.79,
+    "helmet": 0.315,
+    "vest": 0.755
   },
-  "mean_intra_class_diversity": 0.045836945856766155,
-  "memorization_distances": {
-    "head": 0.21864030092954637,
-    "helmet": 0.20315911799669265,
-    "vest": 0.24729471445083617
-  }
+  "mean_intra_class_diversity": 0.3618942059410943
 }

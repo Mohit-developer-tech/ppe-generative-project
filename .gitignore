@@ -16,6 +16,7 @@ data_cache/
 scratch/
 uploads/
 release_assets/
+*.zip
 
 # Large files and model weights
 artifacts/

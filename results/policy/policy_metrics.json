@@ -130,60 +130,60 @@
     }
   },
   "distilbert_5seeds": {
-    "val_macro_f1_mean": 0.7427786604795008,
-    "val_macro_f1_std": 0.04110104169938632,
-    "val_acc_mean": 0.7558441558441558,
-    "val_acc_std": 0.02518275250605886,
-    "val_bacc_mean": 0.7308083028083029,
-    "val_bacc_std": 0.044203796482974414,
-    "test_macro_f1_mean": 0.763316527456979,
-    "test_macro_f1_std": 0.03299349149922137,
-    "test_acc_mean": 0.7640449438202247,
-    "test_acc_std": 0.029299786090798415,
-    "test_bacc_mean": 0.7938108776552713,
-    "test_bacc_std": 0.027434433551087326,
+    "val_macro_f1_mean": 0.7648214588958695,
+    "val_macro_f1_std": 0.031044510695720923,
+    "val_acc_mean": 0.7610389610389611,
+    "val_acc_std": 0.02915577184499176,
+    "val_bacc_mean": 0.7714051282051282,
+    "val_bacc_std": 0.028182620140276872,
+    "test_macro_f1_mean": 0.7635639838889036,
+    "test_macro_f1_std": 0.02196599095229459,
+    "test_acc_mean": 0.7617977528089888,
+    "test_acc_std": 0.021787325201871145,
+    "test_bacc_mean": 0.7897265561796454,
+    "test_bacc_std": 0.018138659533562418,
     "seeds": {
-      "accuracy": 0.7528089887640449,
-      "balanced_accuracy": 0.7768092827589395,
-      "macro_precision": 0.7650699300699302,
-      "macro_recall": 0.7768092827589395,
-      "macro_f1": 0.7506363555144042,
+      "accuracy": 0.7752808988764045,
+      "balanced_accuracy": 0.7972008413656011,
+      "macro_precision": 0.7783116883116883,
+      "macro_recall": 0.7972008413656011,
+      "macro_f1": 0.7773549257759784,
       "per_class_f1": {
-        "helmet_required": 0.7272727272727273,
-        "vest_required": 0.7804878048780488,
-        "both_required": 0.8095238095238095,
-        "other_ppe": 0.7692307692307693,
-        "none": 0.6666666666666666
+        "helmet_required": 0.8333333333333334,
+        "vest_required": 0.7692307692307693,
+        "both_required": 0.8,
+        "other_ppe": 0.8,
+        "none": 0.6842105263157895
       },
       "per_class_recall": {
-        "helmet_required": 0.6666666666666666,
-        "vest_required": 0.8421052631578947,
-        "both_required": 0.9444444444444444,
+        "helmet_required": 0.8333333333333334,
+        "vest_required": 0.7894736842105263,
+        "both_required": 0.8888888888888888,
         "other_ppe": 0.9090909090909091,
-        "none": 0.5217391304347826
+        "none": 0.5652173913043478
       },
       "per_class_precision": {
-        "helmet_required": 0.8,
-        "vest_required": 0.7272727272727273,
-        "both_required": 0.7083333333333334,
-        "other_ppe": 0.6666666666666666,
-        "none": 0.9230769230769231
+        "helmet_required": 0.8333333333333334,
+        "vest_required": 0.75,
+        "both_required": 0.7272727272727273,
+        "other_ppe": 0.7142857142857143,
+        "none": 0.8666666666666667
       }
     }
   },
   "temperature_calibration": {
-    "optimal_temperature": 0.5670241117477417,
-    "val_ece_uncalibrated": 0.2626022870664472,
-    "val_ece_calibrated": 0.07032187805547345,
-    "test_ece_uncalibrated": 0.23661432440361277,
-    "test_ece_calibrated": 0.090525813317031
+    "optimal_temperature": 0.5981846451759338,
+    "val_ece_uncalibrated": 0.24626840205935688,
+    "val_ece_calibrated": 0.08553538887531728,
+    "test_ece_uncalibrated": 0.21202342898658152,
+    "test_ece_calibrated": 0.1080383892809407
   },
   "evaluation_slices": {
     "multi_ppe": {
       "count": 38,
       "keyword_acc": 0.39473684210526316,
       "tfidf_acc": 0.7894736842105263,
-      "distilbert_acc": 0.8157894736842105
+      "distilbert_acc": 0.7894736842105263
     },
     "conditional": {
       "count": 29,

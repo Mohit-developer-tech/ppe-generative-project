@@ -28,8 +28,8 @@
   "learning_rate": 5e-05,
   "weight_decay": 0.01,
   "num_epochs": 4,
-  "best_seed": 45,
-  "temperature": 0.5670241117477417,
+  "best_seed": 44,
+  "temperature": 0.5981846451759338,
   "total_curated_sentences": 321,
   "split_counts": {
     "train": 155,
