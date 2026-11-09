@@ -18,9 +18,9 @@ uploads/
 release_assets/
 *.zip
 
-# Large files and model weights
-artifacts/
-*.pt
+# Large files and model checkpoints
+artifacts/cvae/checkpoints/
+artifacts/test_model/
 *.pth
 *.ckpt
 *.safetensors
