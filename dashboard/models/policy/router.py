@@ -8,6 +8,7 @@ and three-state multi-modal safety compliance verdicts with vision consensus.
 import os
 import io
 import json
+import base64
 import logging
 from typing import List, Dict, Any, Optional
 
@@ -189,7 +190,30 @@ def get_policy_metrics():
     metrics_path = "results/policy/policy_metrics.json"
     if os.path.exists(metrics_path):
         with open(metrics_path, "r", encoding="utf-8") as f:
-            return json.load(f)
+            raw_metrics = json.load(f)
+
+        tables = {}
+        bench_csv = "results/policy/policy_benchmark.csv"
+        if os.path.exists(bench_csv):
+            import pandas as pd
+            df_b = pd.read_csv(bench_csv)
+            tables["benchmark"] = df_b.to_dict(orient="records")
+
+        return {
+            "status": "ready",
+            "model_id": "policy",
+            "name": "Safety Policy Compliance Checker",
+            "summary": raw_metrics,
+            "metrics": raw_metrics,
+            "tables": tables,
+            "available_figures": [
+                "01_confusion_matrix.png",
+                "02_baseline_comparison.png",
+                "03_evaluation_slices.png",
+                "04_calibration_reliability.png",
+                "05_end_to_end_verdict_matrix.png"
+            ]
+        }
 
     bundle = load_model_bundle("policy")
     if bundle["status"] == "not_found":
@@ -232,10 +256,10 @@ def ingest_policy_document(
         sample = SAMPLE_POLICIES[sample_id]
         filename = f"{sample['id']}.txt"
         file_bytes = sample["text"].encode("utf-8")
-    elif file is not None and file.filename:
+    elif file is not None and getattr(file, "filename", None):
         filename = file.filename
         file_bytes = file.file.read()
-    elif raw_text and raw_text.strip():
+    elif raw_text and isinstance(raw_text, str) and raw_text.strip():
         filename = "pasted_policy.txt"
         file_bytes = raw_text.strip().encode("utf-8")
     else:
@@ -349,7 +373,7 @@ def evaluate_compliance_verdict(
     img_pil = None
     crop_class_hint = sample_crop.lower() if sample_crop else "head"
 
-    if crop_file is not None and crop_file.filename:
+    if crop_file is not None and getattr(crop_file, "filename", None):
         try:
             c_bytes = crop_file.file.read()
             img_pil = Image.open(io.BytesIO(c_bytes)).convert("RGB").resize((64, 64))
@@ -426,6 +450,13 @@ def evaluate_compliance_verdict(
         vision_agreed=vision_agreed
     )
 
+    b64_crop = ""
+    if img_pil is not None:
+        buf = io.BytesIO()
+        img_pil.save(buf, format="PNG")
+        b64_crop = "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode("utf-8")
+
+    verdict_res["crop_image_b64"] = b64_crop
     verdict_res["vision_consensus"] = {
         "agreed": vision_agreed,
         "judge_pred": judge_pred,
@@ -434,6 +465,20 @@ def evaluate_compliance_verdict(
     }
 
     return verdict_res
+
+
+@router.get("/sample-crop/{crop_id}")
+def get_policy_sample_crop(crop_id: str):
+    """Serve authentic 64x64 test crop for visual evidence auditing."""
+    curated_samples = {
+        "head": "crops_64/test/head/ds1_hard_hat_workers1018_2.png",
+        "helmet": "crops_64/test/helmet/ds1_hard_hat_workers0_0.png",
+        "vest": "crops_64/test/vest/ds2_helmet_jacket_00007_0.png"
+    }
+    img_path = curated_samples.get(crop_id.lower())
+    if img_path and os.path.exists(img_path):
+        return FileResponse(img_path, media_type="image/png")
+    raise HTTPException(status_code=404, detail="Crop not found")
 
 
 @router.get("/figure/{name}")

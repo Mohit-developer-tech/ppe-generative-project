@@ -91,8 +91,8 @@ MODEL_REGISTRY: Dict[str, Dict[str, Any]] = {
     },
     "policy": {
         "id": "policy",
-        "name": "Safety Policy Checker",
-        "tab_label": "Policy Checker",
+        "name": "Safety Policy Transformer & Compliance Checker",
+        "tab_label": "Policy Transformer",
         "status": "ready",
         "badge": "Active (Model 5)",
         "badge_color": "emerald",
