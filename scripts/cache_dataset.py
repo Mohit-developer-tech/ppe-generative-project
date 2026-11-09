@@ -6,13 +6,20 @@ Eliminates 100% of filesystem open/close overhead for rapid multi-seed training.
 
 import os
 import time
+from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 from PIL import Image
 import torch
 
 CLASS_NAMES = ["head", "helmet", "vest"]
 
-def cache_split(split_name: str, data_dir: str = "crops_64", out_dir: str = "data_cache"):
+def _load_single_image(args):
+    fpath, cls_idx = args
+    with Image.open(fpath) as img:
+        arr = np.array(img.convert("RGB"), dtype=np.uint8)
+    return arr, cls_idx
+
+def cache_split(split_name: str, data_dir: str = "crops_64", out_dir: str = "data_cache", num_workers: int = 16):
     os.makedirs(out_dir, exist_ok=True)
     out_file = os.path.join(out_dir, f"{split_name}_crops.pt")
     if os.path.exists(out_file):
@@ -21,8 +28,7 @@ def cache_split(split_name: str, data_dir: str = "crops_64", out_dir: str = "dat
 
     print(f"[*] Caching {split_name} split from {data_dir}/{split_name}...", flush=True)
     t0 = time.time()
-    images = []
-    labels = []
+    file_list = []
 
     split_dir = os.path.join(data_dir, split_name)
     for cls_idx, cls_name in enumerate(CLASS_NAMES):
@@ -32,11 +38,14 @@ def cache_split(split_name: str, data_dir: str = "crops_64", out_dir: str = "dat
         files = sorted(os.listdir(cls_dir))
         for fname in files:
             if fname.lower().endswith(".png"):
-                fpath = os.path.join(cls_dir, fname)
-                with Image.open(fpath) as img:
-                    arr = np.array(img.convert("RGB"), dtype=np.uint8)  # (64, 64, 3)
-                    images.append(arr)
-                    labels.append(cls_idx)
+                file_list.append((os.path.join(cls_dir, fname), cls_idx))
+
+    print(f"    Found {len(file_list)} images, loading in parallel with {num_workers} threads...", flush=True)
+    with ThreadPoolExecutor(max_workers=num_workers) as executor:
+        results = list(executor.map(_load_single_image, file_list, chunksize=64))
+
+    images = [r[0] for r in results]
+    labels = [r[1] for r in results]
 
     # Convert to contiguous uint8 tensors [N, 3, 64, 64]
     X = torch.from_numpy(np.stack(images)).permute(0, 3, 1, 2).contiguous()
@@ -45,7 +54,7 @@ def cache_split(split_name: str, data_dir: str = "crops_64", out_dir: str = "dat
     torch.save({"X": X, "y": y}, out_file)
     dur = time.time() - t0
     size_mb = os.path.getsize(out_file) / (1024 * 1024)
-    print(f"    Saved {len(X)} crops to {out_file} in {dur:.1f}s ({size_mb:.1f} MB)", flush=True)
+    print(f"    [+] Saved {len(X)} crops to {out_file} in {dur:.1f}s ({size_mb:.1f} MB)", flush=True)
 
 if __name__ == "__main__":
     os.makedirs("data_cache", exist_ok=True)

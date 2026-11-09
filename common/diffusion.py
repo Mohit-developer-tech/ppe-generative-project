@@ -492,8 +492,7 @@ class EMA:
     def update(self):
         for name, param in self.model.named_parameters():
             if param.requires_grad:
-                new_average = (1.0 - self.decay) * param.data + self.decay * self.shadow[name]
-                self.shadow[name] = new_average.clone()
+                self.shadow[name].lerp_(param.data, 1.0 - self.decay)
 
     def apply_shadow(self):
         for name, param in self.model.named_parameters():
