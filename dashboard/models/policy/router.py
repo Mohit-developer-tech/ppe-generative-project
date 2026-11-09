@@ -211,7 +211,8 @@ def get_policy_metrics():
                 "02_baseline_comparison.png",
                 "03_evaluation_slices.png",
                 "04_calibration_reliability.png",
-                "05_end_to_end_verdict_matrix.png"
+                "05_end_to_end_verdict_matrix.png",
+                "06_policy_training_curves.png"
             ]
         }
 

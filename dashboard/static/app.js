@@ -830,6 +830,17 @@ document.addEventListener('DOMContentLoaded', () => {
       futureFeaturesList.innerHTML = '<li class="text-slate-400">Features under research specification.</li>';
     }
 
+    const statusPill = document.getElementById('future-status-pill');
+    if (statusPill) {
+      if (meta.status === 'ready' || modelId === 'cvae' || modelId === 'cgan' || modelId === 'policy') {
+        statusPill.className = 'px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 flex items-center gap-1.5';
+        statusPill.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Trained Checkpoint Active';
+      } else {
+        statusPill.className = 'px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-800 flex items-center gap-1.5';
+        statusPill.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Awaiting Training Checkpoint';
+      }
+    }
+
     // Render Model-Specific Interactive Concept Sandbox
     renderModelSandbox(modelId, meta);
 
@@ -1395,7 +1406,7 @@ document.addEventListener('DOMContentLoaded', () => {
       futureDemoTitle.textContent = 'Model 5: Safety Policy & Multi-Modal Compliance Checker';
       futureDemoDesc.textContent = 'Natural language policy ingestion (DistilBERT + Calibrated ECE) combined with three-state multi-modal decision logic (Violation / Compliant / Cannot determine).';
       futureSandboxContent.innerHTML = `
-        <div class="w-full space-y-6">
+        <div class="col-span-12 lg:col-span-12 w-full space-y-6">
           <!-- Sub-Navigation Header -->
           <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3 gap-3">
             <div>
@@ -2592,7 +2603,8 @@ document.addEventListener('DOMContentLoaded', () => {
       { id: 'baseline', name: 'Baseline Hierarchy Comparison', url: '/api/policy/figure/02_baseline_comparison.png' },
       { id: 'slices', name: 'Evaluation Slices (Multi-PPE / Conditionals)', url: '/api/policy/figure/03_evaluation_slices.png' },
       { id: 'calib', name: 'Reliability Diagram & ECE', url: '/api/policy/figure/04_calibration_reliability.png' },
-      { id: 'verdict_mat', name: 'End-to-End Decision Matrix', url: '/api/policy/figure/05_end_to_end_verdict_matrix.png' }
+      { id: 'verdict_mat', name: 'End-to-End Decision Matrix', url: '/api/policy/figure/05_end_to_end_verdict_matrix.png' },
+      { id: 'curves', name: 'Training Loss & F1 (100 Epochs)', url: '/api/policy/figure/06_policy_training_curves.png' }
     ];
 
     futureMetricsContent.innerHTML = `

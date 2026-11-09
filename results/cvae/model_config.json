@@ -7,5 +7,6 @@
   "num_classes": 3,
   "enc_class_emb_dim": 16,
   "dec_class_emb_dim": 32,
-  "image_size": 64
+  "image_size": 64,
+  "epochs": 100
 }
