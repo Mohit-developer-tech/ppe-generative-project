@@ -2,6 +2,9 @@
 dashboard.models package
 Registry and routers for generative PPE models.
 """
+import os
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+import torch
 
 from dashboard.models.registry import (
     MODEL_REGISTRY,
