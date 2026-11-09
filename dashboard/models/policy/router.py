@@ -199,7 +199,7 @@ def get_policy_metrics():
             df_b = pd.read_csv(bench_csv)
             tables["benchmark"] = df_b.to_dict(orient="records")
 
-        return {
+        res = {
             "status": "ready",
             "model_id": "policy",
             "name": "Safety Policy Compliance Checker",
@@ -215,6 +215,11 @@ def get_policy_metrics():
                 "06_policy_training_curves.png"
             ]
         }
+        if isinstance(raw_metrics, dict):
+            for k, v in raw_metrics.items():
+                if k not in res:
+                    res[k] = v
+        return res
 
     bundle = load_model_bundle("policy")
     if bundle["status"] == "not_found":

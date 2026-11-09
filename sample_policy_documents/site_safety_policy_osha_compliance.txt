@@ -1,0 +1,31 @@
+INDUSTRIAL SITE SAFETY POLICY & COMPLIANCE STANDARD
+Standard Operating Procedure: PPE-SOP-2026-V4
+Applicable Regulatory Codes: OSHA 29 CFR 1926.100, OSHA 29 CFR 1926.651, MUTCD Part 6D.03, ANSI/ISEA 107-2020
+
+1. PURPOSE AND SCOPE
+This document establishes mandatory Personal Protective Equipment (PPE) standards across all industrial construction, excavation, and structural refurbishment zones. Compliance is mandatory for all direct employees, subcontractors, delivery drivers, and authorized engineering visitors.
+
+2. HEAD PROTECTION REQUIREMENTS (OSHA 29 CFR 1926.100)
+Employees working in areas where there is a possible danger of head injury from impact, falling or flying objects, or from electrical shock and burns, shall be protected by protective helmets.
+All personnel entering designated construction perimeters must wear ANSI Z89.1 approved Type I or Type II hard hats at all times.
+Hard hats must be worn with the bill facing forward unless approved by the site safety officer for welding operations.
+Bump caps and soft headwear are strictly prohibited in structural steel erection and crane swing radiuses.
+
+3. HIGH-VISIBILITY SAFETY APPAREL (MUTCD PART 6D & ANSI/ISEA 107)
+All workers within the right-of-way of public highways, traffic corridors, or active earthmoving machinery must wear high-visibility safety apparel.
+Apparel must meet ANSI/ISEA 107-2020 Class 2 or Class 3 performance guidelines for daytime and nighttime retroreflective visibility.
+Safety vests must remain fully zipped or fastened during working hours to maintain 360-degree visibility.
+
+4. DUAL-PROTECTION MANDATORY ZONES
+Both hard hats and high-visibility reflective vests are mandatory within active excavation trenches, underground tunnels, and near mobile crane operations.
+Workers performing night operations along transit pathways shall wear both approved hard hats and high-visibility apparel equipped with reflective bands.
+
+5. SPECIALIZED ANCILLARY PPE
+Eye and face protection meeting ANSI Z87.1 standards shall be provided and worn during grinding, cutting, chipping, or chemical spraying.
+Hearing protection with a minimum Noise Reduction Rating (NRR) of 25 dB must be used when ambient noise levels exceed 85 decibels.
+Protective steel-toe footwear conforming to ASTM F2413 must be worn by all personnel on site.
+
+6. RECOGNIZED SITE EXEMPTIONS AND ADMINISTRATIVE PROVISIONS
+High-visibility vests and hard hats are not required while personnel are inside fully enclosed, climate-controlled equipment cabs or administrative office trailers.
+Protective headwear is exempt in designated break areas and parking lots situated outside active machinery perimeters.
+Employees failing to comply with mandatory PPE standards will be subject to immediate site removal and administrative retraining.

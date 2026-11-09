@@ -367,6 +367,7 @@ def predict_crop(
         "reconstruction_b64": numpy_to_base64_png(recon_disp_np),
         "reconstruction_sharpened_b64": numpy_to_base64_png(photoreal_disp_np),
         "reconstruction_photoreal_b64": numpy_to_base64_png(photoreal_disp_np),
+        "error_heatmap_b64": numpy_to_base64_png(np.clip(np.abs(diff_raw), 0.0, 1.0)),
         "latent_vector": [round(float(v), 4) for v in z_np[0]],
         "pca_2d": pca_coords,
         "pca_coords": pca_coords
