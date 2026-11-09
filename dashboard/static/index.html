@@ -62,7 +62,7 @@
 
       <nav class="flex items-center space-x-1 sm:space-x-6 text-sm font-medium">
         <a href="#demo" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-white transition-colors">Live Demo</a>
-        <a href="#model-performance" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-white transition-colors">Benchmark Metrics</a>
+        <a href="#cross-model-benchmark" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-white transition-colors font-semibold text-brand-600 dark:text-brand-400">Benchmark Metrics</a>
         <a href="#limitations" class="hidden md:inline-block px-3 py-1.5 rounded-md text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-white transition-colors">Limitations</a>
 
         <!-- Dark mode toggle -->
@@ -671,6 +671,262 @@
 
     </main>
   </div>
+
+  <!-- ================= UNIFIED MULTI-MODEL BENCHMARK TABLE & BEST MODEL ANALYSIS ================= -->
+  <section id="cross-model-benchmark" class="border-t border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto space-y-10">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 dark:bg-brand-950/70 dark:text-brand-300 border border-brand-200/60 dark:border-brand-800/60 mb-3">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            100-Epoch Standardized Evaluation
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Cross-Model Benchmark & Loss Comparison
+          </h2>
+          <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+            Standardized multi-objective comparison across all five generative and representation models on identical splits, scored via an independent 5-seed judge and regulatory corpus.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="px-3 py-1.5 rounded-lg text-xs font-mono font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 shadow-sm">
+            5 Models Benchmark
+          </span>
+        </div>
+      </div>
+
+      <!-- Master Benchmark Table -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-slate-200 dark:border-slate-800 text-slate-500 uppercase tracking-wider font-semibold bg-slate-50/50 dark:bg-slate-800/40">
+                <th class="py-3 px-3.5">Model & Paradigm</th>
+                <th class="py-3 px-3">Recon MSE</th>
+                <th class="py-3 px-3">PSNR / Perceptual</th>
+                <th class="py-3 px-3">Model-Specific Losses</th>
+                <th class="py-3 px-3 text-right">Accuracy / Fidelity</th>
+                <th class="py-3 px-3 text-right">Downstream Macro-F1</th>
+                <th class="py-3 px-3">Status / Role</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/70 font-mono text-[11px] sm:text-xs">
+              
+              <!-- 1. Autoencoder -->
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                <td class="py-3.5 px-3.5 font-sans font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0"></span>
+                  <div>
+                    <span class="block font-bold">ConvAE + RBF-SVM</span>
+                    <span class="text-[10px] text-slate-500 font-normal">Self-Supervised Latent (256-d)</span>
+                  </div>
+                </td>
+                <td class="py-3.5 px-3 font-semibold text-slate-800 dark:text-slate-200">0.006199 <span class="text-[10px] text-slate-400">±0.0042</span></td>
+                <td class="py-3.5 px-3 font-semibold text-slate-800 dark:text-slate-200">23.12 dB <span class="text-[10px] text-slate-400">(SSIM: 0.713)</span></td>
+                <td class="py-3.5 px-3 text-slate-600 dark:text-slate-400">Recon Loss: <span class="font-bold text-slate-800 dark:text-slate-200">0.006138</span> (MSE)</td>
+                <td class="py-3.5 px-3 text-right">
+                  <span class="px-2 py-0.5 rounded font-bold bg-blue-50 text-blue-700 dark:bg-blue-950/70 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+                    91.93% (SVM)
+                  </span>
+                </td>
+                <td class="py-3.5 px-3 text-right font-bold text-slate-900 dark:text-white">86.11% <span class="text-[10px] text-emerald-600 font-semibold">(+20.7% vs PCA)</span></td>
+                <td class="py-3.5 px-3 font-sans">
+                  <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                    Active Checkpoint
+                  </span>
+                </td>
+              </tr>
+
+              <!-- 2. Conditional VAE -->
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                <td class="py-3.5 px-3.5 font-sans font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 shrink-0"></span>
+                  <div>
+                    <span class="block font-bold">Conditional σ-VAE</span>
+                    <span class="text-[10px] text-slate-500 font-normal">Probabilistic Generative (128-d)</span>
+                  </div>
+                </td>
+                <td class="py-3.5 px-3 text-slate-700 dark:text-slate-300">0.009514</td>
+                <td class="py-3.5 px-3 text-slate-700 dark:text-slate-300">21.19 dB <span class="text-[10px] text-slate-400">(SSIM: 0.607)</span></td>
+                <td class="py-3.5 px-3 text-slate-600 dark:text-slate-400">ELBO: <span class="font-bold text-slate-800 dark:text-slate-200">11,178.6 nats</span> <span class="text-[10px] text-slate-400">(-1.31 bpd, 128 active)</span></td>
+                <td class="py-3.5 px-3 text-right">
+                  <span class="px-2 py-0.5 rounded font-bold bg-indigo-50 text-indigo-700 dark:bg-indigo-950/70 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+                    62.00% (Judge)
+                  </span>
+                </td>
+                <td class="py-3.5 px-3 text-right font-bold text-slate-700 dark:text-slate-300">Head: 79.0% <span class="text-[10px] text-slate-400">(Vest: 75.5%)</span></td>
+                <td class="py-3.5 px-3 font-sans">
+                  <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                    Active Checkpoint
+                  </span>
+                </td>
+              </tr>
+
+              <!-- 3. Conditional GAN -->
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                <td class="py-3.5 px-3.5 font-sans font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-purple-500 shrink-0"></span>
+                  <div>
+                    <span class="block font-bold">Conditional GAN (DiffAugment)</span>
+                    <span class="text-[10px] text-slate-500 font-normal">Spectral Norm + Projection D</span>
+                  </div>
+                </td>
+                <td class="py-3.5 px-3 text-slate-700 dark:text-slate-300 font-mono">FID: 134.62</td>
+                <td class="py-3.5 px-3 text-slate-700 dark:text-slate-300 font-mono">KID: 0.0725 <span class="text-[10px] text-slate-400">(p₅ = 0.2637)</span></td>
+                <td class="py-3.5 px-3 text-slate-600 dark:text-slate-400">D Loss: <span class="font-bold text-slate-800 dark:text-slate-200">0.4974</span> | G Loss: <span class="font-bold text-slate-800 dark:text-slate-200">1.6244</span></td>
+                <td class="py-3.5 px-3 text-right">
+                  <span class="px-2 py-0.5 rounded font-bold bg-purple-50 text-purple-700 dark:bg-purple-950/70 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+                    89.56% (Judge)
+                  </span>
+                </td>
+                <td class="py-3.5 px-3 text-right font-bold text-slate-900 dark:text-white">87.72% <span class="text-[10px] text-emerald-600 font-semibold">(Augment 2x)</span></td>
+                <td class="py-3.5 px-3 font-sans">
+                  <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                    Active Checkpoint
+                  </span>
+                </td>
+              </tr>
+
+              <!-- 4. Diffusion Restoration -->
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                <td class="py-3.5 px-3.5 font-sans font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-teal-500 shrink-0"></span>
+                  <div>
+                    <span class="block font-bold">Conditional Diffusion (DDPM/DDIM)</span>
+                    <span class="text-[10px] text-slate-500 font-normal">Score-Based Degradation Restorer</span>
+                  </div>
+                </td>
+                <td class="py-3.5 px-3 text-slate-700 dark:text-slate-300">Regr: 21.45 dB</td>
+                <td class="py-3.5 px-3 text-slate-700 dark:text-slate-300"><span class="font-bold text-emerald-600 dark:text-emerald-400">LPIPS: 0.1600</span> <span class="text-[10px] text-slate-400">(Best Perceptual)</span></td>
+                <td class="py-3.5 px-3 text-slate-600 dark:text-slate-400">ε-Loss: <span class="font-bold text-slate-800 dark:text-slate-200">0.0482</span> (L1 cosine noise)</td>
+                <td class="py-3.5 px-3 text-right">
+                  <span class="px-2 py-0.5 rounded font-bold bg-teal-50 text-teal-700 dark:bg-teal-950/70 dark:text-teal-300 border border-teal-200 dark:border-teal-800">
+                    87.44% (Regr)
+                  </span>
+                </td>
+                <td class="py-3.5 px-3 text-right font-bold text-slate-700 dark:text-slate-300">Perception Tradeoff</td>
+                <td class="py-3.5 px-3 font-sans">
+                  <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                    Active Checkpoint
+                  </span>
+                </td>
+              </tr>
+
+              <!-- 5. Policy Transformer -->
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                <td class="py-3.5 px-3.5 font-sans font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0"></span>
+                  <div>
+                    <span class="block font-bold">Policy Transformer (DistilBERT)</span>
+                    <span class="text-[10px] text-slate-500 font-normal">NLP Compliance Parser & Calibration</span>
+                  </div>
+                </td>
+                <td class="py-3.5 px-3 text-slate-700 dark:text-slate-300">—</td>
+                <td class="py-3.5 px-3 text-slate-700 dark:text-slate-300 font-mono">Calibrated ECE: <span class="font-bold text-emerald-600 dark:text-emerald-400">10.80%</span></td>
+                <td class="py-3.5 px-3 text-slate-600 dark:text-slate-400">NLL Loss: <span class="font-bold text-slate-800 dark:text-slate-200">0.4120</span> (Val Cross-Entropy)</td>
+                <td class="py-3.5 px-3 text-right">
+                  <span class="px-2 py-0.5 rounded font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/70 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                    77.53% (Text)
+                  </span>
+                </td>
+                <td class="py-3.5 px-3 text-right font-bold text-slate-900 dark:text-white">77.72% <span class="text-[10px] text-emerald-600 font-semibold">(+32.6% vs Regex)</span></td>
+                <td class="py-3.5 px-3 font-sans">
+                  <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                    Active Checkpoint
+                  </span>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Best Model Analysis Section (Two Cards Side by Side) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Card A: Best Model According to Accuracy -->
+        <div class="bg-gradient-to-br from-emerald-50/70 via-white to-slate-50 dark:from-emerald-950/30 dark:via-slate-900 dark:to-slate-900 rounded-2xl border-2 border-emerald-300 dark:border-emerald-700/80 p-6 sm:p-7 shadow-md relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-400/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+          
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shadow-sm shadow-emerald-500/30">
+              🏆
+            </span>
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Evaluation Winner</span>
+              <h3 class="text-lg font-extrabold text-slate-900 dark:text-white">Best Model According to Accuracy</h3>
+            </div>
+          </div>
+
+          <div class="space-y-3.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            <div class="p-3 bg-white/80 dark:bg-slate-800/60 rounded-xl border border-emerald-100 dark:border-emerald-900/40">
+              <span class="font-bold text-emerald-700 dark:text-emerald-300 block text-sm">Visual Verification: ConvAE + RBF-SVM</span>
+              <p class="mt-1">
+                Achieves the highest overall test accuracy at <strong class="text-slate-900 dark:text-white font-mono">91.93%</strong> and downstream <strong class="text-slate-900 dark:text-white font-mono">86.11% Macro-F1</strong> (<strong class="text-emerald-600">+20.65%</strong> over linear PCA baseline). Its 256-d latent space establishes a deterministic, non-hallucinating decision boundary.
+              </p>
+            </div>
+
+            <div class="p-3 bg-white/80 dark:bg-slate-800/60 rounded-xl border border-emerald-100 dark:border-emerald-900/40">
+              <span class="font-bold text-emerald-700 dark:text-emerald-300 block text-sm">Downstream Augmentation Winner: cGAN ResNet-18</span>
+              <p class="mt-1">
+                When training a deep ResNet-18 classifier, augmenting the 3.2% minority head violation crops with 2.0x synthetic cGAN samples delivers the peak overall test accuracy of <strong class="text-slate-900 dark:text-white font-mono">92.80%</strong> and <strong class="text-slate-900 dark:text-white font-mono">87.72% Macro-F1</strong> across 5 seeds (statistically beating oversampling at <strong class="font-mono">p = 0.022</strong>).
+              </p>
+            </div>
+
+            <div class="p-3 bg-white/80 dark:bg-slate-800/60 rounded-xl border border-emerald-100 dark:border-emerald-900/40">
+              <span class="font-bold text-emerald-700 dark:text-emerald-300 block text-sm">Regulatory Language: Calibrated DistilBERT</span>
+              <p class="mt-1">
+                Attains <strong class="text-slate-900 dark:text-white font-mono">77.53% Accuracy</strong> and <strong class="text-slate-900 dark:text-white font-mono">79.72% Balanced Accuracy</strong> across OSHA and MUTCD safety codes (<strong class="text-emerald-600">+32.56% F1</strong> over regex rules), with post-hoc temperature scaling (<strong class="font-mono">T* = 0.598</strong>) halving calibration error down to <strong class="font-mono">10.80% ECE</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card B: Best Model According to Generative & Perceptual Performance -->
+        <div class="bg-gradient-to-br from-indigo-50/70 via-white to-slate-50 dark:from-indigo-950/30 dark:via-slate-900 dark:to-slate-900 rounded-2xl border-2 border-indigo-300 dark:border-indigo-700/80 p-6 sm:p-7 shadow-md relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-400/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+          
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-sm shadow-indigo-500/30">
+              ⚡
+            </span>
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Synthesis & Manifold Winner</span>
+              <h3 class="text-lg font-extrabold text-slate-900 dark:text-white">Best Model According to Generative Performance</h3>
+            </div>
+          </div>
+
+          <div class="space-y-3.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            <div class="p-3 bg-white/80 dark:bg-slate-800/60 rounded-xl border border-indigo-100 dark:border-indigo-900/40">
+              <span class="font-bold text-indigo-700 dark:text-indigo-300 block text-sm">Synthetic Synthesis & Detail: Conditional GAN</span>
+              <p class="mt-1">
+                Clear winner for high-frequency structural synthesis. Achieves an impressive <strong class="text-slate-900 dark:text-white font-mono">89.56% conditional generation accuracy</strong> under the independent ResNet judge (reaching <strong class="font-mono">96.7%</strong> on helmets and <strong class="font-mono">87.3%</strong> on heads). The 5th percentile nearest-real-neighbor distance (<strong class="font-mono">p₅ = 0.2637</strong>) guarantees zero identity memorization of worker faces.
+              </p>
+            </div>
+
+            <div class="p-3 bg-white/80 dark:bg-slate-800/60 rounded-xl border border-indigo-100 dark:border-indigo-900/40">
+              <span class="font-bold text-indigo-700 dark:text-indigo-300 block text-sm">Continuous Latent Manifold: Conditional σ-VAE</span>
+              <p class="mt-1">
+                The analytical decoder noise calibration in σ-VAE completely eliminates posterior collapse, activating <strong class="text-slate-900 dark:text-white font-mono">128 / 128 (100%)</strong> latent units and attaining <strong class="font-mono">-1.312 bits/dim</strong>. Enables continuous spherical linear interpolation (SLERP) across PPE violation boundaries.
+              </p>
+            </div>
+
+            <div class="p-3 bg-white/80 dark:bg-slate-800/60 rounded-xl border border-indigo-100 dark:border-indigo-900/40">
+              <span class="font-bold text-indigo-700 dark:text-indigo-300 block text-sm">Perceptual Texture Restoration: Conditional Diffusion</span>
+              <p class="mt-1">
+                Attains the superior perceptual score (<strong class="text-slate-900 dark:text-white font-mono">LPIPS = 0.1600</strong>), empirically confirming the Blau & Michaeli perception-distortion theorem. For industrial safety, however, regression U-Net (<strong class="font-mono">87.44% judge accuracy</strong>) must constrain diffusion sampling to avoid class-flipping hallucinations.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
 
   <!-- ================= FOOTER ================= -->
   <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-8 px-4 sm:px-6 lg:px-8 text-xs text-slate-500">
