@@ -31,6 +31,12 @@ MOVES = [
     ("results/policy/policy_classifier.pt", "artifacts/policy/policy_classifier.pt"),
 ]
 
+# CVAE Checkpoints
+cvae_ckpt_dir = Path("results/cvae/checkpoints")
+if cvae_ckpt_dir.exists():
+    for f in cvae_ckpt_dir.glob("checkpoint_epoch_*.pt"):
+        MOVES.append((str(f), f"artifacts/cvae/checkpoints/{f.name}"))
+
 # Checkpoints
 ckpt_dir = Path("results/autoencoder/latent_256")
 if ckpt_dir.exists():

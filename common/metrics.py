@@ -329,10 +329,18 @@ def compute_fid(
     diff = mu_r - mu_f
 
     # Matrix square root of covariance product
-    covmean, _ = scipy.linalg.sqrtm(sigma_r.dot(sigma_f), disp=False)
+    try:
+        covmean = scipy.linalg.sqrtm(sigma_r.dot(sigma_f))
+    except TypeError:
+        covmean, _ = scipy.linalg.sqrtm(sigma_r.dot(sigma_f), disp=False)
+    if isinstance(covmean, tuple):
+        covmean = covmean[0]
+
     if not np.isfinite(covmean).all():
         offset = np.eye(sigma_r.shape[0]) * eps
         covmean = scipy.linalg.sqrtm((sigma_r + offset).dot(sigma_f + offset))
+        if isinstance(covmean, tuple):
+            covmean = covmean[0]
 
     # Numerical imaginary artifact elimination
     if np.iscomplexobj(covmean):

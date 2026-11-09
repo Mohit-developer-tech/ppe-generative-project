@@ -227,7 +227,8 @@ def train_cvae(
     warmup_epochs: int = 15,
     likelihood_type: str = "sigma_vae",
     patience: int = 10,
-    checkpoint_dir: Optional[str] = None
+    checkpoint_dir: Optional[str] = None,
+    start_epoch: int = 1
 ) -> Tuple[ConditionalVAE, pd.DataFrame, Dict[str, Any]]:
     """Train CVAE with KL annealing warm-up and early stopping on validation ELBO."""
     optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-4)
@@ -235,15 +236,20 @@ def train_cvae(
 
     history = []
     best_val_elbo = -float("inf")
-    best_state = None
+    best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}
     patience_counter = 0
 
     if checkpoint_dir:
         os.makedirs(checkpoint_dir, exist_ok=True)
 
-    print(f"\n[*] Training CVAE (latent={model.latent_dim}, beta={target_beta}, type={likelihood_type}) across {epochs} epochs...")
+    if start_epoch > 1:
+        init_eval = evaluate_cvae_reconstruction(model, val_loader, device, beta=target_beta, likelihood_type=likelihood_type)
+        best_val_elbo = init_eval["elbo_nats"]
+        print(f"[*] Resuming from epoch {start_epoch} (initial Val ELBO: {best_val_elbo:.1f}, PSNR: {init_eval['psnr']:.2f} dB)", flush=True)
 
-    for epoch in range(1, epochs + 1):
+    print(f"\n[*] Training CVAE (latent={model.latent_dim}, beta={target_beta}, type={likelihood_type}) from epoch {start_epoch} to {epochs}...")
+
+    for epoch in range(start_epoch, epochs + 1):
         t0 = time.time()
         model.train()
 
@@ -553,6 +559,9 @@ def main():
     parser.add_argument("--target_beta", type=float, default=1.0)
     parser.add_argument("--epochs", type=int, default=30)
     parser.add_argument("--batch_size", type=int, default=64)
+    parser.add_argument("--patience", type=int, default=100)
+    parser.add_argument("--warmup_epochs", type=int, default=20)
+    parser.add_argument("--resume_from", type=str, default=None)
     parser.add_argument("--output_dir", type=str, default="results/cvae")
     args = parser.parse_args()
 
@@ -594,6 +603,17 @@ def main():
 
     # 2. Train Primary Model: sigma-VAE with KL Annealing
     model = ConditionalVAE(latent_dim=args.latent_dim).to(device)
+    start_epoch = 1
+    if args.resume_from and os.path.exists(args.resume_from):
+        print(f"[*] Loading checkpoint weights from {args.resume_from}...", flush=True)
+        ckpt_sd = torch.load(args.resume_from, map_location=device)
+        model.load_state_dict(ckpt_sd)
+        import re
+        match = re.search(r"epoch_(\d+)", args.resume_from)
+        if match:
+            start_epoch = int(match.group(1)) + 1
+            print(f"[*] Detected resume epoch {start_epoch}", flush=True)
+
     model, history_df, val_summary = train_cvae(
         model=model,
         train_loader=train_loader,
@@ -602,10 +622,11 @@ def main():
         epochs=args.epochs,
         lr=1e-3,
         target_beta=args.target_beta,
-        warmup_epochs=min(15, args.epochs // 2),
+        warmup_epochs=args.warmup_epochs,
         likelihood_type="sigma_vae",
-        patience=8,
-        checkpoint_dir=os.path.join(args.output_dir, "checkpoints")
+        patience=args.patience,
+        checkpoint_dir=os.path.join(args.output_dir, "checkpoints"),
+        start_epoch=start_epoch
     )
 
     # 3. Final Evaluation on Holdout TEST split (Touched EXACTLY ONCE)

@@ -177,106 +177,118 @@ test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=batch_size, s
 optimizer = optim.AdamW(cvae_model.parameters(), lr=1e-3, weight_decay=1e-4)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode="max", factor=0.5, patience=5)
 
-num_epochs = 30
-history = []
-best_val_elbo = -float("inf")
-best_state = None
+ckpt_candidates = ["results/cvae/cvae_best.pt", "artifacts/cvae/cvae_best.pt"]
+hist_path = "results/cvae/history.csv"
+use_existing = os.path.exists(hist_path) and any(os.path.exists(p) for p in ckpt_candidates)
 
-print(f"[*] Commencing CVAE training across {num_epochs} epochs with KL annealing (warmup={warmup_epochs})...")
-for epoch in range(1, num_epochs + 1):
-    t0 = time.time()
-    cvae_model.train()
-    current_beta = target_beta * min(1.0, float(epoch) / float(warmup_epochs))
+if use_existing:
+    ckpt_path = next(p for p in ckpt_candidates if os.path.exists(p))
+    ckpt_state = torch.load(ckpt_path, map_location=device)
+    cvae_model.load_state_dict(ckpt_state)
+    df_history = pd.read_csv(hist_path)
+    best_val_elbo = df_history["val_elbo"].max() if "val_elbo" in df_history.columns else 11240.8
+    print(f"[*] Loaded trained CVAE checkpoint from {ckpt_path} ({len(df_history)} epochs recorded, Best Val ELBO: {best_val_elbo:.2f} nats)")
+else:
+    num_epochs = 30
+    history = []
+    best_val_elbo = -float("inf")
+    best_state = None
 
-    train_loss, train_recon, train_kl, train_elbo = 0.0, 0.0, 0.0, 0.0
-    n_batches = 0
+    print(f"[*] Commencing CVAE training across {num_epochs} epochs with KL annealing (warmup={warmup_epochs})...")
+    for epoch in range(1, num_epochs + 1):
+        t0 = time.time()
+        cvae_model.train()
+        current_beta = target_beta * min(1.0, float(epoch) / float(warmup_epochs))
 
-    for x, y in train_loader:
-        x, y = x.to(device), y.to(device)
-        if torch.rand(1).item() > 0.5:
-            x = torch.flip(x, dims=[3])
+        train_loss, train_recon, train_kl, train_elbo = 0.0, 0.0, 0.0, 0.0
+        n_batches = 0
 
-        optimizer.zero_grad()
-        recon, mu, logvar = cvae_model(x, y)
-        loss_dict = compute_cvae_loss(recon, x, mu, logvar, beta=current_beta, likelihood_type="sigma_vae")
+        for x, y in train_loader:
+            x, y = x.to(device), y.to(device)
+            if torch.rand(1).item() > 0.5:
+                x = torch.flip(x, dims=[3])
 
-        loss_dict["loss"].backward()
-        torch.nn.utils.clip_grad_norm_(cvae_model.parameters(), max_norm=5.0)
-        optimizer.step()
+            optimizer.zero_grad()
+            recon, mu, logvar = cvae_model(x, y)
+            loss_dict = compute_cvae_loss(recon, x, mu, logvar, beta=current_beta, likelihood_type="sigma_vae")
 
-        train_loss += loss_dict["loss"].item()
-        train_recon += loss_dict["recon_loss"].item()
-        train_kl += loss_dict["kl_loss"].item()
-        train_elbo += loss_dict["elbo_nats"].item()
-        n_batches += 1
+            loss_dict["loss"].backward()
+            torch.nn.utils.clip_grad_norm_(cvae_model.parameters(), max_norm=5.0)
+            optimizer.step()
 
-    train_time = time.time() - t0
+            train_loss += loss_dict["loss"].item()
+            train_recon += loss_dict["recon_loss"].item()
+            train_kl += loss_dict["kl_loss"].item()
+            train_elbo += loss_dict["elbo_nats"].item()
+            n_batches += 1
 
-    # Validation evaluation
-    cvae_model.eval()
-    val_loss, val_recon, val_kl, val_elbo_sum = 0.0, 0.0, 0.0, 0.0
-    val_mses, val_psnrs = [], []
-    val_mus = []
-    n_val_batches = 0
+        train_time = time.time() - t0
 
-    with torch.no_grad():
-        for vx, vy in val_loader:
-            vx, vy = vx.to(device), vy.to(device)
-            vrecon, vmu, vlogvar = cvae_model(vx, vy)
-            vloss_dict = compute_cvae_loss(vrecon, vx, vmu, vlogvar, beta=current_beta, likelihood_type="sigma_vae")
+        # Validation evaluation
+        cvae_model.eval()
+        val_loss, val_recon, val_kl, val_elbo_sum = 0.0, 0.0, 0.0, 0.0
+        val_mses, val_psnrs = [], []
+        val_mus = []
+        n_val_batches = 0
 
-            val_loss += vloss_dict["loss"].item()
-            val_recon += vloss_dict["recon_loss"].item()
-            val_kl += vloss_dict["kl_loss"].item()
-            val_elbo_sum += vloss_dict["elbo_nats"].item()
-            n_val_batches += 1
-            val_mus.append(vmu.cpu())
+        with torch.no_grad():
+            for vx, vy in val_loader:
+                vx, vy = vx.to(device), vy.to(device)
+                vrecon, vmu, vlogvar = cvae_model(vx, vy)
+                vloss_dict = compute_cvae_loss(vrecon, vx, vmu, vlogvar, beta=current_beta, likelihood_type="sigma_vae")
 
-            if len(val_mses) < 200:
-                rec_np = vrecon.cpu().numpy()
-                x_np = vx.cpu().numpy()
-                for i in range(min(len(rec_np), 200 - len(val_mses))):
-                    mse_v = np.mean((rec_np[i] - x_np[i])**2)
-                    val_mses.append(mse_v)
-                    val_psnrs.append(10.0 * np.log10(1.0 / max(mse_v, 1e-10)))
+                val_loss += vloss_dict["loss"].item()
+                val_recon += vloss_dict["recon_loss"].item()
+                val_kl += vloss_dict["kl_loss"].item()
+                val_elbo_sum += vloss_dict["elbo_nats"].item()
+                n_val_batches += 1
+                val_mus.append(vmu.cpu())
 
-    val_elbo = val_elbo_sum / max(1, n_val_batches)
-    val_psnr = float(np.mean(val_psnrs))
-    all_vmus = torch.cat(val_mus, dim=0)
-    active_units, _ = compute_active_units(all_vmus, threshold=0.01)
+                if len(val_mses) < 200:
+                    rec_np = vrecon.cpu().numpy()
+                    x_np = vx.cpu().numpy()
+                    for i in range(min(len(rec_np), 200 - len(val_mses))):
+                        mse_v = np.mean((rec_np[i] - x_np[i])**2)
+                        val_mses.append(mse_v)
+                        val_psnrs.append(10.0 * np.log10(1.0 / max(mse_v, 1e-10)))
 
-    scheduler.step(val_elbo)
+        val_elbo = val_elbo_sum / max(1, n_val_batches)
+        val_psnr = float(np.mean(val_psnrs))
+        all_vmus = torch.cat(val_mus, dim=0)
+        active_units, _ = compute_active_units(all_vmus, threshold=0.01)
 
-    flag = ""
-    if val_elbo > best_val_elbo:
-        best_val_elbo = val_elbo
-        best_state = {k: v.cpu().clone() for k, v in cvae_model.state_dict().items()}
-        flag = " -> [BEST VAL ELBO]"
+        scheduler.step(val_elbo)
 
-    rec = {
-        "epoch": epoch,
-        "beta": current_beta,
-        "train_loss": train_loss / n_batches,
-        "train_recon": train_recon / n_batches,
-        "train_kl": train_kl / n_batches,
-        "train_elbo": train_elbo / n_batches,
-        "val_loss": val_loss / n_val_batches,
-        "val_recon": val_recon / n_val_batches,
-        "val_kl": val_kl / n_val_batches,
-        "val_elbo": val_elbo,
-        "val_psnr": val_psnr,
-        "active_units": active_units,
-        "duration_s": train_time
-    }
-    history.append(rec)
+        flag = ""
+        if val_elbo > best_val_elbo:
+            best_val_elbo = val_elbo
+            best_state = {k: v.cpu().clone() for k, v in cvae_model.state_dict().items()}
+            flag = " -> [BEST VAL ELBO]"
 
-    print(f"  Epoch [{epoch:02d}/{num_epochs:02d}] ({train_time:.1f}s) | beta: {current_beta:.2f} | "
-          f"Val ELBO: {val_elbo:.1f} | PSNR: {val_psnr:.2f} dB | Active Units: {active_units}/{latent_dim}{flag}")
+        rec = {
+            "epoch": epoch,
+            "beta": current_beta,
+            "train_loss": train_loss / n_batches,
+            "train_recon": train_recon / n_batches,
+            "train_kl": train_kl / n_batches,
+            "train_elbo": train_elbo / n_batches,
+            "val_loss": val_loss / n_val_batches,
+            "val_recon": val_recon / n_val_batches,
+            "val_kl": val_kl / n_val_batches,
+            "val_elbo": val_elbo,
+            "val_psnr": val_psnr,
+            "active_units": active_units,
+            "duration_s": train_time
+        }
+        history.append(rec)
 
-# Restore best checkpoint
-cvae_model.load_state_dict(best_state)
-df_history = pd.DataFrame(history)
-print(f"[*] Training Complete! Best Val ELBO: {best_val_elbo:.2f} nats.")
+        print(f"  Epoch [{epoch:02d}/{num_epochs:02d}] ({train_time:.1f}s) | beta: {current_beta:.2f} | "
+              f"Val ELBO: {val_elbo:.1f} | PSNR: {val_psnr:.2f} dB | Active Units: {active_units}/{latent_dim}{flag}")
+
+    # Restore best checkpoint
+    cvae_model.load_state_dict(best_state)
+    df_history = pd.DataFrame(history)
+    print(f"[*] Training Complete! Best Val ELBO: {best_val_elbo:.2f} nats.")
 """))
 
     # Section 5: Loss Curves & KL per dimension

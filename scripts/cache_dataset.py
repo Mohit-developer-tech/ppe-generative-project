@@ -13,6 +13,7 @@ import torch
 CLASS_NAMES = ["head", "helmet", "vest"]
 
 def cache_split(split_name: str, data_dir: str = "crops_64", out_dir: str = "data_cache"):
+    os.makedirs(out_dir, exist_ok=True)
     out_file = os.path.join(out_dir, f"{split_name}_crops.pt")
     if os.path.exists(out_file):
         print(f"[*] Already cached: {out_file}")
