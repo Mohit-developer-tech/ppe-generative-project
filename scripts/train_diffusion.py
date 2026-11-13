@@ -18,7 +18,6 @@ import sys
 import time
 import json
 import argparse
-from pathlib import Path
 from typing import Dict, Any, List, Tuple, Optional
 
 # Set writable matplotlib config dir
@@ -98,7 +97,6 @@ def load_evaluation_models(device: torch.device):
     # 1. Judge Classifier
     judge = SmallResNet(in_channels=3, num_classes=len(CLASS_NAMES)).to(device)
     judge_candidates = [
-        "artifacts/judge/judge_seed_42.pt",
         "results/judge/judge_seed_42.pt",
         "results/judge_v1/judge_seed_42.pt",
         "results/judge/best_judge.pt"
@@ -524,13 +522,13 @@ def main():
                 ema.restore()
 
         total_train_time = time.time() - t_start
-        print(f"[*] Training finished in {total_train_time:.1f}s. Best Step: {best_step} (Val L1: {best_val_l1:.4f})", flush=True)
+        print(f"[*] Training finished in {total_train_time:.1f}s. Best Step: {best_step} (Val L1: {best_val_l1:.4f})")
         pd.DataFrame(history).to_csv(os.path.join(args.output_dir, "training_history.csv"), index=False)
 
     # 4. Load Best Checkpoints for Final Test Split Benchmark
-    print("\n" + "=" * 80, flush=True)
-    print("STEP 2: FULL RESTORATION BENCHMARK ON REAL TEST SPLIT (TOUCHED ONCE)", flush=True)
-    print("=" * 80, flush=True)
+    print("\n" + "=" * 80)
+    print("STEP 2: FULL RESTORATION BENCHMARK ON REAL TEST SPLIT (TOUCHED ONCE)")
+    print("=" * 80)
 
     best_ckpt = torch.load(ckpt_path, map_location=device)
     model.load_state_dict(best_ckpt["model_state_dict"])
@@ -561,11 +559,10 @@ def main():
     critical_flips = 0
     total_heads = int((test_labels == 0).sum())
 
-    print(f"[*] Running exhaustive benchmark across {len(all_degradations)} degradation types x {len(severities)} severity levels...", flush=True)
+    print(f"[*] Running exhaustive benchmark across {len(all_degradations)} degradation types x {len(severities)} severity levels...")
 
     for deg_type in all_degradations:
         for sev in severities:
-            print(f"  --> Benchmarking [{deg_type} | {sev}] with DDIM sampling...", flush=True)
             is_held_out = (deg_type == HELD_OUT_DEGRADATION)
 
             # Degrade test batch
@@ -783,7 +780,6 @@ def main():
     bundle_paths = export_model_bundle(
         model_name="diffusion",
         model=model,
-        weights_state_dict=best_ckpt,
         model_config=model_config,
         metrics_summary=metrics_summary,
         extra_files={
@@ -795,11 +791,6 @@ def main():
             **{f"figure_{i+1}": p for i, p in enumerate(fig_paths)}
         }
     )
-    art_dir = Path("artifacts") / "diffusion"
-    art_dir.mkdir(parents=True, exist_ok=True)
-    if os.path.exists(reg_ckpt_path):
-        import shutil
-        shutil.copy2(reg_ckpt_path, art_dir / "regression_best.pt")
 
     print("\n" + "=" * 80)
     print("DIFFUSION RESTORATION BENCHMARK COMPLETE!")
