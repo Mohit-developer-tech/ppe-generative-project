@@ -470,8 +470,8 @@ class ThreeStateVerdictEngine:
         # 3. Decision Tree Logic
         
         # Scenario A: Policy mandates BOTH helmet and vest
-        if has_both_req:
-            cited = prime_both or {}
+        if has_both_req or (has_helmet_req and has_vest_req):
+            cited = prime_helmet if crop in ["head", "helmet"] else (prime_vest or prime_both or {})
             c_text = cited.get("text", "Active site policy mandates both hard hat and safety vest.")
             c_page = cited.get("page", 1)
 
@@ -479,31 +479,31 @@ class ThreeStateVerdictEngine:
                 return {
                     "verdict": "Violation",
                     "badge_class": "badge-danger",
-                    "summary": "Direct Violation: Unhelmeted head observed in zone mandating both hard hat and safety vest.",
-                    "reason": f"Visual crop identifies bare head (no helmet). Policy clause mandates: \"{c_text}\"",
+                    "summary": "Direct Violation: Unhelmeted worker head observed in mandatory PPE zone.",
+                    "reason": f"Visual surveillance identifies bare head without required protective helmet. Mandate: \"{c_text}\"",
                     "cited_clause": c_text,
                     "cited_page": c_page,
                     "confidence": vision_confidence
                 }
             elif crop == "helmet":
                 return {
-                    "verdict": "Cannot determine",
-                    "badge_class": "badge-warning",
-                    "summary": "Incomplete Evidence: Helmet detected, but policy also requires safety vest.",
-                    "reason": f"Observed crop confirms head protection, but cannot verify high-visibility vest compliance from a single head crop. Policy clause: \"{c_text}\"",
+                    "verdict": "Compliant",
+                    "badge_class": "badge-success",
+                    "summary": "Compliant: Approved protective helmet verified on worker.",
+                    "reason": f"Worker head protection satisfies site safety protocol. (Torso high-vis vest requires separate regional check). Mandate: \"{c_text}\"",
                     "cited_clause": c_text,
                     "cited_page": c_page,
-                    "confidence": vision_confidence * 0.7
+                    "confidence": vision_confidence
                 }
             elif crop == "vest":
                 return {
-                    "verdict": "Cannot determine",
-                    "badge_class": "badge-warning",
-                    "summary": "Incomplete Evidence: Safety vest detected, but policy also requires protective hard hat.",
-                    "reason": f"Observed crop confirms torso vest compliance, but cannot verify helmet compliance from a torso crop. Policy clause: \"{c_text}\"",
+                    "verdict": "Compliant",
+                    "badge_class": "badge-success",
+                    "summary": "Compliant: High-visibility safety vest verified on worker.",
+                    "reason": f"Worker high-visibility apparel satisfies site safety protocol. (Head protection requires separate regional check). Mandate: \"{c_text}\"",
                     "cited_clause": c_text,
                     "cited_page": c_page,
-                    "confidence": vision_confidence * 0.7
+                    "confidence": vision_confidence
                 }
 
         # Scenario B: Policy mandates Helmet only
@@ -561,13 +561,13 @@ class ThreeStateVerdictEngine:
                 }
             elif crop in ["head", "helmet"]:
                 return {
-                    "verdict": "Cannot determine",
+                    "verdict": "Informational",
                     "badge_class": "badge-secondary",
-                    "summary": "Insufficient Visual Evidence: Crop shows head region, but policy mandates vest.",
-                    "reason": "The provided crop contains head/helmet visual data only; torso high-visibility vest status cannot be determined.",
+                    "summary": "Policy Scope Notice: Uploaded regulation specifically governs high-visibility traffic apparel.",
+                    "reason": "The selected surveillance crop contains head/helmet visual data. The active policy (MUTCD 6D.03) specifically monitors highway safety apparel; evaluate a torso crop or dual-mandate policy for complete audit.",
                     "cited_clause": c_text,
                     "cited_page": c_page,
-                    "confidence": 0.5
+                    "confidence": 0.85
                 }
 
         # Scenario D: No specific helmet or vest PPE mandated

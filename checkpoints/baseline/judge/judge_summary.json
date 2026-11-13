@@ -1,0 +1,20 @@
+{
+  "num_seeds": 5,
+  "total_training_time_s": 128.90889525413513,
+  "test_accuracy_mean": 0.8697456492637216,
+  "test_accuracy_std": 0.009712179755087133,
+  "test_balanced_acc_mean": 0.9121356086174496,
+  "test_balanced_acc_std": 0.004948905319657098,
+  "test_macro_f1_mean": 0.7520508170513514,
+  "test_macro_f1_std": 0.013107651353504739,
+  "test_macro_precision_mean": 0.7165655489725948,
+  "test_macro_precision_std": 0.009315752993927085,
+  "test_macro_recall_mean": 0.9121356086174496,
+  "test_macro_recall_std": 0.004948905319657098,
+  "recall_head_mean": 0.9813084112149533,
+  "recall_head_std": 0.008742190156013867,
+  "recall_helmet_mean": 0.8250739476678042,
+  "recall_helmet_std": 0.01543896600174557,
+  "recall_vest_mean": 0.9300244669695911,
+  "recall_vest_std": 0.004175361945898074
+}

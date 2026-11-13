@@ -495,3 +495,226 @@ def get_policy_figure(name: str):
     if not os.path.exists(fig_path):
         raise HTTPException(status_code=404, detail="Figure not found.")
     return FileResponse(fig_path, media_type="image/png")
+
+
+@router.post("/audit-document")
+def audit_policy_document(
+    file: Optional[UploadFile] = File(None),
+    raw_text: Optional[str] = Form(None),
+    sample_id: Optional[str] = Form(None)
+):
+    """
+    Automated NLP Policy Document Auditor:
+    Reads text-based safety policies or uploaded documents (PDF/DOCX/TXT),
+    segments and classifies every clause via calibrated DistilBERT,
+    and systematically evaluates compliance against statutory safety standards.
+    Returns:
+      - Overall Compliance Score (%)
+      - Pass / Fail / Warning breakdown per regulatory category
+      - Clause-by-clause audit table
+      - Risk recommendations
+    """
+    ingest_result = ingest_policy_document(file=file, raw_text=raw_text, sample_id=sample_id)
+    clauses = ingest_result.get("classified_sentences", [])
+
+    if not clauses:
+        return {
+            "status": "error",
+            "message": "No parseable text clauses found in the uploaded document.",
+            "compliance_score": 0.0,
+            "overall_verdict": "FAIL",
+            "categories": [],
+            "clauses": []
+        }
+
+    # Evaluate 5 Core Regulatory Criteria
+    has_helmet = any(c.get("predicted_label") in ["helmet_required", "both_required"] for c in clauses)
+    has_vest = any(c.get("predicted_label") in ["vest_required", "both_required"] for c in clauses)
+    
+    # Check for inspection / maintenance protocols
+    inspection_keywords = ["inspect", "crack", "dent", "damage", "replace", "condition", "daily", "specification"]
+    has_inspection = any(any(k in c.get("text", "").lower() for k in inspection_keywords) for c in clauses)
+
+    # Check for equipment / enclosed cab exemption boundaries
+    exemption_keywords = ["enclosed", "cab", "trailer", "office", "safe zone", "barricade", "exempt", "not required"]
+    has_exemption = any(any(k in c.get("text", "").lower() for k in exemption_keywords) for c in clauses)
+
+    # Check for mandatory enforcement & compliance obligation
+    enforce_keywords = ["must", "shall", "mandatory", "required", "prohibit", "immediately", "report", "incident"]
+    has_enforce = any(any(k in c.get("text", "").lower() for k in enforce_keywords) for c in clauses)
+
+    # Build Category Scorecards
+    categories = []
+    points = 0
+    max_points = 5
+
+    # 1. Head Protection (OSHA 1926.100)
+    helmet_clause = next((c.get("text") for c in clauses if c.get("predicted_label") in ["helmet_required", "both_required"]), None)
+    if has_helmet:
+        points += 1
+        categories.append({
+            "name": "Head Protection Mandate (OSHA 1926.100 / ANSI Z89.1)",
+            "status": "PASS",
+            "badge_color": "emerald",
+            "detail": "Explicit mandatory head protection requirement verified.",
+            "cited_clause": helmet_clause
+        })
+    else:
+        categories.append({
+            "name": "Head Protection Mandate (OSHA 1926.100 / ANSI Z89.1)",
+            "status": "NON-COMPLIANT",
+            "badge_color": "rose",
+            "detail": "Document omits mandatory head protection for impact / falling object hazards.",
+            "cited_clause": "Missing requirement."
+        })
+
+    # 2. High-Visibility Apparel (ANSI/ISEA 107 / MUTCD 6D.03)
+    vest_clause = next((c.get("text") for c in clauses if c.get("predicted_label") in ["vest_required", "both_required"]), None)
+    if has_vest:
+        points += 1
+        categories.append({
+            "name": "High-Visibility Apparel Mandate (ANSI/ISEA 107 / MUTCD 6D.03)",
+            "status": "PASS",
+            "badge_color": "emerald",
+            "detail": "Explicit high-visibility safety apparel requirement verified.",
+            "cited_clause": vest_clause
+        })
+    else:
+        categories.append({
+            "name": "High-Visibility Apparel Mandate (ANSI/ISEA 107 / MUTCD 6D.03)",
+            "status": "WARNING",
+            "badge_color": "amber",
+            "detail": "No explicit high-visibility apparel requirement detected in document.",
+            "cited_clause": "Missing requirement."
+        })
+
+    # 3. Equipment Inspection & Defect Protocol
+    insp_clause = next((c.get("text") for c in clauses if any(k in c.get("text", "").lower() for k in inspection_keywords)), None)
+    if has_inspection:
+        points += 1
+        categories.append({
+            "name": "PPE Inspection & Integrity Verification Protocols",
+            "status": "PASS",
+            "badge_color": "emerald",
+            "detail": "Daily inspection and equipment defect checks specified.",
+            "cited_clause": insp_clause
+        })
+    else:
+        categories.append({
+            "name": "PPE Inspection & Integrity Verification Protocols",
+            "status": "WARNING",
+            "badge_color": "amber",
+            "detail": "Missing periodic inspection and equipment retirement criteria.",
+            "cited_clause": "Recommended protocol addition."
+        })
+
+    # 4. Safe Boundaries & Exemption Demarcation
+    exemp_clause = next((c.get("text") for c in clauses if any(k in c.get("text", "").lower() for k in exemption_keywords)), None)
+    if has_exemption:
+        points += 1
+        categories.append({
+            "name": "Work Zone Boundaries & Permitted Exemptions",
+            "status": "PASS",
+            "badge_color": "emerald",
+            "detail": "Clear boundary criteria defined for vehicular cabs or modular safe offices.",
+            "cited_clause": exemp_clause
+        })
+    else:
+        points += 0.5
+        categories.append({
+            "name": "Work Zone Boundaries & Permitted Exemptions",
+            "status": "INFO",
+            "badge_color": "indigo",
+            "detail": "Universal requirement without designated exclusion zones.",
+            "cited_clause": "Universal site coverage."
+        })
+
+    # 5. Mandatory Enforcement & Reporting
+    enf_clause = next((c.get("text") for c in clauses if any(k in c.get("text", "").lower() for k in enforce_keywords)), None)
+    if has_enforce:
+        points += 1
+        categories.append({
+            "name": "Mandatory Enforcement Terminology ('Shall' / 'Must')",
+            "status": "PASS",
+            "badge_color": "emerald",
+            "detail": "Statutory imperative language properly binds workers and contractors.",
+            "cited_clause": enf_clause
+        })
+    else:
+        categories.append({
+            "name": "Mandatory Enforcement Terminology ('Shall' / 'Must')",
+            "status": "WARNING",
+            "badge_color": "amber",
+            "detail": "Lacks mandatory legal imperative language; advisory phrasing only.",
+            "cited_clause": "Language review advised."
+        })
+
+    score_pct = round((points / max_points) * 100.0, 1)
+    if score_pct >= 85.0:
+        overall_verdict = "PASS"
+        verdict_summary = "Fully Compliant with Statutory Construction Safety Standards"
+    elif score_pct >= 60.0:
+        overall_verdict = "PARTIAL"
+        verdict_summary = "Substantially Compliant with Advisory Deficiencies Noted"
+    else:
+        overall_verdict = "FAIL"
+        verdict_summary = "Non-Compliant: Critical Statutory PPE Mandates Omitted"
+
+    # Format Clause Audit Records
+    clause_audit_records = []
+    for c in clauses:
+        lbl = c.get("predicted_label", "none")
+        conf = float(c.get("confidence", 0.0))
+        text = c.get("text", "")
+        
+        # Rule verdict per clause
+        if lbl in ["helmet_required", "both_required"]:
+            c_status = "PASS"
+            c_badge = "emerald"
+            c_reg = "OSHA 29 CFR 1926.100 / ANSI Z89.1"
+        elif lbl == "vest_required":
+            c_status = "PASS"
+            c_badge = "emerald"
+            c_reg = "MUTCD Part 6 Section 6D.03 / ANSI 107"
+        elif any(k in text.lower() for k in exemption_keywords):
+            c_status = "EXCEPTION"
+            c_badge = "indigo"
+            c_reg = "Site Specific Demarcation Standard"
+        elif any(k in text.lower() for k in inspection_keywords):
+            c_status = "PROTOCOL"
+            c_badge = "cyan"
+            c_reg = "Equipment Quality & Integrity Protocol"
+        else:
+            c_status = "ADMIN"
+            c_badge = "slate"
+            c_reg = "Administrative Guideline"
+
+        clause_audit_records.append({
+            "id": c.get("id"),
+            "text": text,
+            "predicted_label": lbl,
+            "confidence": conf,
+            "status": c_status,
+            "badge_color": c_badge,
+            "regulatory_ref": c_reg
+        })
+
+    recommendations = []
+    if not has_helmet:
+        recommendations.append("Add mandatory head protection clause specifying compliance with ANSI Z89.1 (Type I/II, Class C/G/E).")
+    if not has_vest:
+        recommendations.append("Incorporate high-visibility safety apparel requirements meeting ANSI/ISEA 107 Class 2 or 3 standards.")
+    if not has_inspection:
+        recommendations.append("Institute mandatory daily PPE pre-shift inspection and shell impact defect reporting procedures.")
+
+    return {
+        "status": "success",
+        "filename": ingest_result.get("filename", "policy_document.txt"),
+        "clause_count": len(clauses),
+        "compliance_score": score_pct,
+        "overall_verdict": overall_verdict,
+        "verdict_summary": verdict_summary,
+        "categories": categories,
+        "clauses": clause_audit_records,
+        "recommendations": recommendations
+    }

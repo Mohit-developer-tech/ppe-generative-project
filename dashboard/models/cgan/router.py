@@ -133,11 +133,36 @@ def load_cgan_artifacts() -> bool:
     return True
 
 
-def tensor_to_base64_png(tensor: torch.Tensor) -> str:
-    """Convert tensor [3, H, W] in [0, 1] to base64 PNG data URL."""
+def tensor_to_base64_png(tensor: torch.Tensor, upscale: int = 256, sharpen: bool = True) -> str:
+    """Convert tensor [3, H, W] in [0, 1] to crisp, high-definition base64 PNG data URL."""
+    import cv2
     arr = tensor.detach().cpu().permute(1, 2, 0).numpy()
-    arr = np.clip(arr * 255.0, 0.0, 255.0).astype(np.uint8)
-    img = Image.fromarray(arr)
+    arr_u8 = np.clip(arr * 255.0, 0.0, 255.0).astype(np.uint8)
+
+    if upscale and upscale != arr_u8.shape[0]:
+        # 1. Percentile contrast stretching per channel to eliminate dark noise collapse
+        stretched = np.zeros_like(arr_u8)
+        for c in range(3):
+            p2, p98 = np.percentile(arr_u8[:, :, c], (2.0, 98.0))
+            if p98 > p2 + 10:
+                ch = np.clip((arr_u8[:, :, c] - p2) * 255.0 / (p98 - p2), 0, 255)
+            else:
+                ch = arr_u8[:, :, c]
+            stretched[:, :, c] = ch.astype(np.uint8)
+
+        # 2. Lanczos-4 high-order upsampling
+        up = cv2.resize(stretched, (upscale, upscale), interpolation=cv2.INTER_LANCZOS4)
+
+        if sharpen:
+            # 3. Edge-preserving unsharp mask for realistic PPE contour definition
+            blur = cv2.GaussianBlur(up, (0, 0), sigmaX=1.2)
+            sharp = cv2.addWeighted(up, 1.35, blur, -0.35, 0)
+            img = Image.fromarray(np.clip(sharp, 0, 255).astype(np.uint8))
+        else:
+            img = Image.fromarray(up)
+    else:
+        img = Image.fromarray(arr_u8)
+
     buffer = io.BytesIO()
     img.save(buffer, format="PNG")
     b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
@@ -225,7 +250,9 @@ def generate_samples(req: GenerateRequest):
         torch.manual_seed(req.seed)
 
     count = max(1, min(16, req.count))
-    z = torch.randn(count, cgan_model.z_dim, device=device) * req.latent_variation
+    var = float(np.clip(req.latent_variation, 0.4, 1.2))
+    z = torch.randn(count, cgan_model.z_dim, device=device) * var
+    z = torch.clamp(z, -1.6 * var, 1.6 * var)
     y = torch.full((count,), req.class_id, dtype=torch.long, device=device)
 
     with torch.no_grad():
@@ -292,9 +319,9 @@ def generate_walk(req: LatentWalkRequest):
 
     steps = max(3, min(20, req.steps))
     torch.manual_seed(req.seed1)
-    z1 = torch.randn(1, cgan_model.z_dim, device=device)
+    z1 = torch.clamp(torch.randn(1, cgan_model.z_dim, device=device), -1.6, 1.6)
     torch.manual_seed(req.seed2)
-    z2 = torch.randn(1, cgan_model.z_dim, device=device)
+    z2 = torch.clamp(torch.randn(1, cgan_model.z_dim, device=device), -1.6, 1.6)
 
     walk_tensor = generate_latent_walk(cgan_model, class_id=req.class_id, z_start=z1, z_end=z2, steps=steps, device=device)
 

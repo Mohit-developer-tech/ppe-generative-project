@@ -1,13 +1,19 @@
 /* dashboard/static/styles.css */
 
-/* Clean, crisp rendering for high-resolution crops and reconstructions */
-.smooth-crisp {
-  image-rendering: auto;
+/* Clean, crisp rendering for neural reconstructions and generative synthetic outputs */
+.smooth-crisp,
+.generative-crop-img {
   image-rendering: -webkit-optimize-contrast;
+  image-rendering: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
-.pixelated {
-  image-rendering: auto;
+.pixelated,
+.crisp-render {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
 
 /* Custom smooth scrollbar */

@@ -1,0 +1,13 @@
+{
+  "model_id": "cgan",
+  "name": "Conditional GAN (DiffAugment)",
+  "status": "optimized",
+  "selected_generator": "EMA Generator",
+  "raw_judge_accuracy": 0.5983333388964335,
+  "ema_judge_accuracy": 0.6083333206673464,
+  "per_class": {
+    "head": 0.03500000014901161,
+    "helmet": 0.8999999761581421,
+    "vest": 0.8899999856948853
+  }
+}

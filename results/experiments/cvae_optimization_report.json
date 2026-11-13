@@ -1,0 +1,240 @@
+{
+  "model_id": "cvae",
+  "timestamp": "2026-11-10 10:54:49",
+  "baseline": {
+    "recon": {
+      "mse": 0.007332805988832996,
+      "mae": 0.05781331157471102,
+      "psnr": 22.119162463828136,
+      "ssim": 0.6778109732427096,
+      "active_units": 128
+    },
+    "judge_tau_1.0": {
+      "mean_accuracy": 0.5966666666666667,
+      "per_class": {
+        "head": 0.66,
+        "helmet": 0.41,
+        "vest": 0.72
+      }
+    },
+    "judge_tau_0.7": {
+      "mean_accuracy": 0.68,
+      "per_class": {
+        "head": 0.94,
+        "helmet": 0.46,
+        "vest": 0.64
+      }
+    },
+    "judge_tau_0.6": {
+      "mean_accuracy": 0.6566666666666666,
+      "per_class": {
+        "head": 0.93,
+        "helmet": 0.4,
+        "vest": 0.64
+      }
+    }
+  },
+  "experiments": [
+    {
+      "name": "Exp 1: Edge-Preserving L1+MSE (beta=0.1)",
+      "beta": 0.1,
+      "l1_w": 0.25,
+      "elapsed_sec": 347.18494725227356,
+      "test_recon": {
+        "mse": 0.00742998607366692,
+        "mae": 0.05758690326719692,
+        "psnr": 22.100980550050735,
+        "ssim": 0.678812607338554,
+        "active_units": 128
+      },
+      "judge_fidelity": {
+        "tau_1.0": {
+          "mean_accuracy": 0.6133333333333333,
+          "per_class": {
+            "head": 0.59,
+            "helmet": 0.55,
+            "vest": 0.7
+          }
+        },
+        "tau_0.7": {
+          "mean_accuracy": 0.6866666666666666,
+          "per_class": {
+            "head": 0.83,
+            "helmet": 0.47,
+            "vest": 0.76
+          }
+        },
+        "tau_0.6": {
+          "mean_accuracy": 0.66,
+          "per_class": {
+            "head": 0.95,
+            "helmet": 0.27,
+            "vest": 0.76
+          }
+        }
+      },
+      "composite_score": 71.64717653074206
+    },
+    {
+      "name": "Exp 2: Balanced Composite (beta=0.5)",
+      "beta": 0.5,
+      "l1_w": 0.2,
+      "elapsed_sec": 379.4553952217102,
+      "test_recon": {
+        "mse": 0.007349805174319619,
+        "mae": 0.057429357906680946,
+        "psnr": 22.133393634306756,
+        "ssim": 0.6780346632003784,
+        "active_units": 128
+      },
+      "judge_fidelity": {
+        "tau_1.0": {
+          "mean_accuracy": 0.6033333333333334,
+          "per_class": {
+            "head": 0.63,
+            "helmet": 0.47,
+            "vest": 0.71
+          }
+        },
+        "tau_0.7": {
+          "mean_accuracy": 0.6766666666666666,
+          "per_class": {
+            "head": 0.9,
+            "helmet": 0.33,
+            "vest": 0.8
+          }
+        },
+        "tau_0.6": {
+          "mean_accuracy": 0.6666666666666666,
+          "per_class": {
+            "head": 0.93,
+            "helmet": 0.32,
+            "vest": 0.75
+          }
+        }
+      },
+      "composite_score": 71.24813112495396
+    },
+    {
+      "name": "Exp 3: Structured ELBO (beta=1.0)",
+      "beta": 1.0,
+      "l1_w": 0.15,
+      "elapsed_sec": 353.9222083091736,
+      "test_recon": {
+        "mse": 0.0073152865280510584,
+        "mae": 0.05749336766128085,
+        "psnr": 22.13057697133014,
+        "ssim": 0.6756765277762162,
+        "active_units": 128
+      },
+      "judge_fidelity": {
+        "tau_1.0": {
+          "mean_accuracy": 0.6366666666666667,
+          "per_class": {
+            "head": 0.74,
+            "helmet": 0.5,
+            "vest": 0.67
+          }
+        },
+        "tau_0.7": {
+          "mean_accuracy": 0.64,
+          "per_class": {
+            "head": 0.89,
+            "helmet": 0.32,
+            "vest": 0.71
+          }
+        },
+        "tau_0.6": {
+          "mean_accuracy": 0.6466666666666666,
+          "per_class": {
+            "head": 0.92,
+            "helmet": 0.33,
+            "vest": 0.69
+          }
+        }
+      },
+      "composite_score": 69.70094649982823
+    },
+    {
+      "name": "Exp 4: High-Reg Latent (beta=2.0)",
+      "beta": 2.0,
+      "l1_w": 0.1,
+      "elapsed_sec": 331.4429519176483,
+      "test_recon": {
+        "mse": 0.0074490119176947416,
+        "mae": 0.05886142369739613,
+        "psnr": 21.97170873535307,
+        "ssim": 0.6663704639986942,
+        "active_units": 128
+      },
+      "judge_fidelity": {
+        "tau_1.0": {
+          "mean_accuracy": 0.5633333333333334,
+          "per_class": {
+            "head": 0.68,
+            "helmet": 0.41,
+            "vest": 0.6
+          }
+        },
+        "tau_0.7": {
+          "mean_accuracy": 0.64,
+          "per_class": {
+            "head": 0.93,
+            "helmet": 0.38,
+            "vest": 0.61
+          }
+        },
+        "tau_0.6": {
+          "mean_accuracy": 0.6366666666666667,
+          "per_class": {
+            "head": 0.97,
+            "helmet": 0.31,
+            "vest": 0.63
+          }
+        }
+      },
+      "composite_score": 69.27521379286986
+    }
+  ],
+  "best_experiment": {
+    "name": "Exp 1: Edge-Preserving L1+MSE (beta=0.1)",
+    "beta": 0.1,
+    "l1_w": 0.25,
+    "elapsed_sec": 347.18494725227356,
+    "test_recon": {
+      "mse": 0.00742998607366692,
+      "mae": 0.05758690326719692,
+      "psnr": 22.100980550050735,
+      "ssim": 0.678812607338554,
+      "active_units": 128
+    },
+    "judge_fidelity": {
+      "tau_1.0": {
+        "mean_accuracy": 0.6133333333333333,
+        "per_class": {
+          "head": 0.59,
+          "helmet": 0.55,
+          "vest": 0.7
+        }
+      },
+      "tau_0.7": {
+        "mean_accuracy": 0.6866666666666666,
+        "per_class": {
+          "head": 0.83,
+          "helmet": 0.47,
+          "vest": 0.76
+        }
+      },
+      "tau_0.6": {
+        "mean_accuracy": 0.66,
+        "per_class": {
+          "head": 0.95,
+          "helmet": 0.27,
+          "vest": 0.76
+        }
+      }
+    },
+    "composite_score": 71.64717653074206
+  },
+  "optimal_checkpoint": "checkpoints/optimized/cvae/cvae_optimized.pt"
+}

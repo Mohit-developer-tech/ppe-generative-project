@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-11-09T16:59:43.147202",
+  "model": "Policy Transformer (DistilBERT)",
+  "best_experiment": "Exp 2: Full Unfreeze + LabelSmooth (lr=3e-5, 8 ep)",
+  "baseline_test_macro_f1": 0.6797258297258297,
+  "optimized_test_macro_f1": 0.884917327145249,
+  "baseline_test_acc": 0.6853932584269663,
+  "optimized_test_acc": 0.8764044943820225,
+  "baseline_negation_acc": 0.07692307692307693,
+  "optimized_negation_acc": 0.6153846153846154,
+  "optimal_temperature": 0.4890722334384918,
+  "calibrated_ece": 0.06260311503088874,
+  "experiments": [
+    {
+      "name": "Baseline (Frozen 3L, lr=5e-5, 4 ep)",
+      "5seed_test_f1": 0.5948669131595962,
+      "best_seed_test_f1": 0.6797258297258297,
+      "best_seed_test_acc": 0.6853932584269663,
+      "negation_acc": 0.07692307692307693,
+      "ece_cal": 0.2796514188305715
+    },
+    {
+      "name": "Exp 1: Full Unfreeze + Cosine (lr=2e-5, 8 ep)",
+      "5seed_test_f1": 0.7554997779909459,
+      "best_seed_test_f1": 0.750164825458943,
+      "best_seed_test_acc": 0.7528089887640449,
+      "negation_acc": 0.23076923076923078,
+      "ece_cal": 0.2292508864670657
+    },
+    {
+      "name": "Exp 2: Full Unfreeze + LabelSmooth (lr=3e-5, 8 ep)",
+      "5seed_test_f1": 0.857768381763055,
+      "best_seed_test_f1": 0.884917327145249,
+      "best_seed_test_acc": 0.8764044943820225,
+      "negation_acc": 0.6153846153846154,
+      "ece_cal": 0.06260311503088874
+    },
+    {
+      "name": "Exp 3: Full Unfreeze + High Epochs (lr=2e-5, 10 ep)",
+      "5seed_test_f1": 0.8124147810016816,
+      "best_seed_test_f1": 0.8097842028074588,
+      "best_seed_test_acc": 0.8089887640449438,
+      "negation_acc": 0.38461538461538464,
+      "ece_cal": 0.07980299397800746
+    }
+  ]
+}

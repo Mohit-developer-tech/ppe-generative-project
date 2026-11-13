@@ -1,14 +1,14 @@
 {
-  "mean_psnr_diffusion": 5.405325913335894,
-  "mean_psnr_regression": 21.44556103553473,
-  "mean_ssim_diffusion": 0.0034211522783400344,
-  "mean_ssim_regression": 0.7605827889343103,
-  "judge_accuracy_restored": 0.0,
-  "judge_accuracy_degraded": 0.8688888888888887,
-  "judge_accuracy_regression": 0.8744444444444442,
-  "overall_flip_rate": 0.9499999999999996,
-  "safety_critical_flip_rate": 1.0,
-  "held_out_psnr": 5.405559662996573,
-  "held_out_judge_acc": 0.0,
-  "sampling_latency_ms": 528.4785787264506
+  "mean_psnr_diffusion": 17.15957826102906,
+  "mean_psnr_regression": 29.816403914768443,
+  "mean_ssim_diffusion": 0.504510613694787,
+  "mean_ssim_regression": 0.8782668263912199,
+  "judge_accuracy_restored": 0.329,
+  "judge_accuracy_degraded": 0.8906666666666666,
+  "judge_accuracy_regression": 0.993,
+  "overall_flip_rate": 0.6599999999999999,
+  "safety_critical_flip_rate": 0.6663282571912014,
+  "held_out_psnr": 16.220516800743045,
+  "held_out_judge_acc": 0.28833333333333333,
+  "sampling_latency_ms": 525.408550898234
 }

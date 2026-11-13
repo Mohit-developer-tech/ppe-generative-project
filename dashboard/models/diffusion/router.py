@@ -162,12 +162,70 @@ def load_diffusion_artifacts() -> bool:
     return True
 
 
-def pil_to_base64(img: Image.Image) -> str:
-    """Convert PIL image to base64 data URI."""
+def pil_to_base64(img: Image.Image, upscale: int = 256, sharpen: bool = False) -> str:
+    """Convert PIL image to crisp base64 data URI with Lanczos-4 upscaling and edge preservation."""
+    import cv2
+    arr = np.array(img.convert("RGB"))
+    if upscale and upscale != arr.shape[0]:
+        up = cv2.resize(arr, (upscale, upscale), interpolation=cv2.INTER_LANCZOS4)
+        if sharpen:
+            blur1 = cv2.GaussianBlur(up, (0, 0), sigmaX=1.0)
+            blur2 = cv2.GaussianBlur(up, (0, 0), sigmaX=2.5)
+            fine = cv2.subtract(up, blur1)
+            coarse = cv2.subtract(blur1, blur2)
+            sharp = cv2.addWeighted(up, 1.0, fine, 1.6, 0)
+            sharp = np.clip(cv2.addWeighted(sharp, 1.0, coarse, 0.8, 0), 0, 255).astype(np.uint8)
+            img = Image.fromarray(sharp)
+        else:
+            img = Image.fromarray(up)
+
     buf = io.BytesIO()
     img.save(buf, format="PNG")
     b64_str = base64.b64encode(buf.getvalue()).decode("utf-8")
     return f"data:image/png;base64,{b64_str}"
+
+
+def sample_ddim_trajectory(model, degraded, schedule, steps=20, device=device):
+    """Run DDIM sampling while recording 4 intermediate step frames for step-by-step restoration visualization."""
+    model.eval()
+    bs = degraded.size(0)
+    step_indices = np.linspace(0, schedule.timesteps - 1, steps, dtype=int)
+    step_indices = np.flip(step_indices)
+    x = torch.randn_like(degraded).to(device)
+
+    save_milestones = set([0, max(1, steps // 3), max(2, (2 * steps) // 3), steps - 1])
+    snapshots = []
+
+    for i, t_idx in enumerate(step_indices):
+        prev_t_idx = step_indices[i + 1] if i + 1 < len(step_indices) else -1
+        t = torch.full((bs,), int(t_idx), device=device, dtype=torch.long)
+        eps_pred = model(x, degraded, t)
+
+        abar_t = schedule._extract(schedule.alphas_cumprod, t, x.shape)
+        if prev_t_idx >= 0:
+            t_prev = torch.full((bs,), int(prev_t_idx), device=device, dtype=torch.long)
+            abar_prev = schedule._extract(schedule.alphas_cumprod, t_prev, x.shape)
+        else:
+            abar_prev = torch.ones_like(abar_t)
+
+        x0_pred = (x - torch.sqrt(1.0 - abar_t) * eps_pred) / torch.sqrt(abar_t)
+        x0_pred = torch.clamp(x0_pred, -1.0, 1.0)
+        dir_xt = torch.sqrt(1.0 - abar_prev) * eps_pred
+        x = torch.sqrt(abar_prev) * x0_pred + dir_xt
+
+        if i in save_milestones:
+            snap_01 = torch.clamp((x0_pred + 1.0) / 2.0, 0.0, 1.0).cpu()
+            snap_pil = Image.fromarray((snap_01[0].permute(1, 2, 0).numpy() * 255.0).round().astype(np.uint8))
+            pct = int((i + 1) / steps * 100)
+            snapshots.append({
+                "step_index": i + 1,
+                "percentage": pct,
+                "title": f"Step {i+1}/{steps} ({pct}% Denoised)",
+                "image_b64": pil_to_base64(snap_pil, upscale=256, sharpen=False)
+            })
+
+    final_01 = torch.clamp((x + 1.0) / 2.0, 0.0, 1.0).cpu()
+    return final_01, snapshots
 
 
 def classify_image(img_01: torch.Tensor) -> Dict[str, Any]:
@@ -206,7 +264,7 @@ def get_diffusion_info():
     """Return Model 4 (Diffusion Restoration) specification and registry metadata."""
     load_diffusion_artifacts()
     info = get_model_info("diffusion")
-    has_weights = (RESULTS_DIR / "diffusion_best.pt").exists()
+    has_weights = (ARTIFACTS_DIR / "diffusion_best.pt").exists() or (RESULTS_DIR / "diffusion_best.pt").exists()
     return {
         "model_id": "diffusion",
         "name": info["name"],
@@ -330,12 +388,11 @@ def restore_crop(
     # Map to [-1, 1]
     deg_m11 = (deg_tensor_01.to(device) * 2.0) - 1.0
 
-    # 3. Restore using DDIM
+    # 3. Restore using DDIM with Step Trajectory Tracking
     t_start = time.time()
     steps = min(max(5, ddim_steps), 100)
     with torch.no_grad():
-        restored_m11 = sample_ddim(diffusion_model, deg_m11, diffusion_schedule, steps=steps, device=device)
-        restored_01 = torch.clamp((restored_m11 + 1.0) / 2.0, 0.0, 1.0).cpu()
+        restored_01, cleanup_steps = sample_ddim_trajectory(diffusion_model, deg_m11, diffusion_schedule, steps=steps, device=device)
 
         # Regression Baseline
         reg_m11 = regression_model(deg_m11)
@@ -366,10 +423,11 @@ def restore_crop(
 
     return {
         "status": "success",
-        "clean_b64": pil_to_base64(clean_im_pil),
-        "degraded_b64": pil_to_base64(deg_pil),
-        "restored_b64": pil_to_base64(restored_pil),
-        "regression_b64": pil_to_base64(reg_pil),
+        "clean_b64": pil_to_base64(clean_im_pil, upscale=256, sharpen=False),
+        "degraded_b64": pil_to_base64(deg_pil, upscale=256, sharpen=False),
+        "restored_b64": pil_to_base64(restored_pil, upscale=256, sharpen=True),
+        "regression_b64": pil_to_base64(reg_pil, upscale=256, sharpen=False),
+        "cleanup_steps": cleanup_steps,
         "degradation_applied": degradation_type,
         "severity": severity,
         "ddim_steps": steps,

@@ -123,13 +123,14 @@ load_autoencoder_artifacts()
 
 
 def tensor_to_base64_png(tensor: torch.Tensor) -> str:
-    """Convert a PyTorch tensor (C, H, W) in [0, 1] to a base64-encoded PNG string."""
+    """Convert a PyTorch tensor (C, H, W) in [0, 1] to a base64-encoded PNG data URL string."""
     arr = tensor.detach().cpu().clamp(0.0, 1.0).permute(1, 2, 0).numpy()
     uint8_arr = (arr * 255.0).round().astype(np.uint8)
     pil_img = Image.fromarray(uint8_arr, mode="RGB")
     buffer = io.BytesIO()
     pil_img.save(buffer, format="PNG")
-    return base64.b64encode(buffer.getvalue()).decode("utf-8")
+    b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    return f"data:image/png;base64,{b64}"
 
 
 def generate_heatmap_base64(orig_tensor: torch.Tensor, recon_tensor: torch.Tensor) -> str:
@@ -202,10 +203,12 @@ def predict_crop(
     except Exception as exc:
         raise HTTPException(status_code=400, detail=f"Failed to decode image: {str(exc)}")
 
-    # Apply crop box if provided
+    # Apply crop box if provided (only for full site uploads, never sub-crop 64x64 test samples or pre-cropped images)
+    orig_w, orig_h = pil_img.size
+    is_pre_cropped = (getattr(file, "filename", "") == "user_crop.png")
+    is_sample_crop = (orig_w <= 64 and orig_h <= 64)
     has_crop = all(isinstance(v, (int, float)) for v in [crop_x, crop_y, crop_w, crop_h])
-    if has_crop and crop_w > 0 and crop_h > 0:
-        orig_w, orig_h = pil_img.size
+    if not is_pre_cropped and not is_sample_crop and has_crop and crop_w > 0 and crop_h > 0:
         cx, cy, cw, ch = int(crop_x), int(crop_y), int(crop_w), int(crop_h)
         cx = max(0, min(cx, orig_w - 1))
         cy = max(0, min(cy, orig_h - 1))
@@ -213,17 +216,10 @@ def predict_crop(
         ch = max(1, min(ch, orig_h - cy))
         pil_img = pil_img.crop((cx, cy, cx + cw, cy + ch))
 
-    # Retain high-resolution display crop (up to 384x384) so the user's input image is never blurred
-    disp_max = 384
-    w_scale = min(1.0, disp_max / max(pil_img.width, pil_img.height, 1))
-    disp_w = max(64, int(pil_img.width * w_scale))
-    disp_h = max(64, int(pil_img.height * w_scale))
-    disp_orig = pil_img.resize((disp_w, disp_h), Image.Resampling.LANCZOS)
-    orig_disp_np = np.array(disp_orig, dtype=np.float32) / 255.0
-
     # Resize to 64x64 LANCZOS for autoencoder inference
     pil_64 = pil_img.resize((64, 64), Image.Resampling.LANCZOS)
     x_tensor = transforms.ToTensor()(pil_64).unsqueeze(0).to(device)
+    orig_64_np = np.array(pil_64, dtype=np.float32) / 255.0
 
     # Inference under torch.no_grad()
     with torch.no_grad():
@@ -232,31 +228,37 @@ def predict_crop(
     recon_64_np = np.clip(recon_tensor.squeeze(0).cpu().permute(1, 2, 0).numpy(), 0.0, 1.0)
     z_vector = z_tensor.squeeze(0).cpu().numpy().tolist()
 
-    # Upscale raw reconstruction to display resolution matching the input crop
-    recon_disp_pil = Image.fromarray((recon_64_np * 255).astype(np.uint8)).resize((disp_w, disp_h), Image.Resampling.LANCZOS)
-    recon_disp_np = np.array(recon_disp_pil, dtype=np.float32) / 255.0
+    # True Authentic Model Metrics (computed in 64x64 domain matching model design)
+    diff_raw = orig_64_np - recon_64_np
+    per_img_mse = float(np.mean(diff_raw ** 2))
+    per_img_mae = float(np.mean(np.abs(diff_raw)))
+    per_img_psnr = float(sk_psnr(orig_64_np, recon_64_np, data_range=1.0))
+    per_img_ssim = float(sk_ssim(orig_64_np, recon_64_np, data_range=1.0, channel_axis=2))
 
-    # High-Fidelity Photorealistic Reconstruction (Residual Structural Fusion, SSIM > 0.90)
-    import scipy.ndimage
-    orig_smooth = scipy.ndimage.gaussian_filter(orig_disp_np, sigma=(1.2, 1.2, 0))
-    orig_high_freq = orig_disp_np - orig_smooth
-    photoreal_disp_np = np.clip(recon_disp_np + 1.0 * orig_high_freq, 0.0, 1.0)
-    photoreal_tensor = torch.from_numpy(photoreal_disp_np).permute(2, 0, 1).float()
-    recon_disp_tensor = torch.from_numpy(recon_disp_np).permute(2, 0, 1).float()
-    orig_disp_tensor = torch.from_numpy(orig_disp_np).permute(2, 0, 1).float()
+    photo_mse = per_img_mse
+    photo_mae = per_img_mae
+    photo_psnr = per_img_psnr
+    photo_ssim = per_img_ssim
 
-    diff_sq = (orig_disp_np - recon_disp_np) ** 2
-    per_img_mse = float(np.mean(diff_sq))
-    per_img_mae = float(np.mean(np.abs(orig_disp_np - recon_disp_np)))
-    per_img_psnr = float(sk_psnr(orig_disp_np, recon_disp_np, data_range=1.0))
-    per_img_ssim = float(sk_ssim(orig_disp_np, recon_disp_np, data_range=1.0, channel_axis=2))
+    # High-Clarity Edge Enhancement (Lanczos-4 Multi-Scale Sharpening)
+    import cv2
+    recon_u8 = (recon_64_np * 255.0).astype(np.uint8)
+    recon_256 = cv2.resize(recon_u8, (256, 256), interpolation=cv2.INTER_LANCZOS4)
+    blur1 = cv2.GaussianBlur(recon_256, (0, 0), sigmaX=1.0)
+    blur2 = cv2.GaussianBlur(recon_256, (0, 0), sigmaX=3.0)
+    fine = cv2.subtract(recon_256, blur1)
+    coarse = cv2.subtract(blur1, blur2)
+    sharp_256 = cv2.addWeighted(recon_256, 1.0, fine, 2.2, 0)
+    sharp_256 = np.clip(cv2.addWeighted(sharp_256, 1.0, coarse, 1.1, 0), 0, 255).astype(np.uint8)
+    recon_sharp_disp_pil = Image.fromarray(sharp_256)
 
-    diff_photo = (orig_disp_np - photoreal_disp_np) ** 2
-    photo_mse = float(np.mean(diff_photo))
-    photo_mae = float(np.mean(np.abs(orig_disp_np - photoreal_disp_np)))
-    photo_psnr = float(sk_psnr(orig_disp_np, photoreal_disp_np, data_range=1.0))
-    photo_ssim = float(sk_ssim(orig_disp_np, photoreal_disp_np, data_range=1.0, channel_axis=2))
+    # High-Resolution Display Rendering
+    orig_disp_pil = pil_img.resize((256, 256), Image.Resampling.LANCZOS)
+    recon_raw_disp_pil = Image.fromarray(recon_u8).resize((256, 256), Image.Resampling.NEAREST)
 
+    orig_disp_tensor = transforms.ToTensor()(orig_disp_pil)
+    recon_disp_tensor = transforms.ToTensor()(recon_raw_disp_pil)
+    photoreal_tensor = transforms.ToTensor()(recon_sharp_disp_pil)
     # SVM Classification on Scaled Latents
     z_np = np.array(z_vector).reshape(1, -1)
     z_scaled = scaler_model.transform(z_np)
@@ -309,6 +311,13 @@ def predict_crop(
             "reconstruction_sharpened_base64": tensor_to_base64_png(photoreal_tensor),
             "reconstruction_photoreal_base64": tensor_to_base64_png(photoreal_tensor)
         },
+        "original_b64": tensor_to_base64_png(orig_disp_tensor),
+        "original_crop_b64": tensor_to_base64_png(orig_disp_tensor),
+        "reconstruction_b64": tensor_to_base64_png(recon_disp_tensor),
+        "reconstruction_photoreal_b64": tensor_to_base64_png(photoreal_tensor),
+        "reconstruction_sharpened_b64": tensor_to_base64_png(photoreal_tensor),
+        "reconstruction_photoreal_base64": tensor_to_base64_png(photoreal_tensor),
+        "scores": class_scores,
         "latent": {
             "vector": z_vector,
             "dimension": len(z_vector),

@@ -25,7 +25,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from fastapi import FastAPI, File, UploadFile, Form, HTTPException, status
+from fastapi import FastAPI, File, UploadFile, Form, HTTPException, status, Request
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -129,6 +129,15 @@ app = FastAPI(
     version="2.0.0"
 )
 
+# Aggressive cache prevention so browser always receives fresh JS/CSS/API updates
+@app.middleware("http")
+async def add_no_cache_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
+
 # Load ML artifacts at startup
 load_artifacts()
 
@@ -203,10 +212,10 @@ def get_health():
 @app.post("/api/predict")
 def predict_crop(
     file: UploadFile = File(...),
-    crop_x: Optional[int] = Form(None),
-    crop_y: Optional[int] = Form(None),
-    crop_w: Optional[int] = Form(None),
-    crop_h: Optional[int] = Form(None)
+    crop_x: Optional[float] = Form(None),
+    crop_y: Optional[float] = Form(None),
+    crop_w: Optional[float] = Form(None),
+    crop_h: Optional[float] = Form(None)
 ):
     """
     Inference pipeline:
@@ -250,7 +259,9 @@ def predict_crop(
 
     # 2. Crop selection if coordinates provided
     orig_w, orig_h = raw_img.size
-    if all(isinstance(v, (int, float)) for v in [crop_x, crop_y, crop_w, crop_h]):
+    is_pre_cropped = (getattr(file, "filename", "") == "user_crop.png")
+    is_sample_crop = (orig_w <= 64 and orig_h <= 64)
+    if not is_pre_cropped and not is_sample_crop and all(isinstance(v, (int, float)) for v in [crop_x, crop_y, crop_w, crop_h]):
         if crop_w > 0 and crop_h > 0:
             cx = int(max(0, min(orig_w, crop_x)))
             cy = int(max(0, min(orig_h, crop_y)))
@@ -262,18 +273,11 @@ def predict_crop(
     else:
         cropped_img = raw_img
 
-    # Retain high-resolution display crop (up to 384x384) so the user's input image is never blurred
-    disp_max = 384
-    w_scale = min(1.0, disp_max / max(cropped_img.width, cropped_img.height, 1))
-    disp_w = max(64, int(cropped_img.width * w_scale))
-    disp_h = max(64, int(cropped_img.height * w_scale))
-    disp_orig = cropped_img.resize((disp_w, disp_h), Image.Resampling.LANCZOS)
-    orig_disp_np = np.array(disp_orig, dtype=np.float32) / 255.0
-
-    # 3. Preprocess identically to training: 64x64 LANCZOS, ToTensor in [0, 1]
+    # 3. Model input patch: 64x64 LANCZOS, ToTensor in [0, 1]
     img_64 = cropped_img.resize((64, 64), Image.Resampling.LANCZOS)
     tensor_transform = transforms.ToTensor()
     x = tensor_transform(img_64).unsqueeze(0).to(MODELS["device"])
+    orig_64_np = np.array(img_64, dtype=np.float32) / 255.0
 
     # 4. Autoencoder Forward Pass
     model = MODELS["model"]
@@ -288,30 +292,33 @@ def predict_crop(
     recon_64_np = np.clip(recon[0].cpu().permute(1, 2, 0).numpy(), 0.0, 1.0)
     z_np = z.cpu().numpy()  # (1, 256)
 
-    # Upscale reconstruction to display resolution matching the input crop
-    recon_disp_pil = Image.fromarray((recon_64_np * 255).astype(np.uint8)).resize((disp_w, disp_h), Image.Resampling.LANCZOS)
-    recon_disp_np = np.array(recon_disp_pil, dtype=np.float32) / 255.0
-
-    # High-Fidelity Photorealistic Reconstruction (Residual Structural Fusion, SSIM > 0.90)
-    import scipy.ndimage
-    orig_smooth = scipy.ndimage.gaussian_filter(orig_disp_np, sigma=(1.2, 1.2, 0))
-    orig_high_freq = orig_disp_np - orig_smooth
-    photoreal_disp_np = np.clip(recon_disp_np + 1.0 * orig_high_freq, 0.0, 1.0)
-
-    # 5. Reconstruction Metrics
-    diff_raw = orig_disp_np - recon_disp_np
+    # 5. True Authentic Model Metrics (computed in 64x64 domain matching model design)
+    diff_raw = orig_64_np - recon_64_np
     mse_val = float(np.mean(diff_raw ** 2))
     mae_val = float(np.mean(np.abs(diff_raw)))
-    psnr_val = float(psnr(orig_disp_np, recon_disp_np, data_range=1.0))
-    ssim_val = float(ssim(orig_disp_np, recon_disp_np, data_range=1.0, channel_axis=2))
+    psnr_val = float(psnr(orig_64_np, recon_64_np, data_range=1.0))
+    ssim_val = float(ssim(orig_64_np, recon_64_np, data_range=1.0, channel_axis=2))
 
-    diff_photo = orig_disp_np - photoreal_disp_np
-    mse_photo = float(np.mean(diff_photo ** 2))
-    mae_photo = float(np.mean(np.abs(diff_photo)))
-    psnr_photo = float(psnr(orig_disp_np, photoreal_disp_np, data_range=1.0))
-    ssim_photo = float(ssim(orig_disp_np, photoreal_disp_np, data_range=1.0, channel_axis=2))
+    # 6. High-Clarity Edge Enhancement (Lanczos-4 Multi-Scale Sharpening)
+    import cv2
+    recon_u8 = (recon_64_np * 255.0).astype(np.uint8)
+    recon_256 = cv2.resize(recon_u8, (256, 256), interpolation=cv2.INTER_LANCZOS4)
+    blur1 = cv2.GaussianBlur(recon_256, (0, 0), sigmaX=1.0)
+    blur2 = cv2.GaussianBlur(recon_256, (0, 0), sigmaX=3.0)
+    fine = cv2.subtract(recon_256, blur1)
+    coarse = cv2.subtract(blur1, blur2)
+    sharp_256 = cv2.addWeighted(recon_256, 1.0, fine, 2.2, 0)
+    sharp_256 = np.clip(cv2.addWeighted(sharp_256, 1.0, coarse, 1.1, 0), 0, 255).astype(np.uint8)
+    recon_sharp_disp_pil = Image.fromarray(sharp_256)
 
-    # 6. Downstream SVM Classification
+    # 7. High-Resolution Display Rendering (Preserves Input Clarity & Structural Boundaries)
+    orig_disp_pil = cropped_img.resize((256, 256), Image.Resampling.LANCZOS)
+    recon_raw_disp_pil = Image.fromarray(recon_u8).resize((256, 256), Image.Resampling.NEAREST)
+    heatmap_64 = np.clip(np.abs(diff_raw), 0.0, 1.0)
+    heatmap_256 = cv2.resize((heatmap_64 * 255.0).astype(np.uint8), (256, 256), interpolation=cv2.INTER_NEAREST)
+    heatmap_disp_pil = Image.fromarray(heatmap_256)
+
+    # 8. Downstream SVM Classification
     if scaler is not None and svm is not None:
         z_scaled = scaler.transform(z_np)
         pred_idx = int(svm.predict(z_scaled)[0])
@@ -326,7 +333,7 @@ def predict_crop(
         pred_class = "unknown"
         class_scores = {c: 0.0 for c in class_names}
 
-    # 7. 2D PCA Projection
+    # 9. 2D PCA Projection
     if pca_2d is not None:
         pca_coords = [round(float(v), 4) for v in pca_2d.transform(z_np)[0]]
     else:
@@ -342,18 +349,18 @@ def predict_crop(
         "scores": class_scores,
         "score_type": "relative score, uncalibrated",
         "metrics": {
-            "mse": round(mse_photo, 6),
-            "mae": round(mae_photo, 4),
-            "psnr": round(psnr_photo, 2),
-            "psnr_db": round(psnr_photo, 2),
-            "ssim": round(ssim_photo, 4)
+            "mse": round(mse_val, 6),
+            "mae": round(mae_val, 4),
+            "psnr": round(psnr_val, 2),
+            "psnr_db": round(psnr_val, 2),
+            "ssim": round(ssim_val, 4)
         },
         "metrics_photoreal": {
-            "mse": round(mse_photo, 6),
-            "mae": round(mae_photo, 4),
-            "psnr": round(psnr_photo, 2),
-            "psnr_db": round(psnr_photo, 2),
-            "ssim": round(ssim_photo, 4)
+            "mse": round(mse_val, 6),
+            "mae": round(mae_val, 4),
+            "psnr": round(psnr_val, 2),
+            "psnr_db": round(psnr_val, 2),
+            "ssim": round(ssim_val, 4)
         },
         "metrics_raw": {
             "mse": round(mse_val, 6),
@@ -362,12 +369,12 @@ def predict_crop(
             "psnr_db": round(psnr_val, 2),
             "ssim": round(ssim_val, 4)
         },
-        "original_crop_b64": pil_to_base64_png(disp_orig),
-        "original_b64": pil_to_base64_png(disp_orig),
-        "reconstruction_b64": numpy_to_base64_png(recon_disp_np),
-        "reconstruction_sharpened_b64": numpy_to_base64_png(photoreal_disp_np),
-        "reconstruction_photoreal_b64": numpy_to_base64_png(photoreal_disp_np),
-        "error_heatmap_b64": numpy_to_base64_png(np.clip(np.abs(diff_raw), 0.0, 1.0)),
+        "original_crop_b64": pil_to_base64_png(orig_disp_pil),
+        "original_b64": pil_to_base64_png(orig_disp_pil),
+        "reconstruction_b64": pil_to_base64_png(recon_raw_disp_pil),
+        "reconstruction_sharpened_b64": pil_to_base64_png(recon_sharp_disp_pil),
+        "reconstruction_photoreal_b64": pil_to_base64_png(recon_sharp_disp_pil),
+        "error_heatmap_b64": pil_to_base64_png(heatmap_disp_pil),
         "latent_vector": [round(float(v), 4) for v in z_np[0]],
         "pca_2d": pca_coords,
         "pca_coords": pca_coords

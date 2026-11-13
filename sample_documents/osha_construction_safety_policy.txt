@@ -1,0 +1,29 @@
+# OSHA 29 CFR 1926 - CONSTRUCTION SAFETY COMPLIANCE POLICY
+# DIVISION OF INDUSTRIAL SAFETY & HEALTH - PPE MANDATE 2026
+
+1. GENERAL REQUIREMENTS (29 CFR 1926.100 - HEAD PROTECTION)
+Employees working in areas where there is a possible danger of head injury from impact, or from falling or flying objects, or from electrical shock and burns, shall be protected by protective helmets.
+All helmets must comply with ANSI/ISEA Z89.1-2014 Type I or Type II industrial head protection standards.
+Hard hats must be worn at all times by all personnel, subcontractors, and visitors entering the active construction zone beyond the site perimeter gate.
+Exceptions to hard hat wear are strictly limited to operators inside fully enclosed, ROPS-certified cab machinery with windows closed, or inside designated temporary construction trailers.
+
+2. HIGH-VISIBILITY SAFETY APPAREL (29 CFR 1926.200 & 1926.201 - TORSO PROTECTION)
+All workers exposed to public vehicular traffic, earthmoving machinery, or mobile heavy equipment must wear high-visibility safety apparel complying with ANSI/ISEA 107-2020 Performance Class 2 or Class 3.
+High-visibility vests, jackets, or shirts must incorporate retroreflective material providing 360-degree visibility under daytime and nighttime lighting conditions.
+Flaggers and signal persons stationed near active roadways or crane swing radii must wear Performance Class 3 high-visibility vests at all times.
+
+3. DUAL-PROTECTION PROTOCOL (HEAD AND TORSO MANDATE)
+In all active excavation trenches, crane lift paths, and structural steel erection zones, both protective helmets (hard hats) and high-visibility safety vests are mandatory without exception.
+No person shall enter an excavation deeper than 5 feet without donning an approved ANSI hard hat and high-visibility apparel.
+Failure to wear both hard hat and vest in designated dual-mandate zones constitutes a Class A safety violation subject to immediate site removal.
+
+4. SPECIALIZED AND EYE PROTECTION
+Protective eye and face equipment shall be provided where there is a risk of flying particles, chemical hazards, or molten metal splash.
+Hearing protection devices must be worn whenever ambient noise levels exceed 85 dBA time-weighted average over an 8-hour shift.
+Safety shoes or boots with impact-resistant steel or composite toe caps meeting ASTM F2413 specifications are mandatory across the entire jobsite.
+
+5. NON-COMPLIANCE & EXCEPTION GUIDELINES
+Personnel are not required to wear high-visibility garments while seated inside personal passenger vehicles outside the barricaded work boundary.
+Head protection is not required within administrative office complexes or enclosed lunch break facilities.
+Any damaged, cracked, or chemically compromised PPE must be removed from service and replaced immediately before resuming work.
+

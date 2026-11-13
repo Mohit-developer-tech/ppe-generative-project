@@ -1,0 +1,26 @@
+# FEDERAL MUTCD PART 6D & DOT HIGHWAY SAFETY STANDARD
+# MANDATORY PERSONAL PROTECTIVE APPAREL IN TEMPORARY TRAFFIC CONTROL ZONES
+
+SECTION 1: APPLICABILITY & REGULATORY AUTHORITY
+This compliance standard applies to all transportation agency personnel, utility contractors, and survey crews performing operations within the right-of-way of Federal-aid highways and municipal arterial roads.
+All individuals present within the temporary traffic control (TTC) zone shall be equipped with approved personal protective equipment meeting current Federal Highway Administration (FHWA) guidelines.
+
+SECTION 2: MANDATORY HIGH-VISIBILITY SAFETY APPAREL
+For all daytime and nighttime work activity on highway shoulders or travel lanes, all personnel must wear ANSI/ISEA 107-2020 Class 2 or Class 3 high-visibility safety garments.
+High-visibility vests must feature fluorescent yellow-green or orange-red background material with retroreflective bands placed horizontally and vertically over the torso and shoulders.
+Nighttime flaggers must wear ANSI Class 3 garments consisting of a high-visibility vest or jacket paired with high-visibility retroreflective trousers.
+High-visibility vests shall not be obscured by tool belts, backpacks, or outerwear that lacks retroreflective certification.
+
+SECTION 3: HEAD PROTECTION SPECIFICATIONS
+All highway workers within the drop zone of overhead bridge structures, tree clearing machinery, or paving equipment must wear an approved ANSI Z89.1 Type I industrial hard hat.
+Hard hats must be worn with the brim facing forward and properly adjusted chin straps in high-wind conditions above 25 mph.
+Contractors operating enclosed rollers or asphalt pavers are exempt from wearing hard hats while remaining inside the ROPS-shielded enclosure.
+
+SECTION 4: DUAL COMPLIANCE REQUIREMENTS (VEST & HELMET)
+During active asphalt milling, nighttime lane closure setup, and guardrail installation, both a hard hat and a high-visibility vest must be worn simultaneously by all crew members.
+The safety supervisor shall verify dual PPE compliance before allowing any worker into the active travel lane closure.
+
+SECTION 5: GENERAL SAFETY CONTEXT & EXCEPTIONS
+Routine vehicle refueling inside designated contractor staging yards does not require high-visibility vests if the yard is physically separated from public traffic by concrete Jersey barriers.
+All reflective safety garments that have lost retroreflectivity due to laundering, abrasion, or dirt accumulation must be destroyed and replaced immediately.
+

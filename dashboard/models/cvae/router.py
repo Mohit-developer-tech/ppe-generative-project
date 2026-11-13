@@ -90,11 +90,40 @@ def load_cvae_artifacts() -> bool:
     return True
 
 
-def tensor_to_base64_png(tensor: torch.Tensor) -> str:
-    """Convert tensor [3, H, W] in [0, 1] to base64 PNG data URL."""
+def tensor_to_base64_png(tensor: torch.Tensor, upscale: int = 256, sharpen: bool = True) -> str:
+    """Convert tensor [3, H, W] in [0, 1] to a crisp, high-definition base64 PNG data URL."""
+    import cv2
     arr = tensor.detach().cpu().permute(1, 2, 0).numpy()
-    arr = np.clip(arr * 255.0, 0.0, 255.0).astype(np.uint8)
-    img = Image.fromarray(arr)
+    arr_u8 = np.clip(arr * 255.0, 0.0, 255.0).astype(np.uint8)
+
+    if upscale and upscale != arr_u8.shape[0]:
+        # 1. Percentile contrast normalization per channel to eliminate washed-out haze
+        stretched = np.zeros_like(arr_u8)
+        for c in range(3):
+            p2, p98 = np.percentile(arr_u8[:, :, c], (1.5, 98.5))
+            if p98 > p2 + 8:
+                ch = np.clip((arr_u8[:, :, c] - p2) * 255.0 / (p98 - p2), 0, 255)
+            else:
+                ch = arr_u8[:, :, c]
+            stretched[:, :, c] = ch.astype(np.uint8)
+
+        # 2. Lanczos-4 high-order upsampling
+        up = cv2.resize(stretched, (upscale, upscale), interpolation=cv2.INTER_LANCZOS4)
+
+        if sharpen:
+            # 3. Dual-band unsharp masking to restore high-frequency boundary edges
+            blur1 = cv2.GaussianBlur(up, (0, 0), sigmaX=1.0)
+            blur2 = cv2.GaussianBlur(up, (0, 0), sigmaX=2.5)
+            fine = cv2.subtract(up, blur1)
+            coarse = cv2.subtract(blur1, blur2)
+            sharp = cv2.addWeighted(up, 1.0, fine, 1.8, 0)
+            sharp = np.clip(cv2.addWeighted(sharp, 1.0, coarse, 0.9, 0), 0, 255).astype(np.uint8)
+            img = Image.fromarray(sharp)
+        else:
+            img = Image.fromarray(up)
+    else:
+        img = Image.fromarray(arr_u8)
+
     buffer = io.BytesIO()
     img.save(buffer, format="PNG")
     b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
@@ -192,9 +221,9 @@ class GenerateRequest(BaseModel):
 
 @router.post("/generate")
 def generate_samples(req: GenerateRequest):
-    """Generate conditional samples from the prior."""
+    """Generate conditional samples from the prior with manifold truncation."""
     load_cvae_artifacts()
-    if not is_loaded:
+    if not is_loaded or cvae_model is None:
         raise HTTPException(status_code=503, detail="CVAE model not loaded")
 
     if req.class_name.lower() not in CLASS_NAMES:
@@ -206,10 +235,14 @@ def generate_samples(req: GenerateRequest):
         np.random.seed(req.seed)
 
     cvae_model.eval()
+    tau = float(np.clip(req.temperature, 0.5, 0.95))
     with torch.no_grad():
-        samples = cvae_model.sample(req.num_samples, class_idx=c_idx, temperature=req.temperature, device=device)
+        # Truncated latent sampling focuses on high-density class features, preventing muddy blur
+        z = torch.randn(req.num_samples, cvae_model.latent_dim, device=device) * tau
+        z = torch.clamp(z, -1.8 * tau, 1.8 * tau)
+        samples = cvae_model.decode(z, c_idx)
 
-    data_urls = [tensor_to_base64_png(samples[i]) for i in range(req.num_samples)]
+    data_urls = [tensor_to_base64_png(samples[i], upscale=256, sharpen=True) for i in range(req.num_samples)]
     return {
         "class": req.class_name,
         "temperature": req.temperature,

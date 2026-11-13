@@ -1,0 +1,21 @@
+# GLOBAL INDUSTRIAL MANUFACTURING FACILITY - PPE SAFETY MANDATE
+# STANDARD OPERATING PROCEDURE (SOP) - PLANT OPERATIONS 2026
+
+SECTION 1: PURPOSE AND SCOPE
+This standard operating procedure establishes mandatory personal protective equipment (PPE) requirements for all employees, maintenance technicians, contractors, and visitors operating within manufacturing fabrication bays, assembly lines, and material handling warehouses.
+
+SECTION 2: TORSO PROTECTION AND HIGH-VISIBILITY VEST RULES
+All personnel operating or walking within designated forklift corridors, automated guided vehicle (AGV) zones, and loading docks must wear an approved ANSI Class 2 high-visibility safety vest at all times.
+High-visibility vests must be brightly colored fluorescent yellow-green or orange with silver reflective striping to guarantee contrast against indoor industrial machinery.
+Loose or unzipped vests are strictly prohibited near rotating shafts, conveyor drives, or automated pick-and-place equipment due to entanglement hazards.
+
+SECTION 3: HEAD AND FACE PROTECTION STANDARDS
+Industrial hard hats or bump caps certified to ANSI Z89.1 must be worn in all areas where overhead hoists, automated gantry cranes, or heavy pallet racking are installed.
+Protective safety glasses with side shields meeting ANSI Z87.1 must be donned immediately upon entering any manufacturing or assembly hall.
+Face shields must be worn in conjunction with safety glasses during all grinding, plasma cutting, or battery maintenance tasks.
+
+SECTION 4: COMPLIANCE ENFORCEMENT & EXCEPTIONS
+Personnel working exclusively inside enclosed climate-controlled control rooms, quality assurance laboratories, or administrative office corridors are exempt from high-visibility vest and head protection requirements.
+Failure to comply with mandatory PPE protocols in designated active zones will result in disciplinary safety review and immediate suspension from the facility floor.
+All damaged, cracked, or soiled PPE items must be surrendered to the safety department for immediate complimentary replacement.
+

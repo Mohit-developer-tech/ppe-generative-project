@@ -1,0 +1,31 @@
+{
+  "model_id": "autoencoder",
+  "name": "ConvAE + Calibrated RBF-SVM",
+  "status": "optimized",
+  "latent_dim": 256,
+  "optimal_head_threshold": 0.19,
+  "baseline_test_acc": 0.9190093708165997,
+  "optimized_test_acc": 0.9104417670682731,
+  "baseline_head_recall": 0.6355140186915887,
+  "optimized_head_recall": 0.8504672897196262,
+  "head_recall_lift_pct": 21.495327102803742,
+  "optimized_balanced_acc": 0.8917175482695998,
+  "optimized_macro_f1": 0.838684185804809,
+  "per_class_metrics": {
+    "head": {
+      "precision": 0.56875,
+      "recall": 0.8504672897196262,
+      "f1": 0.6816479400749064
+    },
+    "helmet": {
+      "precision": 0.9401689347724074,
+      "recall": 0.9117178612059158,
+      "f1": 0.925724846944669
+    },
+    "vest": {
+      "precision": 0.9044321329639889,
+      "recall": 0.9129674938832576,
+      "f1": 0.9086797703948513
+    }
+  }
+}

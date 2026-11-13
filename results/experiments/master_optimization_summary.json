@@ -1,0 +1,52 @@
+[
+  {
+    "Model Index": 1,
+    "Model Name": "ConvAE + RBF-SVM",
+    "Paradigm": "Self-Supervised Latent Representation",
+    "Baseline Metric": "MSE: 0.006199, Acc: 91.93%, Head Recall: 63.55%",
+    "Optimized Metric": "Acc: 91.04%, Head Recall: 85.05%, Bal Acc: 89.17%",
+    "Improvement / Lift": "+21.50% Bare-Head Recall, Zero-Leakage Validation Calibration (theta*=0.190)",
+    "Status": "OPTIMIZED & ACTIVE",
+    "Checkpoint": "checkpoints/optimized/autoencoder/svm_model_opt.joblib"
+  },
+  {
+    "Model Index": 2,
+    "Model Name": "Conditional beta-VAE",
+    "Paradigm": "Probabilistic Variational Inference",
+    "Baseline Metric": "MSE: 0.009514, PSNR: 21.19 dB, SSIM: 0.607, Judge: 62.00%",
+    "Optimized Metric": "Active: 128/128, PSNR: 22.12 dB, SSIM: 0.678, Judge (tau=0.7): 68.00%, Head: 94.0%",
+    "Improvement / Lift": "+6.0% Judge Fidelity, +0.071 SSIM, 100% active latent units preserved",
+    "Status": "OPTIMIZED & ACTIVE",
+    "Checkpoint": "checkpoints/optimized/cvae/cvae_optimized.pt"
+  },
+  {
+    "Model Index": 3,
+    "Model Name": "Conditional GAN (DiffAugment)",
+    "Paradigm": "Adversarial Minority Synthesis",
+    "Baseline Metric": "Raw G: 86.8% Fidelity, FID: 134.62, KID: 0.0725",
+    "Optimized Metric": "EMA G: 89.56% Fidelity, p5 Privacy: 0.2637",
+    "Improvement / Lift": "+2.76% Fidelity Lift via EMA shadow weights, strictly zero face memorization",
+    "Status": "OPTIMIZED & ACTIVE",
+    "Checkpoint": "checkpoints/optimized/cgan/cgan_generator_optimized.pt"
+  },
+  {
+    "Model Index": 4,
+    "Model Name": "Conditional Diffusion (DDPM/DDIM)",
+    "Paradigm": "Score-Based Surveillance Restoration",
+    "Baseline Metric": "Unconstrained DDIM: 17.16 dB, Flip Rate: 66.6%",
+    "Optimized Metric": "Regression U-Net: PSNR 29.82 dB, SSIM 0.8783, Judge: 99.30%, Flips: 0.0%",
+    "Improvement / Lift": "Perception-distortion anchor: +12.66 dB PSNR, 0.0% safety hallucinations",
+    "Status": "TRAINED & INTEGRATED",
+    "Checkpoint": "artifacts/diffusion/diffusion_best.pt"
+  },
+  {
+    "Model Index": 5,
+    "Model Name": "Policy Transformer (DistilBERT)",
+    "Paradigm": "Regulatory Compliance NLP & Calibration",
+    "Baseline Metric": "Macro-F1: 67.97%, Acc: 68.54%, Negation: 7.69%, ECE: 27.97%",
+    "Optimized Metric": "Macro-F1: 88.49%, Acc: 87.64%, Negation: 61.54%, ECE: 6.26%",
+    "Improvement / Lift": "+29.00% F1 Lift, +53.85% Negation Accuracy, -21.71% ECE Calibration (T*=0.489)",
+    "Status": "OPTIMIZED & ACTIVE",
+    "Checkpoint": "checkpoints/optimized/policy/policy_classifier.pt"
+  }
+]
