@@ -997,13 +997,13 @@ document.addEventListener('DOMContentLoaded', () => {
               <div>
                 <div class="flex justify-between text-xs mb-1">
                   <span class="font-semibold text-slate-700 dark:text-slate-300">Sampling Temperature (&tau;):</span>
-                  <span id="cvae-temp-val" class="font-mono text-brand-600 font-bold">0.80</span>
+                  <span id="cvae-temp-val" class="font-mono text-brand-600 font-bold">0.70</span>
                 </div>
-                <input type="range" min="0.5" max="1.2" step="0.05" value="0.8" id="cvae-temp-slider" class="w-full accent-brand-600">
+                <input type="range" min="0.5" max="0.95" step="0.05" value="0.70" id="cvae-temp-slider" class="w-full accent-brand-600">
                 <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
-                  <span>0.5 (High Fidelity)</span>
-                  <span>0.8 (Balanced)</span>
-                  <span>1.2 (High Diversity)</span>
+                  <span>0.5 (Focused)</span>
+                  <span>0.70 (Optimal Truncation - Crisp)</span>
+                  <span>0.95 (High Diversity)</span>
                 </div>
               </div>
               <div class="flex gap-2">
@@ -1834,7 +1834,7 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               class_name: selectedClass,
-              temperature: parseFloat(tempSlider ? tempSlider.value : 0.8),
+              temperature: parseFloat(tempSlider ? tempSlider.value : 0.70),
               seed: parseInt(seedInput ? seedInput.value : 42),
               num_samples: 4
             })

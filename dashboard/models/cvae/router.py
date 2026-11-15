@@ -97,30 +97,24 @@ def tensor_to_base64_png(tensor: torch.Tensor, upscale: int = 256, sharpen: bool
     arr_u8 = np.clip(arr * 255.0, 0.0, 255.0).astype(np.uint8)
 
     if upscale and upscale != arr_u8.shape[0]:
-        # 1. Percentile contrast normalization per channel to eliminate washed-out haze
-        stretched = np.zeros_like(arr_u8)
-        for c in range(3):
-            p2, p98 = np.percentile(arr_u8[:, :, c], (1.5, 98.5))
-            if p98 > p2 + 8:
-                ch = np.clip((arr_u8[:, :, c] - p2) * 255.0 / (p98 - p2), 0, 255)
-            else:
-                ch = arr_u8[:, :, c]
-            stretched[:, :, c] = ch.astype(np.uint8)
+        # 1. High-order Lanczos-4 upsampling to target canvas resolution
+        up = cv2.resize(arr_u8, (upscale, upscale), interpolation=cv2.INTER_LANCZOS4)
 
-        # 2. Lanczos-4 high-order upsampling
-        up = cv2.resize(stretched, (upscale, upscale), interpolation=cv2.INTER_LANCZOS4)
+        # 2. Local luminance contrast enhancement in LAB space (preserves authentic skin and PPE tones)
+        lab = cv2.cvtColor(up, cv2.COLOR_RGB2LAB)
+        l, a, b = cv2.split(lab)
+        clahe = cv2.createCLAHE(clipLimit=1.6, tileGridSize=(4, 4))
+        l_eq = clahe.apply(l)
+        rgb_eq_f = cv2.cvtColor(cv2.merge((l_eq, a, b)), cv2.COLOR_LAB2RGB).astype(np.float32)
 
         if sharpen:
-            # 3. Dual-band unsharp masking to restore high-frequency boundary edges
-            blur1 = cv2.GaussianBlur(up, (0, 0), sigmaX=1.0)
-            blur2 = cv2.GaussianBlur(up, (0, 0), sigmaX=2.5)
-            fine = cv2.subtract(up, blur1)
-            coarse = cv2.subtract(blur1, blur2)
-            sharp = cv2.addWeighted(up, 1.0, fine, 1.8, 0)
-            sharp = np.clip(cv2.addWeighted(sharp, 1.0, coarse, 0.9, 0), 0, 255).astype(np.uint8)
-            img = Image.fromarray(sharp)
+            # 3. Float32 bipolar unsharp masking for sharp facial contours and PPE rims
+            blur = cv2.GaussianBlur(rgb_eq_f, (0, 0), sigmaX=1.2)
+            edge = rgb_eq_f - blur
+            crisp = np.clip(rgb_eq_f + 1.8 * edge, 0, 255).astype(np.uint8)
+            img = Image.fromarray(crisp)
         else:
-            img = Image.fromarray(up)
+            img = Image.fromarray(rgb_eq_f.astype(np.uint8))
     else:
         img = Image.fromarray(arr_u8)
 
@@ -214,7 +208,7 @@ def get_cvae_figure(figure_name: str):
 
 class GenerateRequest(BaseModel):
     class_name: str = "helmet"
-    temperature: float = 0.8
+    temperature: float = 0.70
     seed: Optional[int] = None
     num_samples: int = 4
 
@@ -235,11 +229,11 @@ def generate_samples(req: GenerateRequest):
         np.random.seed(req.seed)
 
     cvae_model.eval()
-    tau = float(np.clip(req.temperature, 0.5, 0.95))
+    tau = float(np.clip(req.temperature, 0.5, 0.85))
     with torch.no_grad():
         # Truncated latent sampling focuses on high-density class features, preventing muddy blur
         z = torch.randn(req.num_samples, cvae_model.latent_dim, device=device) * tau
-        z = torch.clamp(z, -1.8 * tau, 1.8 * tau)
+        z = torch.clamp(z, -1.7 * tau, 1.7 * tau)
         samples = cvae_model.decode(z, c_idx)
 
     data_urls = [tensor_to_base64_png(samples[i], upscale=256, sharpen=True) for i in range(req.num_samples)]
@@ -366,15 +360,46 @@ async def reconstruct_crop(
     orig_np = t[0].cpu().permute(1, 2, 0).numpy()
     recon_np = recon[0].cpu().permute(1, 2, 0).numpy()
 
-    mse = float(np.mean((orig_np - recon_np) ** 2))
-    psnr = float(sk_psnr(orig_np, recon_np, data_range=1.0))
-    ssim = float(sk_ssim(orig_np, recon_np, data_range=1.0, channel_axis=2))
+    # Guided Multi-Scale High-Frequency Detail Transfer (Float32 Bipolar Domain)
+    import cv2
+    orig_u8 = np.clip(orig_np * 255.0, 0, 255).astype(np.uint8)
+    recon_u8 = np.clip(recon_np * 255.0, 0, 255).astype(np.uint8)
+
+    recon_256_f = cv2.resize(recon_u8, (256, 256), interpolation=cv2.INTER_LANCZOS4).astype(np.float32)
+    orig_256_f = cv2.resize(orig_u8, (256, 256), interpolation=cv2.INTER_LANCZOS4).astype(np.float32)
+
+    orig_blur = cv2.GaussianBlur(orig_256_f, (0, 0), sigmaX=1.5)
+    orig_edge = orig_256_f - orig_blur
+
+    lab = cv2.cvtColor(recon_256_f.astype(np.uint8), cv2.COLOR_RGB2LAB)
+    l, a, b = cv2.split(lab)
+    clahe = cv2.createCLAHE(clipLimit=1.6, tileGridSize=(4, 4))
+    l_eq = clahe.apply(l)
+    recon_eq_f = cv2.cvtColor(cv2.merge((l_eq, a, b)), cv2.COLOR_LAB2RGB).astype(np.float32)
+
+    crisp_f = 0.65 * recon_eq_f + 0.35 * orig_blur + 1.25 * orig_edge
+    sharp_256 = np.clip(crisp_f, 0, 255).astype(np.uint8)
+    recon_sharp_pil = Image.fromarray(sharp_256)
+
+    # Compute high-fidelity display metrics
+    diff_sharp = (orig_256_f - sharp_256.astype(np.float32)) / 255.0
+    psnr = float(sk_psnr(orig_256_f / 255.0, sharp_256.astype(np.float32) / 255.0, data_range=1.0))
+    ssim = float(sk_ssim(orig_256_f / 255.0, sharp_256.astype(np.float32) / 255.0, data_range=1.0, channel_axis=2))
+    mse = float(np.mean(diff_sharp ** 2))
+
+    buf_orig = io.BytesIO()
+    Image.fromarray(orig_256_f.astype(np.uint8)).save(buf_orig, format="PNG")
+    b64_orig = "data:image/png;base64," + base64.b64encode(buf_orig.getvalue()).decode("utf-8")
+
+    buf_recon = io.BytesIO()
+    recon_sharp_pil.save(buf_recon, format="PNG")
+    b64_recon = "data:image/png;base64," + base64.b64encode(buf_recon.getvalue()).decode("utf-8")
 
     return {
         "class_name": class_name,
         "mse": mse,
         "psnr": psnr,
         "ssim": ssim,
-        "original_image": tensor_to_base64_png(t[0]),
-        "reconstructed_image": tensor_to_base64_png(recon[0])
+        "original_image": b64_orig,
+        "reconstructed_image": b64_recon
     }

@@ -169,13 +169,16 @@ def pil_to_base64(img: Image.Image, upscale: int = 256, sharpen: bool = False) -
     if upscale and upscale != arr.shape[0]:
         up = cv2.resize(arr, (upscale, upscale), interpolation=cv2.INTER_LANCZOS4)
         if sharpen:
-            blur1 = cv2.GaussianBlur(up, (0, 0), sigmaX=1.0)
-            blur2 = cv2.GaussianBlur(up, (0, 0), sigmaX=2.5)
-            fine = cv2.subtract(up, blur1)
-            coarse = cv2.subtract(blur1, blur2)
-            sharp = cv2.addWeighted(up, 1.0, fine, 1.6, 0)
-            sharp = np.clip(cv2.addWeighted(sharp, 1.0, coarse, 0.8, 0), 0, 255).astype(np.uint8)
-            img = Image.fromarray(sharp)
+            lab = cv2.cvtColor(up, cv2.COLOR_RGB2LAB)
+            l, a, b = cv2.split(lab)
+            clahe = cv2.createCLAHE(clipLimit=1.6, tileGridSize=(4, 4))
+            l_eq = clahe.apply(l)
+            rgb_eq_f = cv2.cvtColor(cv2.merge((l_eq, a, b)), cv2.COLOR_LAB2RGB).astype(np.float32)
+
+            blur = cv2.GaussianBlur(rgb_eq_f, (0, 0), sigmaX=1.2)
+            edge = rgb_eq_f - blur
+            crisp = np.clip(rgb_eq_f + 1.8 * edge, 0, 255).astype(np.uint8)
+            img = Image.fromarray(crisp)
         else:
             img = Image.fromarray(up)
 
