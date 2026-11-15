@@ -4,7 +4,7 @@
 .smooth-crisp,
 .generative-crop-img {
   image-rendering: -webkit-optimize-contrast;
-  image-rendering: auto;
+  image-rendering: crisp-edges;
   transform: translateZ(0);
   backface-visibility: hidden;
 }

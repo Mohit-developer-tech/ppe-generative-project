@@ -1,0 +1,74 @@
+[
+  {
+    "file": "ds1_hard_hat_workers0_0.png",
+    "class": "helmet",
+    "description": "Standard Yellow Hardhat Worker",
+    "mse_raw_64": 0.0034382138401269913,
+    "psnr_raw_64": 24.63667101130855,
+    "ssim_raw_64": 0.7626531720161438,
+    "mse_enhanced_256": 0.0036407262637617346,
+    "psnr_enhanced_256": 24.388119732514106,
+    "ssim_enhanced_256": 0.7216733430010757,
+    "strip_saved": "results/evaluation_set\\strip_ds1_hard_hat_workers0_0.png"
+  },
+  {
+    "file": "ds1_hard_hat_workers1000_0.png",
+    "class": "helmet",
+    "description": "White Construction Helmet",
+    "mse_raw_64": 0.002861212007701397,
+    "psnr_raw_64": 25.434499338353397,
+    "ssim_raw_64": 0.6928238868713379,
+    "mse_enhanced_256": 0.0029388527856123044,
+    "psnr_enhanced_256": 25.318221682647547,
+    "ssim_enhanced_256": 0.6719919207742567,
+    "strip_saved": "results/evaluation_set\\strip_ds1_hard_hat_workers1000_0.png"
+  },
+  {
+    "file": "ds1_hard_hat_workers1017_2.png",
+    "class": "head",
+    "description": "Bare Head (Safety Violation - Worker Headshot)",
+    "mse_raw_64": 0.003037660615518689,
+    "psnr_raw_64": 25.174607705369922,
+    "ssim_raw_64": 0.7548620104789734,
+    "mse_enhanced_256": 0.003133674689046881,
+    "psnr_enhanced_256": 25.039460902174156,
+    "ssim_enhanced_256": 0.7770746015402937,
+    "strip_saved": "results/evaluation_set\\strip_ds1_hard_hat_workers1017_2.png"
+  },
+  {
+    "file": "ds1_hard_hat_workers1018_2.png",
+    "class": "head",
+    "description": "Unprotected Worker Face/Head Hazard",
+    "mse_raw_64": 0.0032003603409975767,
+    "psnr_raw_64": 24.948011017995736,
+    "ssim_raw_64": 0.778526782989502,
+    "mse_enhanced_256": 0.0032971038094823297,
+    "psnr_enhanced_256": 24.81867378857574,
+    "ssim_enhanced_256": 0.7169593229597796,
+    "strip_saved": "results/evaluation_set\\strip_ds1_hard_hat_workers1018_2.png"
+  },
+  {
+    "file": "ds2_helmet_jacket_00003_1.png",
+    "class": "vest",
+    "description": "High-Visibility Safety Vest",
+    "mse_raw_64": 0.0025589403230696917,
+    "psnr_raw_64": 25.91939852104418,
+    "ssim_raw_64": 0.7223138213157654,
+    "mse_enhanced_256": 0.0025214192489317008,
+    "psnr_enhanced_256": 25.983549360136465,
+    "ssim_enhanced_256": 0.7567382477816672,
+    "strip_saved": "results/evaluation_set\\strip_ds2_helmet_jacket_00003_1.png"
+  },
+  {
+    "file": "ds2_helmet_jacket_00007_0.png",
+    "class": "vest",
+    "description": "Fluorescent Yellow/Green Vest",
+    "mse_raw_64": 0.0058817476965487,
+    "psnr_raw_64": 22.30493596961683,
+    "ssim_raw_64": 0.754805326461792,
+    "mse_enhanced_256": 0.005978074807716183,
+    "psnr_enhanced_256": 22.234386546404874,
+    "ssim_enhanced_256": 0.6667845687477841,
+    "strip_saved": "results/evaluation_set\\strip_ds2_helmet_jacket_00007_0.png"
+  }
+]

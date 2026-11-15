@@ -10,6 +10,10 @@ Comprehensive unit test suite for the shared foundation package:
 
 import json
 import os
+import warnings
+os.environ["LOKY_MAX_CPU_COUNT"] = str(os.cpu_count() or 4)
+warnings.filterwarnings("ignore", category=UserWarning, module="joblib")
+warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
 import shutil
 import tempfile
 import unittest

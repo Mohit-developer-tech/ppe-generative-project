@@ -299,23 +299,40 @@ def predict_crop(
     psnr_val = float(psnr(orig_64_np, recon_64_np, data_range=1.0))
     ssim_val = float(ssim(orig_64_np, recon_64_np, data_range=1.0, channel_axis=2))
 
-    # 6. High-Clarity Edge Enhancement (Lanczos-4 Multi-Scale Sharpening)
+    # 6. High-Clarity Edge Definition & Luminance Equalization (Preserves Fine PPE Contours)
     import cv2
     recon_u8 = (recon_64_np * 255.0).astype(np.uint8)
     recon_256 = cv2.resize(recon_u8, (256, 256), interpolation=cv2.INTER_LANCZOS4)
-    blur1 = cv2.GaussianBlur(recon_256, (0, 0), sigmaX=1.0)
-    blur2 = cv2.GaussianBlur(recon_256, (0, 0), sigmaX=3.0)
-    fine = cv2.subtract(recon_256, blur1)
-    coarse = cv2.subtract(blur1, blur2)
-    sharp_256 = cv2.addWeighted(recon_256, 1.0, fine, 2.2, 0)
-    sharp_256 = np.clip(cv2.addWeighted(sharp_256, 1.0, coarse, 1.1, 0), 0, 255).astype(np.uint8)
+    
+    # Adaptive local contrast equalization (CLAHE on L-channel in LAB)
+    lab = cv2.cvtColor(recon_256, cv2.COLOR_RGB2LAB)
+    l, a, b = cv2.split(lab)
+    clahe = cv2.createCLAHE(clipLimit=1.6, tileGridSize=(4, 4))
+    l_eq = clahe.apply(l)
+    lab_eq = cv2.merge((l_eq, a, b))
+    rgb_eq = cv2.cvtColor(lab_eq, cv2.COLOR_LAB2RGB)
+
+    # Edge-preserving high-frequency unsharp mask
+    blur_edge = cv2.GaussianBlur(rgb_eq, (0, 0), sigmaX=1.2)
+    detail = cv2.subtract(rgb_eq, blur_edge)
+    sharp_256 = np.clip(cv2.addWeighted(rgb_eq, 1.0, detail, 2.0, 0), 0, 255).astype(np.uint8)
     recon_sharp_disp_pil = Image.fromarray(sharp_256)
 
-    # 7. High-Resolution Display Rendering (Preserves Input Clarity & Structural Boundaries)
+    # 7. High-Resolution Display Rendering & Dual-Resolution Comparison
     orig_disp_pil = cropped_img.resize((256, 256), Image.Resampling.LANCZOS)
+    orig_64_disp_pil = img_64.resize((256, 256), Image.Resampling.NEAREST)
     recon_raw_disp_pil = Image.fromarray(recon_u8).resize((256, 256), Image.Resampling.NEAREST)
-    heatmap_64 = np.clip(np.abs(diff_raw), 0.0, 1.0)
-    heatmap_256 = cv2.resize((heatmap_64 * 255.0).astype(np.uint8), (256, 256), interpolation=cv2.INTER_NEAREST)
+    
+    # Color-mapped residual error heatmap (|x - x̂|) using Inferno colormap
+    err_map = np.mean(np.abs(diff_raw), axis=2)  # (64, 64)
+    err_norm = np.clip(err_map / 0.30, 0.0, 1.0)
+    try:
+        cmap = matplotlib.colormaps.get_cmap("inferno")
+    except AttributeError:
+        cmap = matplotlib.cm.get_cmap("inferno")
+    rgba = cmap(err_norm)
+    heatmap_u8 = (rgba[..., :3] * 255.0).astype(np.uint8)
+    heatmap_256 = cv2.resize(heatmap_u8, (256, 256), interpolation=cv2.INTER_LANCZOS4)
     heatmap_disp_pil = Image.fromarray(heatmap_256)
 
     # 8. Downstream SVM Classification
@@ -371,6 +388,7 @@ def predict_crop(
         },
         "original_crop_b64": pil_to_base64_png(orig_disp_pil),
         "original_b64": pil_to_base64_png(orig_disp_pil),
+        "original_64_b64": pil_to_base64_png(orig_64_disp_pil),
         "reconstruction_b64": pil_to_base64_png(recon_raw_disp_pil),
         "reconstruction_sharpened_b64": pil_to_base64_png(recon_sharp_disp_pil),
         "reconstruction_photoreal_b64": pil_to_base64_png(recon_sharp_disp_pil),

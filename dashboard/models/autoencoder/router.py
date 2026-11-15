@@ -240,20 +240,28 @@ def predict_crop(
     photo_psnr = per_img_psnr
     photo_ssim = per_img_ssim
 
-    # High-Clarity Edge Enhancement (Lanczos-4 Multi-Scale Sharpening)
+    # High-Clarity Edge Definition & Luminance Equalization (Preserves Fine PPE Contours)
     import cv2
     recon_u8 = (recon_64_np * 255.0).astype(np.uint8)
     recon_256 = cv2.resize(recon_u8, (256, 256), interpolation=cv2.INTER_LANCZOS4)
-    blur1 = cv2.GaussianBlur(recon_256, (0, 0), sigmaX=1.0)
-    blur2 = cv2.GaussianBlur(recon_256, (0, 0), sigmaX=3.0)
-    fine = cv2.subtract(recon_256, blur1)
-    coarse = cv2.subtract(blur1, blur2)
-    sharp_256 = cv2.addWeighted(recon_256, 1.0, fine, 2.2, 0)
-    sharp_256 = np.clip(cv2.addWeighted(sharp_256, 1.0, coarse, 1.1, 0), 0, 255).astype(np.uint8)
+    
+    # Adaptive local contrast equalization (CLAHE on L-channel in LAB)
+    lab = cv2.cvtColor(recon_256, cv2.COLOR_RGB2LAB)
+    l, a, b = cv2.split(lab)
+    clahe = cv2.createCLAHE(clipLimit=1.6, tileGridSize=(4, 4))
+    l_eq = clahe.apply(l)
+    lab_eq = cv2.merge((l_eq, a, b))
+    rgb_eq = cv2.cvtColor(lab_eq, cv2.COLOR_LAB2RGB)
+
+    # Edge-preserving high-frequency unsharp mask
+    blur_edge = cv2.GaussianBlur(rgb_eq, (0, 0), sigmaX=1.2)
+    detail = cv2.subtract(rgb_eq, blur_edge)
+    sharp_256 = np.clip(cv2.addWeighted(rgb_eq, 1.0, detail, 2.0, 0), 0, 255).astype(np.uint8)
     recon_sharp_disp_pil = Image.fromarray(sharp_256)
 
     # High-Resolution Display Rendering
     orig_disp_pil = pil_img.resize((256, 256), Image.Resampling.LANCZOS)
+    orig_64_disp_pil = pil_img.resize((64, 64), Image.Resampling.LANCZOS).resize((256, 256), Image.Resampling.NEAREST)
     recon_raw_disp_pil = Image.fromarray(recon_u8).resize((256, 256), Image.Resampling.NEAREST)
 
     orig_disp_tensor = transforms.ToTensor()(orig_disp_pil)
@@ -317,6 +325,7 @@ def predict_crop(
         "reconstruction_photoreal_b64": tensor_to_base64_png(photoreal_tensor),
         "reconstruction_sharpened_b64": tensor_to_base64_png(photoreal_tensor),
         "reconstruction_photoreal_base64": tensor_to_base64_png(photoreal_tensor),
+        "error_heatmap_b64": generate_heatmap_base64(orig_disp_tensor, recon_disp_tensor),
         "scores": class_scores,
         "latent": {
             "vector": z_vector,

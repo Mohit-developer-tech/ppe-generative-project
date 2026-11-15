@@ -77,7 +77,27 @@ def fetch_from_folder(folder_path: str, manifest: dict) -> bool:
 
     return all_ok
 
+def check_existing_assets(manifest: dict) -> bool:
+    """Check if all assets already exist with correct sha256."""
+    all_present = True
+    for rel_key, meta in manifest["assets"].items():
+        target = Path(meta["target_path"])
+        if not target.exists():
+            all_present = False
+            break
+        if target.stat().st_size != meta["size_bytes"] or sha256_file(target) != meta["sha256"]:
+            all_present = False
+            break
+    if all_present:
+        print("[*] All assets in manifest are already present and verified in artifacts/!")
+        for rel_key, meta in manifest["assets"].items():
+            print(f"  [OK] Verified -> {meta['target_path']}")
+        return True
+    return False
+
 def fetch_from_gh(tag: str, repo: str, manifest: dict) -> bool:
+    if check_existing_assets(manifest):
+        return True
     print(f"[*] Fetching assets from GitHub Release '{tag}' via GitHub CLI (gh)...")
     with tempfile.TemporaryDirectory() as tmpdir:
         cmd = [
@@ -90,7 +110,13 @@ def fetch_from_gh(tag: str, repo: str, manifest: dict) -> bool:
             res = subprocess.run(cmd, check=True, capture_output=True, text=True)
             print(f"  Download successful:\n{res.stdout}")
         except FileNotFoundError:
-            print("[ERROR] GitHub CLI ('gh') is not installed or not in PATH.", file=sys.stderr)
+            print("[INFO] GitHub CLI ('gh') is not installed or not in PATH.", file=sys.stderr)
+            # Try to see if existing checkpoints or release_assets can fulfill manifest
+            for fallback in ["checkpoints/baseline", "release_assets", "artifacts"]:
+                if os.path.exists(fallback):
+                    print(f"[*] Attempting fallback from local '{fallback}'...")
+                    if fetch_from_folder(fallback, manifest):
+                        return True
             print("  Please install GitHub CLI or use '--from-folder <path>'.", file=sys.stderr)
             return False
         except subprocess.CalledProcessError as e:
@@ -125,13 +151,18 @@ def fetch_from_url(base_url: str, manifest: dict) -> bool:
 def main():
     parser = argparse.ArgumentParser(description="Fetch and verify PPE project shared assets.")
     parser.add_argument("--from-folder", type=str, help="Import assets from a local folder or Drive dump.")
-    parser.add_argument("--from-gh", action="store_true", help="Download assets using GitHub CLI ('gh release download').")
+    parser.add_argument("--from-gh", nargs="?", const=True, default=False, help="Download assets using GitHub CLI ('gh release download').")
     parser.add_argument("--tag", type=str, default="v0.1", help="GitHub Release tag (default: v0.1).")
     parser.add_argument("--repo", type=str, default="Mohit-developer-tech/ppe-generative-project", help="GitHub repo.")
     parser.add_argument("--from-url", type=str, help="Download assets from a public URL.")
     parser.add_argument("--manifest", type=str, default=MANIFEST_FILE, help="Path to assets_manifest.json.")
 
     args = parser.parse_args()
+
+    # Handle case where user provided repo directly after --from-gh
+    if isinstance(args.from_gh, str) and "/" in args.from_gh:
+        args.repo = args.from_gh
+        args.from_gh = True
 
     if not os.path.exists(args.manifest):
         print(f"[ERROR] Manifest file '{args.manifest}' not found. Cannot verify assets.", file=sys.stderr)

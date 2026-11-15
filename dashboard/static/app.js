@@ -374,6 +374,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     imgOriginal.src = data.original_crop_b64 || data.original_b64 || (data.images && data.images.original_base64);
     imgReconstructed.src = currentReconSharpened;
+    const imgHeatmap = document.getElementById('img-heatmap');
+    if (imgHeatmap) {
+      imgHeatmap.src = data.error_heatmap_b64 || (data.images && data.images.error_heatmap_b64) || '';
+    }
 
     // 4. Per-Image Metrics (Photoreal by default)
     metricMse.textContent = (currentMetricsPhotoreal.mse || 0).toFixed(6);
@@ -433,6 +437,69 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // ================= 4b. HIGH-RESOLUTION ZOOM INSPECTOR =================
+  const inspectorModal = document.getElementById('image-inspector-modal');
+  const btnCloseInspector = document.getElementById('btn-close-inspector');
+  const btnOpenInspector = document.getElementById('btn-open-inspector');
+  const inspectorImgOrig = document.getElementById('inspector-img-orig');
+  const inspectorImgRecon = document.getElementById('inspector-img-recon');
+  const inspectorImgHeatmap = document.getElementById('inspector-img-heatmap');
+  const zoomContainer = document.getElementById('inspector-zoom-container');
+  const zoomLevelText = document.getElementById('zoom-level-text');
+  const btnZoomIn = document.getElementById('btn-zoom-in');
+  const btnZoomOut = document.getElementById('btn-zoom-out');
+  const btnZoomReset = document.getElementById('btn-zoom-reset');
+  const inspMse = document.getElementById('insp-mse');
+  const inspPsnr = document.getElementById('insp-psnr');
+  const inspSsim = document.getElementById('insp-ssim');
+
+  let currentZoom = 1.0;
+  function updateZoom(newZoom) {
+    currentZoom = Math.max(0.5, Math.min(4.0, newZoom));
+    if (zoomContainer) zoomContainer.style.transform = `scale(${currentZoom})`;
+    if (zoomLevelText) zoomLevelText.textContent = `${Math.round(currentZoom * 100)}%`;
+  }
+
+  function openInspectorModal() {
+    if (!inspectorModal) return;
+    if (inspectorImgOrig && imgOriginal) inspectorImgOrig.src = imgOriginal.src;
+    if (inspectorImgRecon && imgReconstructed) inspectorImgRecon.src = imgReconstructed.src;
+    const imgHeat = document.getElementById('img-heatmap');
+    if (inspectorImgHeatmap && imgHeat) inspectorImgHeatmap.src = imgHeat.src;
+    if (inspMse && metricMse) inspMse.textContent = metricMse.textContent;
+    if (inspPsnr && metricPsnr) inspPsnr.textContent = metricPsnr.textContent;
+    if (inspSsim && metricSsim) inspSsim.textContent = metricSsim.textContent;
+    updateZoom(1.0);
+    inspectorModal.classList.remove('hidden');
+    inspectorModal.classList.add('flex');
+  }
+
+  function closeInspectorModal() {
+    if (!inspectorModal) return;
+    inspectorModal.classList.add('hidden');
+    inspectorModal.classList.remove('flex');
+  }
+
+  if (btnOpenInspector) btnOpenInspector.addEventListener('click', openInspectorModal);
+  if (imgOriginal) imgOriginal.addEventListener('click', openInspectorModal);
+  if (imgReconstructed) imgReconstructed.addEventListener('click', openInspectorModal);
+  const imgHeat = document.getElementById('img-heatmap');
+  if (imgHeat) imgHeat.addEventListener('click', openInspectorModal);
+  if (btnCloseInspector) btnCloseInspector.addEventListener('click', closeInspectorModal);
+  if (btnZoomIn) btnZoomIn.addEventListener('click', () => updateZoom(currentZoom + 0.25));
+  if (btnZoomOut) btnZoomOut.addEventListener('click', () => updateZoom(currentZoom - 0.25));
+  if (btnZoomReset) btnZoomReset.addEventListener('click', () => updateZoom(1.0));
+  if (inspectorModal) {
+    inspectorModal.addEventListener('click', (e) => {
+      if (e.target === inspectorModal) closeInspectorModal();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && inspectorModal && !inspectorModal.classList.contains('hidden')) {
+      closeInspectorModal();
+    }
+  });
 
   // ================= 5. CHARTS (LATENT PROFILE & 2D PCA) =================
   function renderLatentVector(latentArray) {

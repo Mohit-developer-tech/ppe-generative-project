@@ -12,6 +12,8 @@ Provides:
 All implementations are deterministic, fixed-seed, and report sample sizes.
 """
 
+import os
+os.environ.setdefault("LOKY_MAX_CPU_COUNT", str(os.cpu_count() or 4))
 from typing import Any, Dict, List, Optional, Tuple, Union
 import numpy as np
 import scipy.linalg
