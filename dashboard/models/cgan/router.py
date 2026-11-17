@@ -134,16 +134,27 @@ def load_cgan_artifacts() -> bool:
 
 
 def tensor_to_base64_png(tensor: torch.Tensor, upscale: int = 256, sharpen: bool = True) -> str:
-    """Convert tensor [3, H, W] in [0, 1] to crisp, high-definition base64 PNG data URL."""
+    """
+    Convert tensor [3, H, W] in [0, 1] to crisp, high-definition base64 PNG data URL.
+    Applies dual-stage deconvolution anti-checkerboard filtering (median + bilateral)
+    to eliminate DCGAN transposed convolution Nyquist mesh grid artifacts, followed by
+    LAB luminance CLAHE and tuned edge-preserving unsharp masking.
+    """
     import cv2
     arr = tensor.detach().cpu().permute(1, 2, 0).numpy()
     arr_u8 = np.clip(arr * 255.0, 0.0, 255.0).astype(np.uint8)
 
     if upscale and upscale != arr_u8.shape[0]:
-        # 1. High-order Lanczos-4 upsampling to target canvas resolution
-        up = cv2.resize(arr_u8, (upscale, upscale), interpolation=cv2.INTER_LANCZOS4)
+        # 1. Dual-stage anti-checkerboard deconvolution filter:
+        # A 3x3 median filter cancels the alternating 2x2 Nyquist deconvolution grid (Odena et al., 2016)
+        med = cv2.medianBlur(arr_u8, 3)
+        # Bilateral filter preserves true semantic facial & PPE boundaries while smoothing gradient transitions
+        bi = cv2.bilateralFilter(med, d=5, sigmaColor=75, sigmaSpace=3.5)
 
-        # 2. Local luminance contrast enhancement in LAB space (preserves authentic skin and PPE tones)
+        # 2. High-order Bicubic upsampling to target canvas resolution
+        up = cv2.resize(bi, (upscale, upscale), interpolation=cv2.INTER_CUBIC)
+
+        # 3. Local luminance contrast enhancement in LAB space (preserves authentic skin and PPE tones)
         lab = cv2.cvtColor(up, cv2.COLOR_RGB2LAB)
         l, a, b = cv2.split(lab)
         clahe = cv2.createCLAHE(clipLimit=1.6, tileGridSize=(4, 4))
@@ -151,10 +162,10 @@ def tensor_to_base64_png(tensor: torch.Tensor, upscale: int = 256, sharpen: bool
         rgb_eq_f = cv2.cvtColor(cv2.merge((l_eq, a, b)), cv2.COLOR_LAB2RGB).astype(np.float32)
 
         if sharpen:
-            # 3. Float32 bipolar unsharp masking for sharp facial contours and PPE rims
+            # 4. Tuned edge-preserving unsharp masking for sharp facial contours and PPE rims
             blur = cv2.GaussianBlur(rgb_eq_f, (0, 0), sigmaX=1.2)
             edge = rgb_eq_f - blur
-            crisp = np.clip(rgb_eq_f + 1.8 * edge, 0, 255).astype(np.uint8)
+            crisp = np.clip(rgb_eq_f + 0.45 * edge, 0, 255).astype(np.uint8)
             img = Image.fromarray(crisp)
         else:
             img = Image.fromarray(rgb_eq_f.astype(np.uint8))

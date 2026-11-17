@@ -1,3 +1,13 @@
+---
+title: PPE Safety Generative Monitoring
+emoji: 🦺
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # Empirical Multi-Objective Benchmarking of Generative Models on PPE Safety Crops
 
 A rigorous deep learning research and evaluation suite benchmarking generative representation models (Convolutional Autoencoder, Conditional VAE, Conditional GAN, Score-based Diffusion Restoration, and Safety Policy Auditor) on safety-critical Personal Protective Equipment (PPE) crops.

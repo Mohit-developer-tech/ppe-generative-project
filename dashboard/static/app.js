@@ -1793,8 +1793,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 1. Generation Handlers
-    let selectedClass = 'helmet';
+    let selectedClass = 'head';
     const genClassBtns = document.querySelectorAll('.cvae-gen-class-btn');
+    const tempSlider = document.getElementById('cvae-temp-slider');
+    const tempVal = document.getElementById('cvae-temp-val');
+    const randSeedBtn = document.getElementById('cvae-rand-seed-btn');
+    const seedInput = document.getElementById('cvae-seed-input');
+    const genBtn = document.getElementById('cvae-generate-btn');
+    const gallery = document.getElementById('cvae-gen-gallery');
+
+    async function runCVAEGeneration() {
+      if (!gallery) return;
+      if (genBtn) {
+        genBtn.disabled = true;
+        genBtn.innerHTML = '<span>⏳ Generating...</span>';
+      }
+      try {
+        const res = await fetch('/api/cvae/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            class_name: selectedClass,
+            temperature: parseFloat(tempSlider ? tempSlider.value : 0.70),
+            seed: parseInt(seedInput ? seedInput.value : 42),
+            num_samples: 4
+          })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          gallery.innerHTML = data.images.map((img, i) => `
+            <div class="relative group aspect-square rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+              <img src="${img}" alt="Generated ${selectedClass} ${i+1}" class="w-full h-full object-cover">
+              <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/60 text-white font-mono text-[9px]">#${i+1}</span>
+            </div>
+          `).join('');
+        } else {
+          console.error('Generation error:', res.statusText);
+        }
+      } catch (err) {
+        console.error('Generation network error:', err);
+      } finally {
+        if (genBtn) {
+          genBtn.disabled = false;
+          genBtn.innerHTML = '<span>⚡ Generate 4 Synthetic Crops</span>';
+        }
+      }
+    }
+
     genClassBtns.forEach(b => {
       b.addEventListener('click', () => {
         genClassBtns.forEach(x => {
@@ -1803,61 +1848,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         b.classList.add('active', 'border-brand-500', 'bg-brand-50', 'dark:bg-brand-950/40', 'text-brand-700', 'dark:text-brand-300', 'font-bold');
         selectedClass = b.getAttribute('data-class');
+        runCVAEGeneration();
       });
     });
 
-    const tempSlider = document.getElementById('cvae-temp-slider');
-    const tempVal = document.getElementById('cvae-temp-val');
     if (tempSlider && tempVal) {
       tempSlider.addEventListener('input', (e) => {
         tempVal.textContent = parseFloat(e.target.value).toFixed(2);
       });
     }
 
-    const randSeedBtn = document.getElementById('cvae-rand-seed-btn');
-    const seedInput = document.getElementById('cvae-seed-input');
     if (randSeedBtn && seedInput) {
       randSeedBtn.addEventListener('click', () => {
         seedInput.value = Math.floor(Math.random() * 10000);
+        runCVAEGeneration();
       });
     }
 
-    const genBtn = document.getElementById('cvae-generate-btn');
-    const gallery = document.getElementById('cvae-gen-gallery');
-    if (genBtn && gallery) {
-      genBtn.addEventListener('click', async () => {
-        genBtn.disabled = true;
-        genBtn.innerHTML = '<span>⏳ Generating...</span>';
-        try {
-          const res = await fetch('/api/cvae/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              class_name: selectedClass,
-              temperature: parseFloat(tempSlider ? tempSlider.value : 0.70),
-              seed: parseInt(seedInput ? seedInput.value : 42),
-              num_samples: 4
-            })
-          });
-          if (res.ok) {
-            const data = await res.json();
-            gallery.innerHTML = data.images.map((img, i) => `
-              <div class="relative group aspect-square rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
-                <img src="${img}" alt="Generated ${selectedClass} ${i+1}" class="w-full h-full object-cover">
-                <span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/60 text-white font-mono text-[9px]">#${i+1}</span>
-              </div>
-            `).join('');
-          } else {
-            alert('Generation error: ' + res.statusText);
-          }
-        } catch (err) {
-          console.error(err);
-        } finally {
-          genBtn.disabled = false;
-          genBtn.innerHTML = '<span>⚡ Generate 4 Synthetic Crops</span>';
-        }
-      });
+    if (genBtn) {
+      genBtn.addEventListener('click', runCVAEGeneration);
     }
+
+    // Auto-generate on load so user sees 4 crisp crops immediately!
+    runCVAEGeneration();
 
     // 2. SLERP Handlers
     const slerpSlider = document.getElementById('cvae-slerp-slider');
@@ -1892,7 +1905,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('cvae-slerp-orig1').innerHTML = `<img src="${data.orig1}" class="w-full h-full object-cover rounded">`;
             document.getElementById('cvae-slerp-orig2').innerHTML = `<img src="${data.orig2}" class="w-full h-full object-cover rounded">`;
             document.getElementById('cvae-slerp-result').innerHTML = `<img src="${data.interpolated_image}" class="w-full h-full object-cover rounded">`;
-            document.getElementById('cvae-slerp-result-label').textContent = `&alpha; = ${parseFloat(data.alpha).toFixed(2)}`;
+            document.getElementById('cvae-slerp-result-label').textContent = `α = ${parseFloat(data.alpha).toFixed(2)}`;
           }
         } catch (err) {
           console.error(err);
