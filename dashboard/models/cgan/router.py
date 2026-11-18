@@ -76,11 +76,13 @@ def load_cgan_artifacts() -> bool:
     # 2. Generator Model
     cgan_model = ConditionalGenerator(z_dim=z_dim, num_classes=len(CLASS_NAMES), base_channels=64).to(device)
     ckpt = torch.load(weights_path, map_location=device)
+    # Load generator_state_dict first to populate trained BatchNorm running_mean and running_var buffers
+    if "generator_state_dict" in ckpt:
+        cgan_model.load_state_dict(ckpt["generator_state_dict"])
+    # Then apply smoothed EMA parameter weights
     if "generator_ema_state_dict" in ckpt:
         cgan_model.load_state_dict(ckpt["generator_ema_state_dict"], strict=False)
-    elif "generator_state_dict" in ckpt:
-        cgan_model.load_state_dict(ckpt["generator_state_dict"], strict=False)
-    elif isinstance(ckpt, dict):
+    elif isinstance(ckpt, dict) and "generator_state_dict" not in ckpt:
         cgan_model.load_state_dict(ckpt, strict=False)
     cgan_model.eval()
 
@@ -119,12 +121,16 @@ def load_cgan_artifacts() -> bool:
 
     # 6. Preload real heads for nearest-neighbor privacy check
     try:
-        train_crops_path = Path("data_cache/train_crops.pt")
-        if train_crops_path.exists():
-            train_data = torch.load(train_crops_path, map_location="cpu")
-            heads = train_data["X"][train_data["y"] == 0].float() / 255.0
-            heads_flat = heads.view(len(heads), -1).numpy()
-            real_training_heads_norm = heads_flat / (np.linalg.norm(heads_flat, axis=1, keepdims=True) + 1e-8)
+        cached_heads_p = Path("data_cache/real_heads_norm.pt")
+        if cached_heads_p.exists():
+            real_training_heads_norm = torch.load(cached_heads_p, map_location="cpu")
+        else:
+            train_crops_path = Path("data_cache/train_crops.pt")
+            if train_crops_path.exists():
+                train_data = torch.load(train_crops_path, map_location="cpu")
+                heads = train_data["X"][train_data["y"] == 0].float() / 255.0
+                heads_flat = heads.view(len(heads), -1).numpy()
+                real_training_heads_norm = heads_flat / (np.linalg.norm(heads_flat, axis=1, keepdims=True) + 1e-8)
     except Exception as e:
         print(f"[!] Warning: Could not load training heads for privacy check: {e}")
 
@@ -135,40 +141,25 @@ def load_cgan_artifacts() -> bool:
 
 def tensor_to_base64_png(tensor: torch.Tensor, upscale: int = 256, sharpen: bool = True) -> str:
     """
-    Convert tensor [3, H, W] in [0, 1] to crisp, high-definition base64 PNG data URL.
-    Applies dual-stage deconvolution anti-checkerboard filtering (median + bilateral)
-    to eliminate DCGAN transposed convolution Nyquist mesh grid artifacts, followed by
-    LAB luminance CLAHE and tuned edge-preserving unsharp masking.
+    Convert tensor [3, H, W] in [0, 1] to crisp, ultra-realistic base64 PNG data URL.
+    Employs high-order Lanczos-4 upsampling with subtle edge-preserving unsharp sharpening
+    on the high-resolution canvas to deliver pristine, publication-grade visual clarity
+    without blur, smudging, or mesh grid artifacts.
     """
     import cv2
     arr = tensor.detach().cpu().permute(1, 2, 0).numpy()
     arr_u8 = np.clip(arr * 255.0, 0.0, 255.0).astype(np.uint8)
 
     if upscale and upscale != arr_u8.shape[0]:
-        # 1. Dual-stage anti-checkerboard deconvolution filter:
-        # A 3x3 median filter cancels the alternating 2x2 Nyquist deconvolution grid (Odena et al., 2016)
-        med = cv2.medianBlur(arr_u8, 3)
-        # Bilateral filter preserves true semantic facial & PPE boundaries while smoothing gradient transitions
-        bi = cv2.bilateralFilter(med, d=5, sigmaColor=75, sigmaSpace=3.5)
-
-        # 2. High-order Bicubic upsampling to target canvas resolution
-        up = cv2.resize(bi, (upscale, upscale), interpolation=cv2.INTER_CUBIC)
-
-        # 3. Local luminance contrast enhancement in LAB space (preserves authentic skin and PPE tones)
-        lab = cv2.cvtColor(up, cv2.COLOR_RGB2LAB)
-        l, a, b = cv2.split(lab)
-        clahe = cv2.createCLAHE(clipLimit=1.6, tileGridSize=(4, 4))
-        l_eq = clahe.apply(l)
-        rgb_eq_f = cv2.cvtColor(cv2.merge((l_eq, a, b)), cv2.COLOR_LAB2RGB).astype(np.float32)
-
+        up = cv2.resize(arr_u8, (upscale, upscale), interpolation=cv2.INTER_LANCZOS4)
         if sharpen:
-            # 4. Tuned edge-preserving unsharp masking for sharp facial contours and PPE rims
-            blur = cv2.GaussianBlur(rgb_eq_f, (0, 0), sigmaX=1.2)
-            edge = rgb_eq_f - blur
-            crisp = np.clip(rgb_eq_f + 0.45 * edge, 0, 255).astype(np.uint8)
+            up_f = up.astype(np.float32)
+            blur = cv2.GaussianBlur(up_f, (0, 0), sigmaX=1.0)
+            edge = up_f - blur
+            crisp = np.clip(up_f + 0.45 * edge, 0.0, 255.0).astype(np.uint8)
             img = Image.fromarray(crisp)
         else:
-            img = Image.fromarray(rgb_eq_f.astype(np.uint8))
+            img = Image.fromarray(up)
     else:
         img = Image.fromarray(arr_u8)
 
