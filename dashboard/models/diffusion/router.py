@@ -476,7 +476,10 @@ def restore_crop(
 @router.get("/figure/{figure_name}")
 def get_diffusion_figure(figure_name: str):
     """Serve publication figures from results/diffusion/figures/."""
-    fig_path = RESULTS_DIR / "figures" / figure_name
+    safe = os.path.basename(figure_name)
+    fig_path = RESULTS_DIR / "figures" / safe
+    if not fig_path.exists():
+        fig_path = RESULTS_DIR / safe
     if not fig_path.exists():
         raise HTTPException(status_code=404, detail=f"Figure '{figure_name}' not found.")
     return FileResponse(str(fig_path), media_type="image/png")

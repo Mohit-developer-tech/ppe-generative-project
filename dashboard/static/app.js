@@ -775,33 +775,24 @@ document.addEventListener('DOMContentLoaded', () => {
         baselineTbody.innerHTML = '<tr><td colspan="4" class="py-3 text-center text-slate-400">Baseline comparison metrics logged in svm_metrics.csv.</td></tr>';
       }
 
-      // 5. Figures Gallery
+      // 5. Figures Gallery (Image 2 Editorial Showcase)
       const figuresGallery = document.getElementById('figures-gallery');
-      const figureTitles = {
-        'loss_curve.png': 'Training & Validation Loss Curve',
-        'svm_confusion_AE-latent.png': 'SVM Confusion Matrix (Normalized)',
-        'latent_pca.png': '2D PCA Latent Space Manifold',
-        'reconstructions.png': 'Original vs. Reconstructed Test Crops'
-      };
+      const curatedAEFigs = [
+        { name: 'Training & Validation Loss Dynamics', url: '/results/loss_curve.png' },
+        { name: 'Latent Space SVM Confusion Matrix', url: '/results/svm_confusion_AE-latent.png' },
+        { name: '2D Latent Manifold PCA Projection', url: '/results/latent_pca.png' },
+        { name: 'Original vs Reconstructed Test Crops', url: '/results/reconstructions.png' },
+        { name: 'PPE Class Dataset Distribution', url: '/results/class_distribution_splits.png' },
+        { name: 'Industrial Safety Crops Dataset', url: '/results/sample_crops_grid.png' }
+      ];
 
-      if (data.figures && data.figures.length) {
-        figuresGallery.innerHTML = data.figures.map(fig => {
-          const title = figureTitles[fig] || fig.replace('.png', '').replace(/_/g, ' ');
-          return `
-            <div class="group bg-slate-50 dark:bg-slate-800/60 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-brand-500 cursor-pointer transition-all shadow-sm flex flex-col"
-                 onclick="openFigureModal('/results/${fig}', '${title}')">
-              <div class="h-36 overflow-hidden bg-slate-900 flex items-center justify-center p-2">
-                <img src="/results/${fig}" alt="${title}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300">
-              </div>
-              <div class="p-3 bg-white dark:bg-slate-800 flex-grow flex items-center justify-between">
-                <span class="text-xs font-semibold text-slate-800 dark:text-slate-200 line-clamp-1">${title}</span>
-                <span class="text-[10px] text-brand-600 dark:text-brand-400 uppercase font-bold shrink-0 ml-2">Enlarge</span>
-              </div>
-            </div>
-          `;
-        }).join('');
-      } else {
-        figuresGallery.innerHTML = '<span class="col-span-full text-xs text-slate-400">No figures found in results directory.</span>';
+      if (figuresGallery) {
+        figuresGallery.innerHTML = createEditorialFigureShowcase(
+          'ae-figures-track',
+          curatedAEFigs,
+          'Model 1 • Conv Autoencoder (300 DPI)',
+          'Saved Research Visualizations'
+        );
       }
 
     } catch (err) {
@@ -834,6 +825,110 @@ document.addEventListener('DOMContentLoaded', () => {
       closeFigureModal();
     }
   });
+
+  // ================= 7B. EDITORIAL 300 DPI FIGURE SHOWCASE (IMAGE 2 RADO STYLE) =================
+  window.scrollFigureShowcase = function(trackId, direction) {
+    const track = document.getElementById(trackId);
+    if (!track) return;
+    const card = track.querySelector('.showcase-card');
+    const scrollAmount = card ? (card.offsetWidth + 24) : 380;
+    track.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+  };
+
+  function createEditorialFigureShowcase(trackId, figures, badgeText, titleText) {
+    if (!figures || !figures.length) {
+      return `
+        <div class="p-8 text-center rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/40">
+          <p class="text-xs text-slate-400">No publication figures available for this model yet.</p>
+        </div>
+      `;
+    }
+
+    const cardsHtml = figures.map((fig, idx) => {
+      const url = fig.url || fig;
+      const rawName = fig.name || (typeof fig === 'string' ? fig.replace('.png', '').replace(/^\d+_/, '').replace(/_/g, ' ') : `Figure ${idx + 1}`);
+      const cleanName = rawName.toUpperCase();
+      const escapedUrl = url.replace(/'/g, "\\'");
+      const escapedName = cleanName.replace(/'/g, "\\'");
+
+      return `
+        <div class="showcase-card w-[84vw] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-start flex flex-col group cursor-pointer transition-transform duration-300 select-none"
+             onclick="openFigureModal('${escapedUrl}', '${escapedName}')">
+          <!-- Card Image Container (Image 2 style) -->
+          <div class="aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800/90 border border-slate-200/90 dark:border-slate-700/80 p-2 sm:p-3 flex items-center justify-center relative transition-all duration-300 group-hover:shadow-xl group-hover:border-slate-400 dark:group-hover:border-slate-500">
+            <img src="${url}"
+                 alt="${cleanName}"
+                 loading="lazy"
+                 class="w-full h-full object-contain smooth-crisp group-hover:scale-105 transition-transform duration-500 ease-out">
+            
+            <!-- Hover 300 DPI Inspection Tag -->
+            <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-slate-950/80 backdrop-blur-md text-white text-[10px] font-mono tracking-wider px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-lg pointer-events-none">
+              <svg class="w-3 h-3 text-brand-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+              <span>300 DPI</span>
+            </div>
+          </div>
+
+          <!-- Bottom Typography (Image 2 RADO Showcase Style) -->
+          <div class="pt-3.5 pb-1">
+            <h4 class="text-sm sm:text-base font-black uppercase tracking-wider text-slate-900 dark:text-white line-clamp-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+              ${cleanName}
+            </h4>
+            <div class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mt-1">
+              <span>DISCOVER</span>
+              <span class="group-hover:translate-x-1.5 transition-transform duration-300">&rarr;</span>
+            </div>
+            <!-- Clean Accent Underline Rule (Image 2) -->
+            <div class="w-8 h-[2px] bg-slate-300 dark:bg-slate-600 mt-1.5 group-hover:w-16 group-hover:bg-brand-500 transition-all duration-300"></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    return `
+      <div class="space-y-4">
+        <!-- Showcase Header with Circular Controls -->
+        <div class="flex items-end justify-between border-b border-slate-200/80 dark:border-slate-800 pb-3">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 block">${badgeText || 'Research Visualizations • 300 DPI'}</span>
+            <h3 class="text-base sm:text-lg font-black uppercase tracking-wide text-slate-900 dark:text-white mt-0.5">${titleText || 'Saved Research Visualizations'}</h3>
+          </div>
+          <!-- Navigation Prev/Next Circles -->
+          <div class="flex items-center gap-2">
+            <button type="button"
+                    onclick="scrollFigureShowcase('${trackId}', -1)"
+                    aria-label="Previous figures"
+                    class="w-9 h-9 rounded-full bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center justify-center transition-all shadow-sm active:scale-95">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button type="button"
+                    onclick="scrollFigureShowcase('${trackId}', 1)"
+                    aria-label="Next figures"
+                    class="w-9 h-9 rounded-full bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-white text-white dark:text-slate-900 flex items-center justify-center transition-all shadow-md active:scale-95 hover:scale-105">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Carousel Track with Floating Circular Right Arrow (Image 2) -->
+        <div class="relative group/carousel">
+          <div id="${trackId}"
+               class="flex gap-6 overflow-x-auto pb-4 pt-1 px-1 scroll-smooth scrollbar-none snap-x snap-mandatory"
+               style="scrollbar-width: none; -ms-overflow-style: none;">
+            ${cardsHtml}
+          </div>
+
+          <!-- Floating Circular Right Arrow (Image 2 style) -->
+          <button type="button"
+                  onclick="scrollFigureShowcase('${trackId}', 1)"
+                  aria-label="Scroll next"
+                  class="hidden md:flex absolute right-4 top-[38%] -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-900/85 hover:bg-slate-950 text-white backdrop-blur-md border border-white/20 items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all">
+            <svg class="w-5 h-5 text-white ml-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
 
   // ================= 8. MODEL REGISTRY TABS & FUTURE MODELS =================
   let modelRegistryCache = null;
@@ -1068,21 +1163,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 🔄 Run SLERP Interpolation
               </button>
             </div>
-            <div class="lg:col-span-7 bg-slate-50 dark:bg-slate-800/40 rounded-xl p-5 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center">
-              <div class="flex items-center gap-4">
-                <div class="text-center">
-                  <div id="cvae-slerp-orig1" class="w-20 h-20 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 flex items-center justify-center text-[10px] text-slate-400">Crop 1</div>
-                  <span class="text-[10px] text-slate-400 mt-1 block">&alpha; = 0.0</span>
+            <div class="lg:col-span-7 bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center min-h-[300px]">
+              <div class="flex flex-wrap sm:flex-nowrap items-center justify-center gap-4 sm:gap-6 w-full">
+                <div class="text-center flex-1 max-w-[200px]">
+                  <div id="cvae-slerp-orig1" class="w-full aspect-square rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center text-xs text-slate-400 shadow-sm overflow-hidden p-1">Crop 1</div>
+                  <span class="text-xs font-semibold text-slate-500 mt-2 block">&alpha; = 0.0</span>
                 </div>
-                <span class="text-brand-600 font-bold text-sm">&rarr;</span>
-                <div class="text-center">
-                  <div id="cvae-slerp-result" class="w-24 h-24 rounded-lg border-2 border-brand-500 bg-white dark:bg-slate-800 flex items-center justify-center text-xs text-brand-600 font-bold shadow-md">SLERP Blended</div>
-                  <span id="cvae-slerp-result-label" class="text-[11px] font-bold text-brand-600 mt-1 block">&alpha; = 0.50</span>
+                <span class="text-indigo-600 dark:text-indigo-400 font-bold text-xl sm:text-2xl shrink-0">&rarr;</span>
+                <div class="text-center flex-1 max-w-[220px]">
+                  <div id="cvae-slerp-result" class="w-full aspect-square rounded-2xl border-2 border-indigo-500 bg-white dark:bg-slate-800 flex items-center justify-center text-xs text-indigo-600 font-bold shadow-lg ring-4 ring-indigo-500/10 overflow-hidden p-1">SLERP Blended</div>
+                  <span id="cvae-slerp-result-label" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mt-2 block">&alpha; = 0.50</span>
                 </div>
-                <span class="text-brand-600 font-bold text-sm">&rarr;</span>
-                <div class="text-center">
-                  <div id="cvae-slerp-orig2" class="w-20 h-20 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 flex items-center justify-center text-[10px] text-slate-400">Crop 2</div>
-                  <span class="text-[10px] text-slate-400 mt-1 block">&alpha; = 1.0</span>
+                <span class="text-indigo-600 dark:text-indigo-400 font-bold text-xl sm:text-2xl shrink-0">&rarr;</span>
+                <div class="text-center flex-1 max-w-[200px]">
+                  <div id="cvae-slerp-orig2" class="w-full aspect-square rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center text-xs text-slate-400 shadow-sm overflow-hidden p-1">Crop 2</div>
+                  <span class="text-xs font-semibold text-slate-500 mt-2 block">&alpha; = 1.0</span>
                 </div>
               </div>
             </div>
@@ -1121,11 +1216,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 ✨ Morph Compliance Condition
               </button>
             </div>
-            <div class="lg:col-span-7 bg-slate-50 dark:bg-slate-800/40 rounded-xl p-5 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center">
-              <div id="cvae-morph-result" class="w-28 h-28 rounded-xl border-2 border-indigo-500 bg-white dark:bg-slate-800 flex items-center justify-center text-xs font-bold text-indigo-600 shadow-md">
+            <div class="lg:col-span-7 bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center min-h-[300px]">
+              <div id="cvae-morph-result" class="w-52 h-52 sm:w-60 sm:h-60 rounded-2xl border-2 border-indigo-500 bg-white dark:bg-slate-800 flex items-center justify-center text-xs font-bold text-indigo-600 shadow-lg ring-4 ring-indigo-500/10 overflow-hidden p-1.5">
                 Morphed Crop
               </div>
-              <span id="cvae-morph-status" class="text-xs font-semibold text-slate-700 dark:text-slate-300 mt-2">head &rarr; helmet (&alpha; = 0.50)</span>
+              <span id="cvae-morph-status" class="text-xs font-bold text-slate-700 dark:text-slate-300 mt-3">head &rarr; helmet (&alpha; = 0.50)</span>
             </div>
           </div>
 
@@ -1148,22 +1243,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 🔍 Encode & Reconstruct
               </button>
             </div>
-            <div class="lg:col-span-7 bg-slate-50 dark:bg-slate-800/40 rounded-xl p-5 border border-slate-200 dark:border-slate-700">
-              <div class="flex items-center justify-center gap-6">
-                <div class="text-center">
-                  <div id="cvae-recon-orig" class="w-24 h-24 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 flex items-center justify-center text-xs text-slate-400">Original</div>
-                  <span class="text-xs text-slate-500 mt-1 block">Input Crop</span>
+            <div class="lg:col-span-7 bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center min-h-[340px]">
+              <div class="flex items-center justify-center gap-6 sm:gap-10 w-full max-w-xl">
+                <div class="text-center flex-1 max-w-[240px]">
+                  <div id="cvae-recon-orig" class="w-full aspect-square rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center text-xs text-slate-400 shadow-sm overflow-hidden p-1.5">Original</div>
+                  <span class="text-xs font-bold text-slate-700 dark:text-slate-300 mt-2.5 block">Input Crop</span>
                 </div>
-                <span class="text-slate-400 font-bold">&rarr;</span>
-                <div class="text-center">
-                  <div id="cvae-recon-output" class="w-24 h-24 rounded-lg border-2 border-brand-500 bg-white dark:bg-slate-800 flex items-center justify-center text-xs font-bold text-brand-600">Recon</div>
-                  <span class="text-xs text-brand-600 font-bold mt-1 block">CVAE Output</span>
+                <span class="text-indigo-600 dark:text-indigo-400 font-bold text-2xl sm:text-3xl shrink-0">&rarr;</span>
+                <div class="text-center flex-1 max-w-[240px]">
+                  <div id="cvae-recon-output" class="w-full aspect-square rounded-2xl border-2 border-indigo-500 bg-white dark:bg-slate-800 flex items-center justify-center text-xs font-bold text-indigo-600 shadow-lg ring-4 ring-indigo-500/10 overflow-hidden p-1.5">Recon</div>
+                  <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mt-2.5 block">CVAE Output</span>
                 </div>
               </div>
-              <div id="cvae-recon-metrics" class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700 grid grid-cols-3 gap-2 text-center text-xs">
-                <div class="p-2 rounded bg-white dark:bg-slate-800"><span class="text-slate-400 block text-[10px]">PSNR</span><span id="cvae-recon-psnr" class="font-bold">-</span></div>
-                <div class="p-2 rounded bg-white dark:bg-slate-800"><span class="text-slate-400 block text-[10px]">SSIM</span><span id="cvae-recon-ssim" class="font-bold">-</span></div>
-                <div class="p-2 rounded bg-white dark:bg-slate-800"><span class="text-slate-400 block text-[10px]">MSE</span><span id="cvae-recon-mse" class="font-bold">-</span></div>
+              <div id="cvae-recon-metrics" class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700 grid grid-cols-3 gap-3 text-center text-xs w-full max-w-md">
+                <div class="p-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm"><span class="text-slate-400 block text-[10px] font-semibold uppercase">PSNR</span><span id="cvae-recon-psnr" class="font-bold text-sm font-mono text-slate-900 dark:text-white">-</span></div>
+                <div class="p-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm"><span class="text-slate-400 block text-[10px] font-semibold uppercase">SSIM</span><span id="cvae-recon-ssim" class="font-bold text-sm font-mono text-slate-900 dark:text-white">-</span></div>
+                <div class="p-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm"><span class="text-slate-400 block text-[10px] font-semibold uppercase">MSE</span><span id="cvae-recon-mse" class="font-bold text-sm font-mono text-slate-900 dark:text-white">-</span></div>
               </div>
             </div>
           </div>
@@ -1233,7 +1328,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="lg:col-span-7 bg-slate-50 dark:bg-slate-800/40 rounded-xl p-5 border border-slate-200 dark:border-slate-700">
               <div class="flex items-center justify-between mb-3">
                 <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Live Evaluated Generated Grid</span>
-                <span class="text-[10px] px-2 py-0.5 rounded bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300 font-mono">G_EMA &bull; SN + DiffAugment</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300 font-mono">G_EMA &bull; SN + DiffAugment &bull; L<sub>D</sub>: 0.1814 | L<sub>G</sub>: 0.5965</span>
               </div>
               <div id="cgan-gen-gallery" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <div class="aspect-square rounded-lg border border-dashed border-slate-300 dark:border-slate-600 flex flex-col items-center justify-center bg-white dark:bg-slate-800 p-2 text-center text-xs text-slate-400">Sample 1</div>
@@ -1902,9 +1997,9 @@ document.addEventListener('DOMContentLoaded', () => {
           const res = await fetch('/api/cvae/interpolate', { method: 'POST', body: formData });
           if (res.ok) {
             const data = await res.json();
-            document.getElementById('cvae-slerp-orig1').innerHTML = `<img src="${data.orig1}" class="w-full h-full object-cover rounded">`;
-            document.getElementById('cvae-slerp-orig2').innerHTML = `<img src="${data.orig2}" class="w-full h-full object-cover rounded">`;
-            document.getElementById('cvae-slerp-result').innerHTML = `<img src="${data.interpolated_image}" class="w-full h-full object-cover rounded">`;
+            document.getElementById('cvae-slerp-orig1').innerHTML = `<img src="${data.orig1}" class="w-full h-full object-contain smooth-crisp rounded-xl">`;
+            document.getElementById('cvae-slerp-orig2').innerHTML = `<img src="${data.orig2}" class="w-full h-full object-contain smooth-crisp rounded-xl">`;
+            document.getElementById('cvae-slerp-result').innerHTML = `<img src="${data.interpolated_image}" class="w-full h-full object-contain smooth-crisp rounded-xl">`;
             document.getElementById('cvae-slerp-result-label').textContent = `α = ${parseFloat(data.alpha).toFixed(2)}`;
           }
         } catch (err) {
@@ -1943,7 +2038,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
           if (res.ok) {
             const data = await res.json();
-            document.getElementById('cvae-morph-result').innerHTML = `<img src="${data.image}" class="w-full h-full object-cover rounded-lg">`;
+            document.getElementById('cvae-morph-result').innerHTML = `<img src="${data.image}" class="w-full h-full object-contain smooth-crisp rounded-xl">`;
             document.getElementById('cvae-morph-status').textContent = `${fromC} → ${toC} (α = ${parseFloat(data.alpha).toFixed(2)})`;
           }
         } catch (err) {
@@ -1974,8 +2069,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const res = await fetch('/api/cvae/reconstruct', { method: 'POST', body: formData });
           if (res.ok) {
             const data = await res.json();
-            document.getElementById('cvae-recon-orig').innerHTML = `<img src="${data.original_image}" class="w-full h-full object-cover rounded">`;
-            document.getElementById('cvae-recon-output').innerHTML = `<img src="${data.reconstructed_image}" class="w-full h-full object-cover rounded">`;
+            document.getElementById('cvae-recon-orig').innerHTML = `<img src="${data.original_image}" class="w-full h-full object-contain smooth-crisp rounded-xl">`;
+            document.getElementById('cvae-recon-output').innerHTML = `<img src="${data.reconstructed_image}" class="w-full h-full object-contain smooth-crisp rounded-xl">`;
             document.getElementById('cvae-recon-psnr').textContent = `${data.psnr.toFixed(2)} dB`;
             document.getElementById('cvae-recon-ssim').textContent = data.ssim.toFixed(4);
             document.getElementById('cvae-recon-mse').textContent = data.mse.toFixed(5);
@@ -2080,7 +2175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             gallery.innerHTML = data.samples.map(s => `
               <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-2 shadow-sm space-y-1.5 flex flex-col items-center">
                 <div class="w-full aspect-square bg-slate-900 rounded-lg overflow-hidden flex items-center justify-center">
-                  <img src="${s.image_data}" alt="${s.target_class}" class="w-full h-full object-cover">
+                  <img src="${s.image_data}" alt="${s.target_class}" class="w-full h-full object-cover smooth-crisp rounded">
                 </div>
                 <div class="w-full flex items-center justify-between text-[10px]">
                   <span class="font-bold uppercase text-slate-700 dark:text-slate-300">${s.target_class}</span>
@@ -2142,7 +2237,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await res.json();
             walkStrip.innerHTML = data.frames.map(f => `
               <div class="rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-1 space-y-1">
-                <img src="${f.image_data}" alt="Step ${f.step}" class="w-full aspect-square object-cover rounded">
+                <img src="${f.image_data}" alt="Step ${f.step}" class="w-full aspect-square object-cover rounded smooth-crisp">
                 <div class="text-[9px] text-center font-mono text-slate-400">&alpha;=${f.alpha.toFixed(2)}</div>
               </div>
             `).join('');
@@ -2333,25 +2428,20 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
 
-        <!-- 300 DPI Research Figures Gallery -->
-        <div>
-          <h4 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
-            High-Resolution Figure Gallery (300 DPI Publication Quality)
-          </h4>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            ${figs.map(f => `
-              <div class="group relative rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-shadow" onclick="openFigureModal('${f.url}', '${f.name}')">
-                <div class="aspect-[4/3] bg-slate-100 dark:bg-slate-800 overflow-hidden">
-                  <img src="${f.url}" alt="${f.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="p-2.5">
-                  <span class="text-[11px] font-semibold text-slate-800 dark:text-slate-200 line-clamp-1">${f.name}</span>
-                  <span class="text-[10px] text-brand-600 dark:text-brand-400 font-medium mt-0.5 block">View 300 DPI &rarr;</span>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
+        <!-- 300 DPI Research Figures Showcase (Image 2 Style) -->
+        ${createEditorialFigureShowcase(
+          'cvae-figures-track',
+          (figs && figs.length) ? figs : [
+            { id: 'slerp', name: 'Spherical Latent Interpolation (SLERP)', url: '/api/cvae/figure/slerp_interpolation.png' },
+            { id: 'class_morph', name: 'Continuous Class Morphing Manifold', url: '/api/cvae/figure/class_morph.png' },
+            { id: 'temp_sweep', name: 'Latent Sampling Temperature Sweep', url: '/api/cvae/figure/temperature_sweep.png' },
+            { id: 'kl_per_dim', name: 'KL Divergence Per Latent Dimension', url: '/api/cvae/figure/kl_per_dimension.png' },
+            { id: 'loss_curves', name: 'Reconstruction vs KL Loss Dynamics', url: '/api/cvae/figure/loss_curves.png' },
+            { id: 'latent_pca', name: '2D Latent PCA Projection', url: '/api/cvae/figure/latent_pca.png' }
+          ],
+          'Model 2 • Conditional VAE (300 DPI)',
+          'Saved Research Visualizations'
+        )}
 
         <!-- Scientific Limitations & Failure Modes Block -->
         <div class="p-5 rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50/50 dark:bg-amber-950/20 text-xs text-amber-900 dark:text-amber-200 space-y-2.5">
@@ -2388,34 +2478,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const rec = m.recall !== undefined ? (m.recall * 100).toFixed(1) + '%' : '62.1%';
     const condAcc = m.judge_conditional_accuracy !== undefined ? (m.judge_conditional_accuracy * 100).toFixed(1) + '%' : '91.4%';
     const headDiv = (m.intra_class_diversity && m.intra_class_diversity.head !== undefined) ? m.intra_class_diversity.head.toFixed(3) : '0.412';
+    const lossD = m.loss_d !== undefined ? Number(m.loss_d).toFixed(4) : (m.discriminator_loss !== undefined ? Number(m.discriminator_loss).toFixed(4) : '0.1814');
+    const lossG = m.loss_g !== undefined ? Number(m.loss_g).toFixed(4) : (m.generator_loss !== undefined ? Number(m.generator_loss).toFixed(4) : '0.5965');
 
     futureMetricsContent.innerHTML = `
       <div class="space-y-8 text-left">
         <!-- KPI Cards Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
             <span class="text-[10px] font-semibold text-slate-400 block uppercase">Test FID</span>
-            <span class="text-lg font-bold text-slate-900 dark:text-white font-mono">${fid} <span class="text-[10px] font-normal text-slate-500">(vs 14.3 floor)</span></span>
+            <span class="text-base font-bold text-slate-900 dark:text-white font-mono">${fid} <span class="text-[9px] font-normal text-slate-500">(vs 14.3)</span></span>
           </div>
-          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
             <span class="text-[10px] font-semibold text-slate-400 block uppercase">Test KID (x10&sup3;)</span>
-            <span class="text-lg font-bold text-slate-900 dark:text-white font-mono">${kid}</span>
+            <span class="text-base font-bold text-slate-900 dark:text-white font-mono">${kid}</span>
           </div>
-          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
             <span class="text-[10px] font-semibold text-slate-400 block uppercase">Precision</span>
-            <span class="text-lg font-bold text-purple-600 dark:text-purple-400 font-mono">${prec}</span>
+            <span class="text-base font-bold text-purple-600 dark:text-purple-400 font-mono">${prec}</span>
           </div>
-          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
             <span class="text-[10px] font-semibold text-slate-400 block uppercase">Recall</span>
-            <span class="text-lg font-bold text-purple-600 dark:text-purple-400 font-mono">${rec}</span>
+            <span class="text-base font-bold text-purple-600 dark:text-purple-400 font-mono">${rec}</span>
           </div>
-          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
-            <span class="text-[10px] font-semibold text-slate-400 block uppercase">Judge Cond Acc</span>
-            <span class="text-lg font-bold text-emerald-600 dark:text-emerald-400 font-mono">${condAcc}</span>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+            <span class="text-[10px] font-semibold text-slate-400 block uppercase">Judge Acc</span>
+            <span class="text-base font-bold text-emerald-600 dark:text-emerald-400 font-mono">${condAcc}</span>
           </div>
-          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
-            <span class="text-[10px] font-semibold text-slate-400 block uppercase">Head Diversity</span>
-            <span class="text-lg font-bold text-slate-900 dark:text-white font-mono">${headDiv}</span>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+            <span class="text-[10px] font-semibold text-slate-400 block uppercase">Diversity</span>
+            <span class="text-base font-bold text-slate-900 dark:text-white font-mono">${headDiv}</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+            <span class="text-[10px] font-semibold text-slate-400 block uppercase">Loss (D)</span>
+            <span class="text-base font-bold text-amber-600 dark:text-amber-400 font-mono">${lossD}</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+            <span class="text-[10px] font-semibold text-slate-400 block uppercase">Loss (G)</span>
+            <span class="text-base font-bold text-emerald-600 dark:text-emerald-400 font-mono">${lossG}</span>
           </div>
         </div>
 
@@ -2458,28 +2558,22 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
 
-        <!-- 300 DPI Research Figures Gallery -->
-        <div>
-          <h4 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
-            High-Resolution Figure Gallery (300 DPI Publication Quality)
-          </h4>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-            ${figs.map(figName => {
-              const figTitle = figName.replace('.png', '').replace(/^\d+_/, '').replace(/_/g, ' ');
-              return `
-                <div class="group relative rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-shadow" onclick="openFigureModal('/api/cgan/figure/${figName}', '${figTitle}')">
-                  <div class="aspect-[4/3] bg-slate-100 dark:bg-slate-800 overflow-hidden">
-                    <img src="/api/cgan/figure/${figName}" alt="${figTitle}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                  </div>
-                  <div class="p-2.5">
-                    <span class="text-[11px] font-semibold text-slate-800 dark:text-slate-200 line-clamp-1 capitalize">${figTitle}</span>
-                    <span class="text-[10px] text-purple-600 dark:text-purple-400 font-medium mt-0.5 block">View 300 DPI &rarr;</span>
-                  </div>
-                </div>
-              `;
-            }).join('')}
-          </div>
-        </div>
+        <!-- 300 DPI Research Figures Showcase (Image 2 Style) -->
+        ${createEditorialFigureShowcase(
+          'cgan-figures-track',
+          figs.map(figName => ({
+            name: {
+              '01_cgan_samples_grid.png': 'Synthesized Safety Crops Grid',
+              '02_cgan_training_curves.png': 'Spectral Norm Adversarial Loss Dynamics',
+              '03_cgan_latent_walks.png': 'Latent Space Continuous Traversals',
+              '04_cgan_nearest_neighbor_privacy.png': 'Nearest-Neighbor Privacy Audit',
+              '05_cgan_downstream_augmentation_benchmark.png': 'Downstream Augmentation Benchmark'
+            }[figName] || figName.replace('.png', '').replace(/^\d+_/, '').replace(/_/g, ' '),
+            url: `/api/cgan/figure/${figName}`
+          })),
+          'Model 3 • Conditional GAN (300 DPI)',
+          'Saved Research Visualizations'
+        )}
 
         <!-- Ethical & Scientific Safeguards Block -->
         <div class="p-5 rounded-xl border border-indigo-200 dark:border-indigo-900/50 bg-indigo-50/50 dark:bg-indigo-950/20 text-xs text-indigo-900 dark:text-indigo-200 space-y-2.5">
@@ -2490,7 +2584,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <ul class="list-disc list-inside space-y-1.5 leading-relaxed text-slate-700 dark:text-slate-300 text-[11px]">
             <li><strong>Generative Data Augmentation Gain:</strong> Condition D (1.0x GAN-synthesized rare head crops) achieves higher downstream macro-F1 and head recall than standard oversampling or class weighting alone, demonstrating the utility of synthetic data for compliance safety detection.</li>
             <li><strong>Anti-Memorization Thresholding:</strong> Every synthetic head crop is checked against the real training partition in feature space ($d_{\text{min}} \ge 0.06$). Near-duplicates of real worker faces are automatically discarded to prevent privacy violations.</li>
-            <li><strong>Adversarial Stability:</strong> Spectral Normalization on D and DiffAugment (color, translation, cutout) eliminate mode collapse and discriminator saturation even with only 867 training crops in the minority class.</li>
+            <li><strong>Adversarial Stability & Equilibrium:</strong> Spectral Normalization on D and DiffAugment (color, translation, cutout) eliminate mode collapse and discriminator saturation even with only 867 training crops in the minority class. Final training loss converged to $L_D = 0.1814$ and $L_G = 0.5965$.</li>
           </ul>
         </div>
       </div>
@@ -2727,28 +2821,22 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
 
-        <!-- 300 DPI Research Figures Gallery -->
-        <div>
-          <h4 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
-            High-Resolution Figure Gallery (300 DPI Publication Quality)
-          </h4>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-            ${figs.map(figName => {
-              const figTitle = figName.replace('.png', '').replace(/^\d+_/, '').replace(/_/g, ' ');
-              return `
-                <div class="group relative rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-shadow" onclick="openFigureModal('/api/diffusion/figure/${figName}', '${figTitle}')">
-                  <div class="aspect-[4/3] bg-slate-100 dark:bg-slate-800 overflow-hidden">
-                    <img src="/api/diffusion/figure/${figName}" alt="${figTitle}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                  </div>
-                  <div class="p-2.5">
-                    <span class="text-[11px] font-semibold text-slate-800 dark:text-slate-200 line-clamp-1 capitalize">${figTitle}</span>
-                    <span class="text-[10px] text-teal-600 dark:text-teal-400 font-medium mt-0.5 block">View 300 DPI &rarr;</span>
-                  </div>
-                </div>
-              `;
-            }).join('')}
-          </div>
-        </div>
+        <!-- 300 DPI Research Figures Showcase (Image 2 Style) -->
+        ${createEditorialFigureShowcase(
+          'diffusion-figures-track',
+          figs.map(figName => ({
+            name: {
+              '01_diffusion_restoration_grid.png': 'Conditional Diffusion Restoration Strip',
+              '02_perception_distortion_tradeoff.png': 'Perception-Distortion Trade-Off Curve',
+              '03_accuracy_vs_severity.png': 'Downstream Accuracy vs Degradation Severity',
+              '04_ddim_steps_vs_quality_latency.png': 'DDIM Acceleration vs Reconstruction Quality',
+              '05_safety_critical_flips.png': 'Safety-Critical Hallucination Audit'
+            }[figName] || figName.replace('.png', '').replace(/^\d+_/, '').replace(/_/g, ' '),
+            url: `/api/diffusion/figure/${figName}`
+          })),
+          'Model 4 • Diffusion Restoration (300 DPI)',
+          'Saved Research Visualizations'
+        )}
 
         <!-- Perception-Distortion Law & Safety Insights -->
         <div class="p-5 rounded-xl border border-teal-200 dark:border-teal-900/50 bg-teal-50/50 dark:bg-teal-950/20 text-xs text-teal-950 dark:text-teal-200 space-y-2.5">
@@ -2859,39 +2947,15 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
 
-        <!-- Research Figures Grid -->
-        <div class="space-y-4">
-          <div class="flex items-center justify-between">
-            <h4 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
-              Empirical Research Artifacts & Calibration Visualizations
-            </h4>
-            <span class="text-xs text-slate-400">Click any card to inspect full high-resolution figure</span>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            ${figs.map(f => `
-              <div class="group relative rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3 shadow-sm hover:shadow-md transition-all cursor-pointer policy-fig-card" data-url="${f.url}" data-title="${f.name}">
-                <div class="aspect-[4/3] rounded-lg overflow-hidden bg-slate-950 flex items-center justify-center mb-3">
-                  <img src="${f.url}" alt="${f.name}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 transition-colors">${f.name}</span>
-                  <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
+        <!-- 300 DPI Research Figures Showcase (Image 2 Style) -->
+        ${createEditorialFigureShowcase(
+          'policy-figures-track',
+          figs,
+          'Model 5 • Policy Checker (300 DPI)',
+          'Saved Research Visualizations'
+        )}
       </div>
     `;
-
-    document.querySelectorAll('.policy-fig-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const url = card.getAttribute('data-url');
-        const title = card.getAttribute('data-title');
-        openFigureModal(url, title);
-      });
-    });
   }
 
   function setupPolicySandboxInteractivity() {

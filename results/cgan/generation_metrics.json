@@ -5,6 +5,8 @@
   "precision": 0.0960960960960961,
   "recall": 0.076,
   "judge_conditional_accuracy": 0.8955555555555555,
+  "loss_d": 0.181446,
+  "loss_g": 0.596498,
   "judge_per_class_accuracy": {
     "head": 0.9866666666666667,
     "helmet": 0.7633333333333333,

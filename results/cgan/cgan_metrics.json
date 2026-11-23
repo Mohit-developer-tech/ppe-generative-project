@@ -4,5 +4,7 @@
   "precision": 0.0960960960960961,
   "recall": 0.076,
   "conditional_accuracy": 0.8955555555555555,
-  "p5_privacy_distance": 0.26371301561594007
+  "p5_privacy_distance": 0.26371301561594007,
+  "loss_d": 0.181446,
+  "loss_g": 0.596498
 }

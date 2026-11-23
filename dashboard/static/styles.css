@@ -3,8 +3,7 @@
 /* Clean, crisp rendering for neural reconstructions and generative synthetic outputs */
 .smooth-crisp,
 .generative-crop-img {
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
+  image-rendering: auto;
   transform: translateZ(0);
   backface-visibility: hidden;
 }
@@ -86,4 +85,67 @@
 .badge-pulse {
   animation: subtle-pulse 1.8s infinite ease-in-out;
 }
+
+/* ==============================================================================
+   CONSTRUCTION THEME BACKGROUND OVERLAY (DARK THEME ONLY)
+   ============================================================================== */
+.construction-theme-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0; /* Hidden in light theme */
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.dark .construction-theme-bg {
+  visibility: visible;
+  opacity: 0.08; /* Visible only in dark theme with low opacity */
+  background-image: url('/static/assets/construction_bg.jpg');
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  filter: contrast(1.15) brightness(0.9) saturate(1.1);
+}
+
+/* Subtle safety hazard yellow/orange pattern accent for tabs and cards */
+.safety-stripe-accent {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(245, 158, 11, 0.08),
+    rgba(245, 158, 11, 0.08) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+/* ==============================================================================
+   EDITORIAL FIGURE SHOWCASE CAROUSEL (IMAGE 2 RADO LUXURY STYLE)
+   ============================================================================== */
+.scrollbar-none::-webkit-scrollbar {
+  display: none !important;
+}
+.scrollbar-none {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.showcase-card {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.showcase-card img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+
 

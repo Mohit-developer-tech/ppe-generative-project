@@ -493,6 +493,8 @@ def get_policy_figure(name: str):
     safe_name = os.path.basename(name)
     fig_path = os.path.join("results/policy/figures", safe_name)
     if not os.path.exists(fig_path):
+        fig_path = os.path.join("results/policy", safe_name)
+    if not os.path.exists(fig_path):
         raise HTTPException(status_code=404, detail="Figure not found.")
     return FileResponse(fig_path, media_type="image/png")
 

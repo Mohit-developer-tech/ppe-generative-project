@@ -25,7 +25,7 @@ MODEL_REGISTRY: Dict[str, Dict[str, Any]] = {
         "endpoint_prefix": "/api/autoencoder",
         "features": [
             "Interactive 64x64 crop bounding box tool",
-            "Real-time reconstruction and error heatmap",
+            "Real-time generative reconstruction inspection",
             "Per-image PSNR, SSIM, MSE, MAE metrics",
             "256-dim latent space representation & 2D PCA scatter",
             "SVM safety violation detection (head vs helmet vs vest)"
