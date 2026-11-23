@@ -142,9 +142,55 @@
 
 .showcase-card img {
   image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
   transform: translateZ(0);
   backface-visibility: hidden;
+}
+
+/* ==============================================================================
+   CLEAN JURY PRESENTATION & PDF EXPORT STYLES (@media print)
+   ============================================================================== */
+@media print {
+  /* Hide non-printable navigation bars, theme toggles, and floating background */
+  header,
+  #model-tabs-bar,
+  #theme-toggle,
+  .construction-theme-bg,
+  .carousel-btn,
+  #btn-shuffle-samples,
+  #btn-open-inspector,
+  #cvae-mode-tabs,
+  #cgan-mode-tabs,
+  #diff-mode-tabs {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Prevent awkward page-breaks inside tables, cards, and figures */
+  .bg-white,
+  .rounded-2xl,
+  .rounded-xl,
+  table,
+  tr,
+  .showcase-card {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Clean shadows and borders for crisp PDF rendering */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .border {
+    border-color: #cbd5e1 !important;
+  }
 }
 
 

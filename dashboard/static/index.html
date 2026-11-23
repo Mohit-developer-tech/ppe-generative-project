@@ -43,7 +43,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- Custom styles -->
-  <link rel="stylesheet" href="/static/styles.css?v=5.0.0">
+  <link rel="stylesheet" href="/static/styles.css?v=5.1.0">
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200 relative selection:bg-brand-500 selection:text-white">
 
@@ -65,9 +65,9 @@
       </div>
 
       <nav class="flex items-center space-x-1 sm:space-x-6 text-sm font-medium">
-        <a href="#demo" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-white transition-colors">Live Demo</a>
-        <a href="#cross-model-benchmark" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-white transition-colors font-semibold text-brand-600 dark:text-brand-400">Benchmark Metrics</a>
-        <a href="#limitations" class="hidden md:inline-block px-3 py-1.5 rounded-md text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-white transition-colors">Limitations</a>
+        <a href="#demo" id="nav-demo-btn" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-white transition-colors">Live Demo</a>
+        <a href="#cross-model-benchmark" id="nav-benchmark-btn" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-white transition-colors font-semibold text-brand-600 dark:text-brand-400">Benchmark Metrics</a>
+        <a href="#limitations" id="nav-limitations-btn" class="hidden md:inline-block px-3 py-1.5 rounded-md text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-white transition-colors">Limitations</a>
 
         <!-- Dark mode toggle -->
         <button id="theme-toggle" type="button" aria-label="Toggle theme" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
@@ -110,6 +110,11 @@
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
           <span>5. Policy Transformer</span>
           <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700 dark:bg-emerald-950/70 dark:text-emerald-300 font-mono">Active</span>
+        </button>
+        <button type="button" data-model-id="benchmark" class="model-tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-transparent shrink-0">
+          <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+          <span>📊 5-Model Benchmark</span>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 font-mono">Table 1</span>
         </button>
       </div>
     </div>
@@ -598,8 +603,8 @@
       <div class="max-w-7xl mx-auto">
         <div class="max-w-3xl">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 dark:bg-indigo-950/70 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60 mb-4">
-            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-            <span id="future-badge">Model 2 of 5 — Under Active Development</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span id="future-badge">Model 2 of 5 — Benchmark Active</span>
           </div>
           <h1 id="future-title" class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
             Conditional VAE (cVAE)
@@ -641,47 +646,6 @@
         </div>
       </div>
 
-      <!-- Feature Checklist & Capabilities -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
-          <h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 flex items-center gap-2">
-            <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            Planned Research Capabilities
-          </h3>
-          <ul id="future-features-list" class="space-y-2.5 text-xs text-slate-600 dark:text-slate-300">
-            <!-- Dynamically populated from registry -->
-          </ul>
-        </div>
-
-        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
-          <h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 flex items-center gap-2">
-            <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-            Standardized Evaluation Protocol
-          </h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mb-3 leading-relaxed">
-            All models share the exact same evaluation harness (<code class="font-mono">common.metrics</code>) for empirical cross-comparison:
-          </p>
-          <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60">
-              <span class="text-slate-400 block text-[10px]">FID & KID</span>
-              <span class="font-bold text-slate-700 dark:text-slate-200">vs Noise Floor</span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60">
-              <span class="text-slate-400 block text-[10px]">Precision / Recall</span>
-              <span class="font-bold text-slate-700 dark:text-slate-200">Manifold Coverage</span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60">
-              <span class="text-slate-400 block text-[10px]">LPIPS Diversity</span>
-              <span class="font-bold text-slate-700 dark:text-slate-200">Pairwise Diversity</span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60">
-              <span class="text-slate-400 block text-[10px]">Independent Judge</span>
-              <span class="font-bold text-slate-700 dark:text-slate-200">5-Seed SmallResNet</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Dynamic Future Model Performance Section -->
       <div id="future-performance-hub" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
         <div class="flex items-center justify-between mb-4">
@@ -702,7 +666,7 @@
   </div>
 
   <!-- ================= UNIFIED MULTI-MODEL BENCHMARK TABLE & BEST MODEL ANALYSIS ================= -->
-  <section id="cross-model-benchmark" class="border-t border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 py-16 px-4 sm:px-6 lg:px-8">
+  <section id="cross-model-benchmark" class="hidden border-t border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 py-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto space-y-10">
       
       <!-- Section Header -->
@@ -1103,7 +1067,7 @@
     </div>
   </div>
 
-  <script src="/static/app.js?v=5.0.0"></script>
+  <script src="/static/app.js?v=5.1.0"></script>
 </body>
 </html>
 

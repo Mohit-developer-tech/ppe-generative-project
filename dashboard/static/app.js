@@ -956,6 +956,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const modelTabButtons = document.querySelectorAll('.model-tab-btn');
   const viewAutoencoder = document.getElementById('model-view-autoencoder');
   const viewFuture = document.getElementById('model-view-future');
+  const sectionBenchmark = document.getElementById('cross-model-benchmark');
+  let currentActiveModelId = 'autoencoder';
 
   const futureBadge = document.getElementById('future-badge');
   const futureTitle = document.getElementById('future-title');
@@ -970,6 +972,43 @@ document.addEventListener('DOMContentLoaded', () => {
   const futureMetricsBadge = document.getElementById('future-metrics-badge');
   const futureMetricsContent = document.getElementById('future-metrics-content');
   const futureResultsPath = document.getElementById('future-results-path');
+
+  // Top Nav quick navigation
+  const navDemoBtn = document.getElementById('nav-demo-btn');
+  const navBenchmarkBtn = document.getElementById('nav-benchmark-btn');
+  const navLimitationsBtn = document.getElementById('nav-limitations-btn');
+
+  if (navBenchmarkBtn) {
+    navBenchmarkBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchModelTab('benchmark');
+    });
+  }
+
+  if (navDemoBtn) {
+    navDemoBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (sectionBenchmark && !sectionBenchmark.classList.contains('hidden')) {
+        switchModelTab(currentActiveModelId || 'autoencoder');
+      } else {
+        const demoEl = document.getElementById('demo') || document.getElementById('future-sandbox-content');
+        if (demoEl) demoEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
+  if (navLimitationsBtn) {
+    navLimitationsBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (sectionBenchmark && !sectionBenchmark.classList.contains('hidden')) {
+        switchModelTab(currentActiveModelId || 'autoencoder');
+      }
+      setTimeout(() => {
+        const limitEl = document.getElementById('limitations') || document.getElementById('future-performance-hub');
+        if (limitEl) limitEl.scrollIntoView({ behavior: 'smooth' });
+      }, 50);
+    });
+  }
 
   modelTabButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -990,6 +1029,20 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.add('text-slate-600', 'dark:text-slate-400', 'hover:bg-slate-100', 'dark:hover:bg-slate-800', 'border-transparent');
       }
     });
+
+    if (modelId !== 'benchmark') {
+      currentActiveModelId = modelId;
+    }
+
+    if (modelId === 'benchmark') {
+      viewAutoencoder.classList.add('hidden');
+      viewFuture.classList.add('hidden');
+      if (sectionBenchmark) sectionBenchmark.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (sectionBenchmark) sectionBenchmark.classList.add('hidden');
 
     if (modelId === 'autoencoder') {
       viewAutoencoder.classList.remove('hidden');
@@ -1026,16 +1079,18 @@ document.addEventListener('DOMContentLoaded', () => {
     futureSpecLoss.textContent = `Loss: ${meta.loss_objective || 'Composite'}`;
     futureResultsPath.textContent = `results/${modelId}/`;
 
-    // Render Features List
-    if (meta.features && meta.features.length) {
-      futureFeaturesList.innerHTML = meta.features.map(f => `
-        <li class="flex items-start gap-2">
-          <span class="w-1.5 h-1.5 rounded-full bg-brand-500 mt-1.5 shrink-0"></span>
-          <span>${f}</span>
-        </li>
-      `).join('');
-    } else {
-      futureFeaturesList.innerHTML = '<li class="text-slate-400">Features under research specification.</li>';
+    // Render Features List if present
+    if (futureFeaturesList) {
+      if (meta.features && meta.features.length) {
+        futureFeaturesList.innerHTML = meta.features.map(f => `
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-500 mt-1.5 shrink-0"></span>
+            <span>${f}</span>
+          </li>
+        `).join('');
+      } else {
+        futureFeaturesList.innerHTML = '<li class="text-slate-400">Features under research specification.</li>';
+      }
     }
 
     const statusPill = document.getElementById('future-status-pill');
