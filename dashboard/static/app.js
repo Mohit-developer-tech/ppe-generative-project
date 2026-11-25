@@ -1061,7 +1061,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: modelId,
       name: modelId === 'diffusion' ? 'Diffusion Restoration (DDPM / DDIM)' : (modelId === 'cvae' ? 'Conditional VAE (cVAE)' : (modelId === 'cgan' ? 'Conditional GAN (cGAN)' : (modelId === 'policy' ? 'Policy Transformer' : modelId.toUpperCase()))),
       status: 'ready',
-      badge: `Active (Model ${modelId === 'cvae' ? 2 : (modelId === 'cgan' ? 3 : (modelId === 'diffusion' ? 4 : 5))})`,
+      badge: `Active (Model ${modelId === 'cvae' ? 2 : (modelId === 'policy' ? 3 : (modelId === 'cgan' ? 4 : 5))})`,
       description: 'Model architecture trained and validated on benchmark test set.',
       architecture: modelId === 'diffusion' ? 'SR3 Conditional U-Net (6ch input) + Attention + GroupNorm' : 'Standard generative baseline',
       loss_objective: modelId === 'diffusion' ? 'Epsilon-L1 Loss + abar_t-weighted Perceptual Term' : 'Multi-objective composite loss',

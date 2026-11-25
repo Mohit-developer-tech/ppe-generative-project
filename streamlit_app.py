@@ -421,9 +421,9 @@ with st.sidebar:
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "🦺 1. Autoencoder + SVM",
     "🎲 2. Conditional VAE",
-    "⚡ 3. Conditional GAN",
-    "🌊 4. Diffusion Restoration",
-    "📜 5. Policy Checker",
+    "📜 3. Policy Transformer",
+    "⚡ 4. Conditional GAN",
+    "🌊 5. Diffusion Restoration",
     "📊 6. Master 5-Model Benchmark"
 ])
 
@@ -590,188 +590,10 @@ with tab2:
 
 
 # =============================================================================
-# TAB 3: Conditional GAN (cGAN with DiffAugment)
+# TAB 3: Safety Policy Checker (DistilBERT + Consensus)
 # =============================================================================
 with tab3:
-    st.subheader("Model 3: Conditional Generative Adversarial Network (cGAN with DiffAugment)")
-    st.markdown("""
-    **Purpose:** High-frequency adversarial synthesis to generate realistic synthetic training samples for the rare bare-head violation class, hardened by **Differentiable Augmentation (DiffAugment)** and verified with a **Nearest-Neighbor Privacy Audit**.
-    """)
-
-    cgan_data = load_cgan_suite()
-    col_cgan_ctrl, col_cgan_disp = st.columns([1.2, 2.0])
-
-    with col_cgan_ctrl:
-        st.markdown("##### Adversarial Generator Controls")
-        cgan_target = st.selectbox("Target Condition:", ["Head (Violation Class)", "Helmet", "Vest"], index=0, key="cgan_cls")
-        cgan_cls_idx = 0 if "Head" in cgan_target else (1 if "Helmet" in cgan_target else 2)
-
-        latent_sigma = st.slider("Latent Variation Scale (σ):", min_value=0.3, max_value=1.5, value=1.0, step=0.05)
-        cgan_seed = st.number_input("Adversarial Seed:", min_value=1, max_value=99999, value=6687, step=1)
-        gen_btn = st.button("⚡ Generate 4 Adversarial Crops", type="primary")
-
-        st.markdown("##### Nearest-Neighbor Privacy Metric")
-        st.markdown("""
-        To prevent generative training data memorization, each generated crop is audited against real training samples.
-        - **Empirical 5th-Percentile Threshold ($p_5$):** `0.2637`
-        - If $d_{\\text{min}} \\ge 0.2637$: **Privacy Approved (Novel)**
-        - If $d_{\\text{min}} < 0.2637$: **Near-Duplicate Flag**
-        """)
-
-    with col_cgan_disp:
-        if cgan_data["model"] is not None:
-            torch.manual_seed(cgan_seed)
-            np.random.seed(cgan_seed)
-
-            z = torch.randn(4, 128, device=DEVICE) * latent_sigma
-            y = torch.tensor([cgan_cls_idx] * 4, dtype=torch.long, device=DEVICE)
-
-            with torch.no_grad():
-                cgan_out = cgan_data["model"](z, y)
-                # ResNet Judge live evaluation
-                if cgan_data["judge"] is not None:
-                    judge_logits = cgan_data["judge"](cgan_out)
-                    judge_probs = F.softmax(judge_logits, dim=-1).cpu().numpy()
-                else:
-                    judge_probs = [[0.89, 0.05, 0.06]] * 4
-
-            st.markdown(f"##### Evaluated Synthetic Crops ({CLASS_NAMES[cgan_cls_idx].upper()})")
-            c_cols = st.columns(4)
-
-            for i in range(4):
-                arr = (cgan_out[i].permute(1, 2, 0).cpu().numpy() * 0.5 + 0.5).clip(0, 1)
-                arr_u8 = (arr * 255.0).astype(np.uint8)
-                enh = enhance_crop(arr_u8, 140)
-
-                # Privacy check
-                nn_dist = 0.285 + 0.02 * (i % 2)
-                if cgan_data["train_heads"] is not None and cgan_cls_idx == 0:
-                    dists = np.linalg.norm(cgan_data["train_heads"] - arr[None, ...], axis=(1, 2, 3)) / np.sqrt(64*64*3)
-                    nn_dist = float(np.min(dists))
-
-                j_cls = CLASS_NAMES[int(np.argmax(judge_probs[i]))]
-                j_conf = float(np.max(judge_probs[i]))
-
-                with c_cols[i]:
-                    st.image(enh, use_container_width=True)
-                    if j_cls == "head":
-                        st.markdown(f'<span class="badge-viol">Judge: {j_cls} ({j_conf*100:.0f}%)</span>', unsafe_allow_html=True)
-                    else:
-                        st.markdown(f'<span class="badge-ok">Judge: {j_cls} ({j_conf*100:.0f}%)</span>', unsafe_allow_html=True)
-
-                    if nn_dist >= 0.2637:
-                        st.markdown(f'<div style="font-size:0.75rem; color:#34d399;">d_nn: {nn_dist:.3f} • Privacy OK</div>', unsafe_allow_html=True)
-                    else:
-                        st.markdown(f'<div style="font-size:0.75rem; color:#f87171;">d_nn: {nn_dist:.3f} • Near-Duplicate</div>', unsafe_allow_html=True)
-        else:
-            st.warning("cGAN checkpoint not loaded. Check `artifacts/cgan/cgan_best.pt`.")
-
-    st.markdown("##### Downstream Data Augmentation Impact")
-    aug_df = pd.DataFrame({
-        "Classifier Training Configuration": ["Baseline (Real Data Only)", "Baseline + Standard Transforms", "Proposed: Real + cGAN Synthetic Heads"],
-        "Rare-Class (Head) Recall": ["74.2%", "78.6%", "82.8% (+4.2%)"],
-        "False Negative Violation Rate": ["25.8%", "21.4%", "17.2% (-8.6%)"],
-        "Macro F1-Score": ["0.884", "0.902", "0.931 (p < 0.001)"]
-    })
-    st.table(aug_df)
-
-
-# =============================================================================
-# TAB 4: Conditional Diffusion Restoration (DDPM / DDIM)
-# =============================================================================
-with tab4:
-    st.subheader("Model 4: Conditional Diffusion Restoration (DDPM / DDIM)")
-    st.markdown("""
-    **Purpose:** Reconstruct severe optical degradations (motion blur, low-resolution sensor downsampling, dust/rain occlusion, and high noise) on construction sites using a **Conditional U-Net with DDIM Fast Sampling** vs. a **Deterministic Regression Baseline**.
-    """)
-
-    diff_data = load_diffusion_suite()
-    sample_crops = get_sample_crops()
-
-    col_diff_ctrl, col_diff_disp = st.columns([1.2, 2.0])
-
-    with col_diff_ctrl:
-        st.markdown("##### Degradation & Sampling Controls")
-        diff_crop_choice = st.selectbox("Select Ground Truth Crop:", list(sample_crops.keys()) if sample_crops else ["None"], key="diff_crop")
-        if sample_crops and diff_crop_choice in sample_crops:
-            gt_pil = Image.open(sample_crops[diff_crop_choice]).convert("RGB").resize((64, 64))
-        else:
-            gt_pil = Image.new("RGB", (64, 64), color=(140, 160, 180))
-
-        deg_type = st.selectbox("Site Degradation Type:", [
-            "motion_blur", "gaussian_noise", "occlusion_mask", "downsampling", "lens_flare"
-        ])
-        severity = st.slider("Degradation Severity (Level):", min_value=1, max_value=5, value=3)
-        ddim_steps = st.select_slider("DDIM Sampling Steps:", options=[10, 20, 50, 100], value=20,
-                                      help="Fewer steps = lower latency. 20 steps achieves 98% of peak PSNR.")
-        run_diff_btn = st.button("🌊 Run Restoration Benchmark", type="primary")
-
-    with col_diff_disp:
-        # Generate degraded image
-        gt_tensor = transforms.ToTensor()(gt_pil).to(DEVICE)
-        degraded_tensor = degrade_image(gt_tensor, deg_type, severity)
-
-        # DDIM restoration
-        if diff_data["diffusion"] is not None and diff_data["schedule"] is not None:
-            with torch.no_grad():
-                t_start = time.perf_counter()
-                restored_tensor = sample_ddim(
-                    diff_data["diffusion"], diff_data["schedule"],
-                    degraded_tensor.unsqueeze(0), steps=ddim_steps, eta=0.0
-                ).squeeze(0)
-                diff_latency_ms = (time.perf_counter() - t_start) * 1000.0
-
-            if diff_data["regression"] is not None:
-                with torch.no_grad():
-                    reg_out = diff_data["regression"](degraded_tensor.unsqueeze(0)).squeeze(0)
-            else:
-                reg_out = degraded_tensor
-        else:
-            # Fallback simulated restoration if checkpoint missing
-            restored_tensor = (gt_tensor * 0.85 + degraded_tensor * 0.15).clamp(0, 1)
-            reg_out = (gt_tensor * 0.6 + degraded_tensor * 0.4).clamp(0, 1)
-            diff_latency_ms = 48.0
-
-        # Convert to numpy for metrics
-        gt_np = gt_tensor.permute(1, 2, 0).cpu().numpy()
-        deg_np = degraded_tensor.permute(1, 2, 0).cpu().numpy()
-        res_np = restored_tensor.permute(1, 2, 0).cpu().numpy()
-        reg_np = reg_out.permute(1, 2, 0).cpu().numpy()
-
-        p_deg = sk_psnr(gt_np, deg_np, data_range=1.0)
-        p_res = sk_psnr(gt_np, res_np, data_range=1.0)
-        p_reg = sk_psnr(gt_np, reg_np, data_range=1.0)
-
-        s_deg = sk_ssim(gt_np, deg_np, channel_axis=2, data_range=1.0)
-        s_res = sk_ssim(gt_np, res_np, channel_axis=2, data_range=1.0)
-        s_reg = sk_ssim(gt_np, reg_np, channel_axis=2, data_range=1.0)
-
-        st.markdown("##### Multi-Model Restoration Comparison")
-        d_cols = st.columns(4)
-
-        with d_cols[0]:
-            st.image(enhance_crop((gt_np * 255).astype(np.uint8), 140), caption="1. Clean Ground Truth", use_container_width=True)
-        with d_cols[1]:
-            st.image(enhance_crop((deg_np * 255).astype(np.uint8), 140), caption=f"2. Degraded ({p_deg:.1f} dB)", use_container_width=True)
-        with d_cols[2]:
-            st.image(enhance_crop((res_np * 255).astype(np.uint8), 140), caption=f"3. DDIM Restored ({p_res:.1f} dB)", use_container_width=True)
-        with d_cols[3]:
-            st.image(enhance_crop((reg_np * 255).astype(np.uint8), 140), caption=f"4. Regression Baseline ({p_reg:.1f} dB)", use_container_width=True)
-
-        st.markdown(f"**DDIM Latency ({ddim_steps} steps):** `{diff_latency_ms:.1f} ms` • **PSNR Gain over Degraded:** `+{p_res - p_deg:.2f} dB` • **Gain over Regression Baseline:** `+{p_res - p_reg:.2f} dB`")
-
-    st.markdown("##### Safety Audit: Hallucination Risk Assessment")
-    st.markdown("""
-    > [!IMPORTANT]
-    > **Zero-Tolerance Safety Policy:** In construction compliance, generative models must **never hallucinate PPE** onto an unshielded worker. In empirical verification across 500 degraded head crops, our DDIM model exhibited **0.0% class-flipping hallucination**, preserving strict safety integrity.
-    """)
-
-
-# =============================================================================
-# TAB 5: Safety Policy Checker (DistilBERT + Consensus)
-# =============================================================================
-with tab5:
-    st.subheader("Model 5: Multi-Modal Safety Policy Checker")
+    st.subheader("Model 3: Multi-Modal Safety Policy Checker")
     st.markdown("""
     **Purpose:** End-to-end multi-modal governance combining **NLP policy classification** (OSHA / ANSI regulations) with **Dual-Vision Consensus Gating** to produce definitive three-state safety verdicts.
     """)
@@ -867,6 +689,184 @@ with tab5:
 
 
 # =============================================================================
+# TAB 4: Conditional GAN (cGAN with DiffAugment)
+# =============================================================================
+with tab4:
+    st.subheader("Model 4: Conditional Generative Adversarial Network (cGAN with DiffAugment)")
+    st.markdown("""
+    **Purpose:** High-frequency adversarial synthesis to generate realistic synthetic training samples for the rare bare-head violation class, hardened by **Differentiable Augmentation (DiffAugment)** and verified with a **Nearest-Neighbor Privacy Audit**.
+    """)
+
+    cgan_data = load_cgan_suite()
+    col_cgan_ctrl, col_cgan_disp = st.columns([1.2, 2.0])
+
+    with col_cgan_ctrl:
+        st.markdown("##### Adversarial Generator Controls")
+        cgan_target = st.selectbox("Target Condition:", ["Head (Violation Class)", "Helmet", "Vest"], index=0, key="cgan_cls")
+        cgan_cls_idx = 0 if "Head" in cgan_target else (1 if "Helmet" in cgan_target else 2)
+
+        latent_sigma = st.slider("Latent Variation Scale (σ):", min_value=0.3, max_value=1.5, value=1.0, step=0.05)
+        cgan_seed = st.number_input("Adversarial Seed:", min_value=1, max_value=99999, value=6687, step=1)
+        gen_btn = st.button("⚡ Generate 4 Adversarial Crops", type="primary")
+
+        st.markdown("##### Nearest-Neighbor Privacy Metric")
+        st.markdown("""
+        To prevent generative training data memorization, each generated crop is audited against real training samples.
+        - **Empirical 5th-Percentile Threshold ($p_5$):** `0.2637`
+        - If $d_{\\text{min}} \\ge 0.2637$: **Privacy Approved (Novel)**
+        - If $d_{\\text{min}} < 0.2637$: **Near-Duplicate Flag**
+        """)
+
+    with col_cgan_disp:
+        if cgan_data["model"] is not None:
+            torch.manual_seed(cgan_seed)
+            np.random.seed(cgan_seed)
+
+            z = torch.randn(4, 128, device=DEVICE) * latent_sigma
+            y = torch.tensor([cgan_cls_idx] * 4, dtype=torch.long, device=DEVICE)
+
+            with torch.no_grad():
+                cgan_out = cgan_data["model"](z, y)
+                # ResNet Judge live evaluation
+                if cgan_data["judge"] is not None:
+                    judge_logits = cgan_data["judge"](cgan_out)
+                    judge_probs = F.softmax(judge_logits, dim=-1).cpu().numpy()
+                else:
+                    judge_probs = [[0.89, 0.05, 0.06]] * 4
+
+            st.markdown(f"##### Evaluated Synthetic Crops ({CLASS_NAMES[cgan_cls_idx].upper()})")
+            c_cols = st.columns(4)
+
+            for i in range(4):
+                arr = (cgan_out[i].permute(1, 2, 0).cpu().numpy() * 0.5 + 0.5).clip(0, 1)
+                arr_u8 = (arr * 255.0).astype(np.uint8)
+                enh = enhance_crop(arr_u8, 140)
+
+                # Privacy check
+                nn_dist = 0.285 + 0.02 * (i % 2)
+                if cgan_data["train_heads"] is not None and cgan_cls_idx == 0:
+                    dists = np.linalg.norm(cgan_data["train_heads"] - arr[None, ...], axis=(1, 2, 3)) / np.sqrt(64*64*3)
+                    nn_dist = float(np.min(dists))
+
+                j_cls = CLASS_NAMES[int(np.argmax(judge_probs[i]))]
+                j_conf = float(np.max(judge_probs[i]))
+
+                with c_cols[i]:
+                    st.image(enh, use_container_width=True)
+                    if j_cls == "head":
+                        st.markdown(f'<span class="badge-viol">Judge: {j_cls} ({j_conf*100:.0f}%)</span>', unsafe_allow_html=True)
+                    else:
+                        st.markdown(f'<span class="badge-ok">Judge: {j_cls} ({j_conf*100:.0f}%)</span>', unsafe_allow_html=True)
+
+                    if nn_dist >= 0.2637:
+                        st.markdown(f'<div style="font-size:0.75rem; color:#34d399;">d_nn: {nn_dist:.3f} • Privacy OK</div>', unsafe_allow_html=True)
+                    else:
+                        st.markdown(f'<div style="font-size:0.75rem; color:#f87171;">d_nn: {nn_dist:.3f} • Near-Duplicate</div>', unsafe_allow_html=True)
+        else:
+            st.warning("cGAN checkpoint not loaded. Check `artifacts/cgan/cgan_best.pt`.")
+
+    st.markdown("##### Downstream Data Augmentation Impact")
+    aug_df = pd.DataFrame({
+        "Classifier Training Configuration": ["Baseline (Real Data Only)", "Baseline + Standard Transforms", "Proposed: Real + cGAN Synthetic Heads"],
+        "Rare-Class (Head) Recall": ["74.2%", "78.6%", "82.8% (+4.2%)"],
+        "False Negative Violation Rate": ["25.8%", "21.4%", "17.2% (-8.6%)"],
+        "Macro F1-Score": ["0.884", "0.902", "0.931 (p < 0.001)"]
+    })
+    st.table(aug_df)
+
+
+# =============================================================================
+# TAB 5: Conditional Diffusion Restoration (DDPM / DDIM)
+# =============================================================================
+with tab5:
+    st.subheader("Model 5: Conditional Diffusion Restoration (DDPM / DDIM)")
+    st.markdown("""
+    **Purpose:** Reconstruct severe optical degradations (motion blur, low-resolution sensor downsampling, dust/rain occlusion, and high noise) on construction sites using a **Conditional U-Net with DDIM Fast Sampling** vs. a **Deterministic Regression Baseline**.
+    """)
+
+    diff_data = load_diffusion_suite()
+    sample_crops = get_sample_crops()
+
+    col_diff_ctrl, col_diff_disp = st.columns([1.2, 2.0])
+
+    with col_diff_ctrl:
+        st.markdown("##### Degradation & Sampling Controls")
+        diff_crop_choice = st.selectbox("Select Ground Truth Crop:", list(sample_crops.keys()) if sample_crops else ["None"], key="diff_crop")
+        if sample_crops and diff_crop_choice in sample_crops:
+            gt_pil = Image.open(sample_crops[diff_crop_choice]).convert("RGB").resize((64, 64))
+        else:
+            gt_pil = Image.new("RGB", (64, 64), color=(140, 160, 180))
+
+        deg_type = st.selectbox("Site Degradation Type:", [
+            "motion_blur", "gaussian_noise", "occlusion_mask", "downsampling", "lens_flare"
+        ])
+        severity = st.slider("Degradation Severity (Level):", min_value=1, max_value=5, value=3)
+        ddim_steps = st.select_slider("DDIM Sampling Steps:", options=[10, 20, 50, 100], value=20,
+                                      help="Fewer steps = lower latency. 20 steps achieves 98% of peak PSNR.")
+        run_diff_btn = st.button("🌊 Run Restoration Benchmark", type="primary")
+
+    with col_diff_disp:
+        # Generate degraded image
+        gt_tensor = transforms.ToTensor()(gt_pil).to(DEVICE)
+        degraded_tensor = degrade_image(gt_tensor, deg_type, severity)
+
+        # DDIM restoration
+        if diff_data["diffusion"] is not None and diff_data["schedule"] is not None:
+            with torch.no_grad():
+                t_start = time.perf_counter()
+                restored_tensor = sample_ddim(
+                    diff_data["diffusion"], diff_data["schedule"],
+                    degraded_tensor.unsqueeze(0), steps=ddim_steps, eta=0.0
+                ).squeeze(0)
+                diff_latency_ms = (time.perf_counter() - t_start) * 1000.0
+
+            if diff_data["regression"] is not None:
+                with torch.no_grad():
+                    reg_out = diff_data["regression"](degraded_tensor.unsqueeze(0)).squeeze(0)
+            else:
+                reg_out = degraded_tensor
+        else:
+            # Fallback simulated restoration if checkpoint missing
+            restored_tensor = (gt_tensor * 0.85 + degraded_tensor * 0.15).clamp(0, 1)
+            reg_out = (gt_tensor * 0.6 + degraded_tensor * 0.4).clamp(0, 1)
+            diff_latency_ms = 48.0
+
+        # Convert to numpy for metrics
+        gt_np = gt_tensor.permute(1, 2, 0).cpu().numpy()
+        deg_np = degraded_tensor.permute(1, 2, 0).cpu().numpy()
+        res_np = restored_tensor.permute(1, 2, 0).cpu().numpy()
+        reg_np = reg_out.permute(1, 2, 0).cpu().numpy()
+
+        p_deg = sk_psnr(gt_np, deg_np, data_range=1.0)
+        p_res = sk_psnr(gt_np, res_np, data_range=1.0)
+        p_reg = sk_psnr(gt_np, reg_np, data_range=1.0)
+
+        s_deg = sk_ssim(gt_np, deg_np, channel_axis=2, data_range=1.0)
+        s_res = sk_ssim(gt_np, res_np, channel_axis=2, data_range=1.0)
+        s_reg = sk_ssim(gt_np, reg_np, channel_axis=2, data_range=1.0)
+
+        st.markdown("##### Multi-Model Restoration Comparison")
+        d_cols = st.columns(4)
+
+        with d_cols[0]:
+            st.image(enhance_crop((gt_np * 255).astype(np.uint8), 140), caption="1. Clean Ground Truth", use_container_width=True)
+        with d_cols[1]:
+            st.image(enhance_crop((deg_np * 255).astype(np.uint8), 140), caption=f"2. Degraded ({p_deg:.1f} dB)", use_container_width=True)
+        with d_cols[2]:
+            st.image(enhance_crop((res_np * 255).astype(np.uint8), 140), caption=f"3. DDIM Restored ({p_res:.1f} dB)", use_container_width=True)
+        with d_cols[3]:
+            st.image(enhance_crop((reg_np * 255).astype(np.uint8), 140), caption=f"4. Regression Baseline ({p_reg:.1f} dB)", use_container_width=True)
+
+        st.markdown(f"**DDIM Latency ({ddim_steps} steps):** `{diff_latency_ms:.1f} ms` • **PSNR Gain over Degraded:** `+{p_res - p_deg:.2f} dB` • **Gain over Regression Baseline:** `+{p_res - p_reg:.2f} dB`")
+
+    st.markdown("##### Safety Audit: Hallucination Risk Assessment")
+    st.markdown("""
+    > [!IMPORTANT]
+    > **Zero-Tolerance Safety Policy:** In construction compliance, generative models must **never hallucinate PPE** onto an unshielded worker. In empirical verification across 500 degraded head crops, our DDIM model exhibited **0.0% class-flipping hallucination**, preserving strict safety integrity.
+    """)
+
+
+# =============================================================================
 # TAB 6: Master 5-Model Benchmark & Jury Report
 # =============================================================================
 with tab6:
@@ -897,7 +897,17 @@ with tab6:
             "Architectural Niche": "Smooth Manifold Walking & SLERP"
         },
         {
-            "Model Name": "3. Conditional GAN",
+            "Model Name": "3. Policy Transformer",
+            "Core Architecture": "Fine-Tuned DistilBERT + Temp Calibration",
+            "Latent Dim": "768-d",
+            "Checkpoint Size": "255.5 MB",
+            "Inference Latency": "12.6 ms",
+            "PSNR / FID": "N/A (NLP Domain)",
+            "Downstream Metric": "77.7% F1 (10.8% ECE)",
+            "Architectural Niche": "OSHA Governance & Multi-Modal Consensus"
+        },
+        {
+            "Model Name": "4. Conditional GAN",
             "Core Architecture": "Projection Discriminator + DiffAugment + EMA",
             "Latent Dim": "128-d",
             "Checkpoint Size": "39.7 MB",
@@ -907,7 +917,7 @@ with tab6:
             "Architectural Niche": "Rare-Class Synthetic Augmentation"
         },
         {
-            "Model Name": "4. Conditional Diffusion",
+            "Model Name": "5. Conditional Diffusion",
             "Core Architecture": "Conditional UNet with DDIM Fast Sampling",
             "Latent Dim": "Pixel-space",
             "Checkpoint Size": "98.6 MB",
@@ -915,16 +925,6 @@ with tab6:
             "PSNR / FID": "28.4 dB PSNR",
             "Downstream Metric": "+8.7 dB vs Reg",
             "Architectural Niche": "Severe Optical Degradation Restoration"
-        },
-        {
-            "Model Name": "5. Policy Transformer",
-            "Core Architecture": "Fine-Tuned DistilBERT + Temp Calibration",
-            "Latent Dim": "768-d",
-            "Checkpoint Size": "255.5 MB",
-            "Inference Latency": "12.6 ms",
-            "PSNR / FID": "N/A (NLP)",
-            "Downstream Metric": "98.2% F1 (0.018 ECE)",
-            "Architectural Niche": "OSHA Governance & Multi-Modal Consensus"
         }
     ]
 
@@ -938,10 +938,10 @@ with tab6:
         st.markdown("#### Architectural Winners by Domain")
         st.markdown("""
         - 🥇 **Fastest Edge Processing:** **Model 1 (ConvAE + SVM)** &rarr; `3.2 ms` per frame on edge CPU, ideal for CCTV gateways.
-        - 🥇 **Highest Image Restoration Quality:** **Model 4 (DDIM Diffusion)** &rarr; `28.4 dB PSNR`, beats deterministic regression by `+8.7 dB`.
-        - 🥇 **Best Training Augmentation:** **Model 3 (cGAN + DiffAugment)** &rarr; Increases minority bare-head recall by `+4.2%` with privacy audit $p_5 = 0.2637$.
         - 🥇 **Smoothest Latent Representation:** **Model 2 (cVAE)** &rarr; Monotonic Fréchet distance along SLERP trajectories.
-        - 🥇 **Most Reliable Safety Decision:** **Model 5 (Policy Transformer + Consensus)** &rarr; `98.2% F1` on regulatory clause compliance.
+        - 🥇 **Most Reliable Policy Decision:** **Model 3 (Policy Transformer + Consensus)** &rarr; `77.7% F1` (`10.8% ECE`) on OSHA regulations.
+        - 🥇 **Best Training Augmentation:** **Model 4 (cGAN + DiffAugment)** &rarr; Increases minority bare-head recall by `+4.2%` with privacy audit $p_5 = 0.2637$.
+        - 🥇 **Highest Image Restoration Quality:** **Model 5 (DDIM Diffusion)** &rarr; `28.4 dB PSNR`, beats deterministic regression by `+8.7 dB`.
         """)
 
     with col_b:
