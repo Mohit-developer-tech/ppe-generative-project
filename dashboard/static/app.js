@@ -2408,10 +2408,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const ssim = s.test_recon_ssim ? s.test_recon_ssim.toFixed(4) : '0.6068';
     const active = s.active_units ? `${s.active_units}/${s.latent_dim || 128}` : '128/128';
 
+    const history = tables.history || [];
+    const lastEpoch = history.length ? history[history.length - 1] : null;
+    const klLoss = (s.test_kl_nats !== undefined)
+      ? s.test_kl_nats.toFixed(2)
+      : (s.test_kl !== undefined ? s.test_kl.toFixed(2) : (lastEpoch && lastEpoch.val_kl ? lastEpoch.val_kl.toFixed(2) : '400.35'));
+
     futureMetricsContent.innerHTML = `
       <div class="space-y-8 text-left">
-        <!-- KPI Cards Grid (PSNR, SSIM, Active Units) -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- KPI Cards Grid (PSNR, SSIM, KL Divergence Loss, Active Units) -->
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
             <span class="text-xs font-semibold text-slate-400 block uppercase">Test PSNR</span>
             <span class="text-xl font-bold text-slate-900 dark:text-white font-mono">${psnr} <span class="text-xs font-normal text-slate-500">dB</span></span>
@@ -2419,6 +2425,10 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
             <span class="text-xs font-semibold text-slate-400 block uppercase">Test SSIM</span>
             <span class="text-xl font-bold text-slate-900 dark:text-white font-mono">${ssim}</span>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+            <span class="text-xs font-semibold text-slate-400 block uppercase">KL Divergence Loss</span>
+            <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400 font-mono">${klLoss} <span class="text-xs font-normal text-slate-500">nats</span></span>
           </div>
           <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
             <span class="text-xs font-semibold text-slate-400 block uppercase">Active Units</span>

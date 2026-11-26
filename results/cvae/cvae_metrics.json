@@ -17,5 +17,6 @@
     "helmet": 0.315,
     "vest": 0.755
   },
-  "mean_intra_class_diversity": 0.3618942059410943
+  "mean_intra_class_diversity": 0.3618942059410943,
+  "test_kl_nats": 400.35236385890414
 }
