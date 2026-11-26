@@ -2414,7 +2414,7 @@ document.addEventListener('DOMContentLoaded', () => {
     futureMetricsContent.innerHTML = `
       <div class="space-y-8 text-left">
         <!-- KPI Cards Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
             <span class="text-[10px] font-semibold text-slate-400 block uppercase">Test PSNR</span>
             <span class="text-lg font-bold text-slate-900 dark:text-white">${psnr} <span class="text-xs font-normal text-slate-500">dB</span></span>
@@ -2435,10 +2435,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="text-[10px] font-semibold text-slate-400 block uppercase">Active Units</span>
             <span class="text-lg font-bold text-emerald-600 dark:text-emerald-400 font-mono">${active}</span>
           </div>
-          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
-            <span class="text-[10px] font-semibold text-slate-400 block uppercase">Judge Cond Acc</span>
-            <span class="text-lg font-bold text-indigo-600 dark:text-indigo-400 font-mono">${condAcc}%</span>
-          </div>
+
         </div>
 
         <!-- Controlled Ablation Table -->
@@ -2458,7 +2455,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <th class="p-3">PSNR (dB)</th>
                   <th class="p-3">SSIM</th>
                   <th class="p-3">Active Units (Var > 0.01)</th>
-                  <th class="p-3">Judge Cond. Accuracy</th>
+                  
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-100 dark:divide-slate-800 font-mono text-[11px]">
@@ -2468,7 +2465,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <td class="p-3 text-slate-500">19.80 dB</td>
                   <td class="p-3 text-slate-500">0.5400</td>
                   <td class="p-3 text-rose-600 dark:text-rose-400 font-bold">4 / 128 (Collapsed)</td>
-                  <td class="p-3 text-rose-600 dark:text-rose-400 font-bold">38.2% (Near chance)</td>
+                  
                 </tr>
                 <tr class="bg-brand-50/30 dark:bg-brand-950/20 font-bold">
                   <td class="p-3 font-sans text-brand-700 dark:text-brand-300">Final CVAE (&sigma;-VAE, &beta;=1, KL-annealed)</td>
@@ -2476,7 +2473,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <td class="p-3 text-slate-900 dark:text-white">${psnr} dB</td>
                   <td class="p-3 text-slate-900 dark:text-white">${ssim}</td>
                   <td class="p-3 text-emerald-600 dark:text-emerald-400">${active} (Active)</td>
-                  <td class="p-3 text-emerald-600 dark:text-emerald-400">${condAcc}%</td>
+                  
                 </tr>
               </tbody>
             </table>
