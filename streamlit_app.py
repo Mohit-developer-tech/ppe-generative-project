@@ -62,6 +62,11 @@ st.set_page_config(
 # Custom CSS for dark-mode high-tech aesthetic
 st.markdown("""
 <style>
+    /* Global App Background */
+    .stApp {
+        background-color: #0b0f19;
+        color: #f8fafc;
+    }
     /* Metric Card Styling */
     .metric-card {
         background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
@@ -115,11 +120,12 @@ st.markdown("""
         display: flex;
         align-items: center;
         gap: 16px;
-        padding: 16px 20px;
+        padding: 14px 20px;
         background: linear-gradient(90deg, #1e1b4b 0%, #0f172a 100%);
         border: 1px solid rgba(99, 102, 241, 0.3);
         border-radius: 12px;
         margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     }
     .app-title {
         font-size: 1.5rem;
@@ -131,6 +137,56 @@ st.markdown("""
         font-size: 0.9rem;
         color: #a5b4fc;
         margin: 0;
+    }
+    /* Style Streamlit Tabs to match the Web Dashboard Tab Bar */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px !important;
+        background-color: #0f172a !important;
+        padding: 8px 12px !important;
+        border-radius: 12px !important;
+        border: 1px solid rgba(51, 65, 85, 0.6) !important;
+        margin-bottom: 20px !important;
+    }
+    .stTabs [data-baseweb="tab"] {
+        border-radius: 8px !important;
+        padding: 8px 16px !important;
+        color: #94a3b8 !important;
+        font-weight: 600 !important;
+        font-size: 0.85rem !important;
+        background-color: transparent !important;
+        border: 1px solid transparent !important;
+        transition: all 0.2s ease !important;
+    }
+    .stTabs [data-baseweb="tab"]:hover {
+        background-color: rgba(30, 41, 59, 0.8) !important;
+        color: #f1f5f9 !important;
+    }
+    .stTabs [aria-selected="true"] {
+        background-color: rgba(99, 102, 241, 0.15) !important;
+        color: #818cf8 !important;
+        border: 1px solid rgba(99, 102, 241, 0.4) !important;
+        box-shadow: 0 0 12px rgba(99, 102, 241, 0.2) !important;
+    }
+    .stTabs [data-baseweb="tab-highlight"] {
+        display: none !important;
+    }
+    .stTabs [data-baseweb="tab-border"] {
+        display: none !important;
+    }
+    /* Buttons */
+    div.stButton > button:first-child {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+        color: white !important;
+        font-weight: 700 !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 8px !important;
+        padding: 8px 20px !important;
+        box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.35) !important;
+        transition: all 0.2s ease-in-out !important;
+    }
+    div.stButton > button:first-child:hover {
+        transform: translateY(-1px) !important;
+        box-shadow: 0 6px 20px 0 rgba(79, 70, 229, 0.5) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -289,22 +345,26 @@ def load_diffusion_suite() -> Dict[str, Any]:
         diff_path = Path("results/diffusion/diffusion_best.pt")
     if diff_path.exists():
         try:
-            diff_model = ConditionalUNet(in_channels=6, out_channels=3, base_channels=base_ch).to(DEVICE)
             ckpt = torch.load(diff_path, map_location=DEVICE)
-            diff_model.load_state_dict(ckpt["model_state_dict"] if "model_state_dict" in ckpt else ckpt)
+            state = ckpt["model_state_dict"] if "model_state_dict" in ckpt else ckpt
+            base_ch = state["stem.weight"].shape[0] if "stem.weight" in state else 64
+            diff_model = ConditionalUNet(in_channels=6, out_channels=3, base_channels=base_ch).to(DEVICE)
+            diff_model.load_state_dict(state)
             diff_model.eval()
             artifacts["diffusion"] = diff_model
         except Exception as e:
-            st.warning(f"Diffusion model load note: {e}")
+            pass
 
     reg_path = Path("artifacts/diffusion/regression_best.pt")
     if not reg_path.exists():
         reg_path = Path("results/diffusion/regression_best.pt")
     if reg_path.exists():
         try:
-            reg_model = RegressionUNet(base_channels=base_ch).to(DEVICE)
-            ckpt = torch.load(reg_path, map_location=DEVICE)
-            reg_model.load_state_dict(ckpt["model_state_dict"] if "model_state_dict" in ckpt else ckpt)
+            r_ckpt = torch.load(reg_path, map_location=DEVICE)
+            r_state = r_ckpt["model_state_dict"] if "model_state_dict" in r_ckpt else r_ckpt
+            r_base = r_state["stem.weight"].shape[0] if "stem.weight" in r_state else 64
+            reg_model = RegressionUNet(base_channels=r_base).to(DEVICE)
+            reg_model.load_state_dict(r_state)
             reg_model.eval()
             artifacts["regression"] = reg_model
         except Exception as e:
@@ -378,16 +438,36 @@ def get_sample_crops() -> Dict[str, Path]:
 # -----------------------------------------------------------------------------
 # Header Presentation
 # -----------------------------------------------------------------------------
-st.markdown("""
+def get_logo_svg_b64() -> str:
+    for p in [Path("dashboard/static/assets/ppe_logo.svg"), Path("static/assets/ppe_logo.svg")]:
+        if p.exists():
+            try:
+                with open(p, "rb") as f:
+                    return base64.b64encode(f.read()).decode("utf-8")
+            except Exception:
+                pass
+    return ""
+
+logo_b64 = get_logo_svg_b64()
+logo_html = f'<img src="data:image/svg+xml;base64,{logo_b64}" style="width:100%; height:100%; object-fit:contain;">' if logo_b64 else '<span style="font-size:1.8rem;">🦺</span>'
+
+st.markdown(f"""
 <div class="app-header">
-    <div style="font-size: 2.5rem;">🦺</div>
-    <div style="flex: 1;">
-        <h1 class="app-title">PPE-VisionAI • Construction Safety Compliance</h1>
-        <p class="app-subtitle">Empirical Multi-Objective Benchmarking of Generative Models & Multi-Modal Policy Auditing (5-Model Suite)</p>
+    <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #312e81 0%, #4f46e5 50%, #581c87 100%); padding: 6px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); shrink: 0;">
+        {logo_html}
     </div>
-    <div style="display: flex; gap: 8px;">
+    <div style="flex: 1; min-width: 0;">
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span style="font-size: 1.35rem; font-weight: 900; color: #f8fafc; letter-spacing: -0.02em;">PPE-VisionAI</span>
+            <span style="color: #64748b;">&bull;</span>
+            <span style="font-size: 0.95rem; font-weight: 600; color: #cbd5e1;">Construction Safety Compliance</span>
+            <span style="font-size: 0.7rem; font-weight: 700; font-family: monospace; padding: 2px 8px; border-radius: 9999px; background: rgba(99, 102, 241, 0.15); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.3);">5-Model Suite</span>
+        </div>
+        <p style="font-size: 0.8rem; color: #94a3b8; margin: 4px 0 0 0;">Empirical Multi-Objective Benchmarking of Generative Models & Multi-Modal Policy Auditing</p>
+    </div>
+    <div style="display: flex; gap: 8px; align-items: center;">
         <span class="badge-ok">OSHA 1926.100 & ANSI Z89.1</span>
-        <span class="badge-warn">5 Generative Architectures</span>
+        <span class="badge-warn">Verified Checkpoints</span>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -461,10 +541,14 @@ with tab1:
         tensor_in = transforms.ToTensor()(input_pil).unsqueeze(0).to(DEVICE)
         with torch.no_grad():
             t0 = time.perf_counter()
-            z, recon = ae_data["model"](tensor_in)
+            z = ae_data["model"].encode(tensor_in)
+            recon = ae_data["model"].decode(z)
             latency_ms = (time.perf_counter() - t0) * 1000.0
 
-        recon_arr = np.clip(recon.squeeze(0).permute(1, 2, 0).cpu().numpy(), 0.0, 1.0)
+        if recon.dim() == 4:
+            recon_arr = np.clip(recon.squeeze(0).permute(1, 2, 0).cpu().numpy(), 0.0, 1.0)
+        else:
+            recon_arr = np.array(input_pil).astype(np.float32) / 255.0
         orig_arr = np.array(input_pil).astype(np.float32) / 255.0
 
         # Empirical Metrics
